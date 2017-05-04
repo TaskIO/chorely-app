@@ -7,7 +7,8 @@ export default class Home extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Home!</Text>
-        <Button title="Go to Group" onPress={() => navigate('Group')} />
+        <Button title="Go to Group" onPress={() => navigate('GroupTasks')} />
+        <Button title="Go to task creation page" onPress={() => navigate('NewTask')} />
       </View>
     );
   }
