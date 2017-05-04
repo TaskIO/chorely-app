@@ -1,15 +1,14 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button, TextInput } from 'react-native';
 
-export default class NewTask extends React.Component {
+export default class SingleTask extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View>
-        <Text> What task do you want accomplished?</Text>
-        <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-        />
+        <Text> Task</Text>
+        <Text> Description Here </Text>
+        <ListView>Approved</ListView>
       </View>
     );
   }
