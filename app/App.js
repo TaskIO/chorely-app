@@ -1,27 +1,20 @@
-import React from 'react';
-import { StackNavigator } from 'react-navigation'
+'use strict'
+// React
+import React from 'react'
+import { AppRegistry } from 'react-native'
+// Redux
 import { Provider } from 'react-redux'
 import store from './store'
-import Home from './components/Home'
-import GroupTasks from './components/GroupTasks'
-import NewTask from './components/NewTask'
-import SingleTask from './components/SingleTask'
-
-const App = StackNavigator({
-  Home: {screen: Home},
-  NewTask: {screen: NewTask},
-  GroupTasks: {screen: GroupTasks},
-  SingleTask: {screen: SingleTask}
-})
-
-class AppContainer extends React.Component {
+// Navigation
+import TabBarNavigation from './tabBar/views/TabBarNavigation'
+class SampleNavigation extends React.Component {
   render(){
     return(
       <Provider store={store}>
-        <App />
+        <TabBarNavigation />
       </Provider>
     )
   }
 }
 
-export default AppContainer
+export default SampleNavigation
