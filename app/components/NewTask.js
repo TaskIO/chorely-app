@@ -2,6 +2,9 @@ import React from 'react'
 import { StyleSheet, View, Text, Button, TextInput } from 'react-native'
 
 export default class NewTask extends React.Component {
+  constructor(){
+
+  }
   render() {
     const { navigate } = this.props.navigation
     return (
