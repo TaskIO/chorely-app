@@ -1,13 +1,13 @@
 import React from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
 
-export default class Home extends React.Component {
+export default class Group extends React.Component {
   render() {
     const { navigate } = this.props.navigation
     return (
       <View style={styles.container}>
-        <Text>Home!</Text>
-        <Button title="Go to Group" onPress={() => navigate('Group')} />
+        <Text>Group page!!</Text>
+        <Button title="Back to Home" onPress={() => navigate('Home')} />
       </View>
     );
   }
@@ -16,7 +16,7 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'salmon',
+    backgroundColor: 'khaki',
     alignItems: 'center',
     justifyContent: 'center',
   },

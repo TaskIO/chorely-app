@@ -1,14 +1,16 @@
 import React from 'react'
-import { StyleSheet, View, Text, Button } from 'react-native'
+import { StyleSheet, View, Text, Button, TextInput } from 'react-native'
 
-export default class Home extends React.Component {
+export default class NewTask extends React.Component {
+  constructor(){
+
+  }
   render() {
     const { navigate } = this.props.navigation
     return (
-      <View style={styles.container}>
-        <Text>Home!</Text>
-        <Button title="Go to Group" onPress={() => navigate('Group')} />
-      </View>
+      <TextInput
+        style={{height: 40, borderColor: "gray", borderWidth: 1}}
+      />
     );
   }
 }
