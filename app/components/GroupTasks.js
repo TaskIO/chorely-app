@@ -1,18 +1,30 @@
 import React from 'react'
-import { StyleSheet, View, Text, Button } from 'react-native'
+import { StyleSheet, View, Text, Button, ListView } from 'react-native'
+import { connect } from 'react-redux'
 
-export default class GroupTasks extends React.Component {
+class GroupTasks extends React.Component {
   render() {
     const { navigate } = this.props.navigation
     return (
       <View style={styles.container}>
         <Text>Group page!!</Text>
-        <ListView>Tasks</ListView>
+        <Text>Current Task: {this.props.allTasks.selectedTask}</Text>
+        {/* <ListView>Tasks</ListView> */}
         <Button title="Back to Home" onPress={() => navigate('Home')} />
       </View>
     );
   }
 }
+
+export default connect(
+  state => {
+    return {
+      allTasks: state.tasks
+    }
+  }
+)(
+  GroupTasks
+)
 
 const styles = StyleSheet.create({
   container: {
