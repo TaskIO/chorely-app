@@ -6,12 +6,14 @@ import Home from './components/Home'
 import GroupTasks from './components/GroupTasks'
 import NewTask from './components/NewTask'
 import SingleTask from './components/SingleTask'
+import NewBounty from './components/NewBounty'
 
 const App = StackNavigator({
   Home: {screen: Home},
   NewTask: {screen: NewTask},
   GroupTasks: {screen: GroupTasks},
-  SingleTask: {screen: SingleTask}
+  SingleTask: {screen: SingleTask},
+  NewBounty: {screen: NewBounty}
 })
 
 class AppContainer extends React.Component {
