@@ -12,7 +12,7 @@ class GroupTabScreenOne extends React.Component {
         alignItems:'center',
         justifyContent:'center'
       }}>
-        <Text>Current Task: {this.props.allTasks && this.props.allTasks.selectedTask}</Text>
+        <Text>Current Task: {this.props.allTasks.selectedTask && this.props.allTasks.selectedTask.name}</Text>
         <TouchableOpacity
           onPress={ () => this.props.navigation.dispatch({ type:'JUMP_TO_TAB', payload:{index:0} }) }
           style={{

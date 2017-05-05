@@ -27,7 +27,6 @@ tabBarOptions:{
 export const TabBar = TabNavigator(routeConfiguration,tabBarConfiguration)
 
 export const tabBarReducer = (state,action) => {
-    console.log("action", action);
   if (action.type === 'JUMP_TO_TAB') {
     return { ...state, index:action.payload.index }
   } else {
