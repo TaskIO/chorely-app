@@ -26,7 +26,7 @@ export default class TaskTabScreenOne extends React.Component {
         <TouchableOpacity
           onPress={ () => {
             store.dispatch(addSelectedTask({name:taskInput}))
-            navigate('TaskTabScreenThree')
+            navigate('TaskTabScreenTwo')
           }}
           style={{
             padding:20,
