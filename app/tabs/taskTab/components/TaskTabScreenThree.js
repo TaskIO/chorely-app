@@ -3,20 +3,33 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 export default class TaskTabScreenThree extends React.Component {
   render(){
-    return(
+        return(
       <View style={{
         flex:1,
-        backgroundColor:'brown',
+        backgroundColor:'blue',
         alignItems:'center',
         justifyContent:'center'
       }}>
-        <Text>{ 'Task Screen Three' }</Text>
+        <Text> Task Name</Text>
+        <Text> Task Description Here </Text>
+        <Text>Approved</Text>
+        <TouchableOpacity
+          onPress={ () => this.props.navigation.navigate('TaskTabScreenThree') }
+          style={{
+            padding:20,
+            borderRadius:20,
+            backgroundColor:'yellow',
+            marginTop:20
+          }}>
+          <Text>{'Go to screen three'}</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity
           onPress={ () => this.props.navigation.goBack() }
           style={{
             padding:20,
             borderRadius:20,
-            backgroundColor:'yellow',
+            backgroundColor:'deeppink',
             marginTop:20
           }}>
           <Text>{'Go back a screen this tab'}</Text>

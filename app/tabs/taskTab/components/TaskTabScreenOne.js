@@ -26,7 +26,7 @@ export default class TaskTabScreenOne extends React.Component {
         <TouchableOpacity
           onPress={ () => {
             store.dispatch(addSelectedTask({name:taskInput}))
-            dispatch({ type:'JUMP_TO_TAB', payload:{index:1} })
+            navigate('TaskTabScreenThree')
           }}
           style={{
             padding:20,
@@ -34,16 +34,6 @@ export default class TaskTabScreenOne extends React.Component {
             backgroundColor:'yellow'
           }}>
           <Text>{'Add Task'}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={ () => navigate('TaskTabScreenTwo')}
-          style={{
-            padding:20,
-            borderRadius:20,
-            backgroundColor:'deeppink',
-            marginTop:20
-          }}>
-          <Text>{'Go to Single Task'}</Text>
         </TouchableOpacity>
       </View>
     );
