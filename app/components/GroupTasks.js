@@ -9,6 +9,7 @@ class GroupTasks extends React.Component {
       <View style={styles.container}>
         <Text>Group page!!</Text>
         <Text>Current Task: {this.props.allTasks.selectedTask}</Text>
+        <Text>Task amount: {this.props.allTasks.setBounty}</Text>
         {/* <ListView>Tasks</ListView> */}
         <Button title="Back to Home" onPress={() => navigate('Home')} />
       </View>
