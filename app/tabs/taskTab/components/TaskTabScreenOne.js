@@ -13,7 +13,7 @@ export default class TaskTabScreenOne extends React.Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
+    const { navigate, dispatch } = this.props.navigation;
     const taskInput = this.state.taskInput
     return (
       <View>
@@ -24,13 +24,16 @@ export default class TaskTabScreenOne extends React.Component {
           value={taskInput}
         />
         <TouchableOpacity
-          onPress={ () => {store.dispatch(addSelectedTask({name:taskInput}))}}
+          onPress={ () => {
+            store.dispatch(addSelectedTask({name:taskInput}))
+            dispatch({ type:'JUMP_TO_TAB', payload:{index:1} })
+          }}
           style={{
             padding:20,
             borderRadius:20,
             backgroundColor:'yellow'
           }}>
-          <Text>{'Go to next screen this tab'}</Text>
+          <Text>{'Add Task'}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={ () => navigate('TaskTabScreenTwo')}
@@ -40,7 +43,7 @@ export default class TaskTabScreenOne extends React.Component {
             backgroundColor:'deeppink',
             marginTop:20
           }}>
-          <Text>{'jump to group'}</Text>
+          <Text>{'Go to Single Task'}</Text>
         </TouchableOpacity>
       </View>
     );
