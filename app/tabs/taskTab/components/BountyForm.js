@@ -46,7 +46,7 @@ export default class TaskTabScreenTwo extends React.Component {
           marginTop: 20
         }
       } >
-      <Text>{'Go back a screen this tab'}</Text>
+      <Text>{'Change task name'}</Text>
       </TouchableOpacity>
       <TouchableOpacity
           onPress={ () => navigate('TaskTabScreenThree')}
