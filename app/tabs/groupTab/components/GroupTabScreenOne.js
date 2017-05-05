@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 class GroupTabScreenOne extends React.Component {
   render(){
+    const { selectedTask, setBounty } = this.props.allTasks
     return(
       <View style={{
         flex:1,
@@ -12,7 +13,8 @@ class GroupTabScreenOne extends React.Component {
         alignItems:'center',
         justifyContent:'center'
       }}>
-        <Text>Current Task: {this.props.allTasks.selectedTask && this.props.allTasks.selectedTask.name}</Text>
+        <Text>Current Task: {selectedTask.name}</Text>
+        <Text>Task Bounty: {setBounty}</Text>
         <TouchableOpacity
           onPress={ () => this.props.navigation.dispatch({ type:'JUMP_TO_TAB', payload:{index:0} }) }
           style={{
