@@ -4,9 +4,9 @@ import React from 'react'
 import { AppRegistry } from 'react-native'
 // Redux
 import { Provider } from 'react-redux'
-import store from './store'
+import store from './redux/store'
 // Navigation
-import TabBarNavigation from './tabBar/views/TabBarNavigation'
+import TabBarNavigation from './tabs/tabBar/components/TabBarNavigation'
 class SampleNavigation extends React.Component {
   render(){
     return(

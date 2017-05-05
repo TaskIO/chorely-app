@@ -1,9 +1,9 @@
 'use strict'
 import { TabNavigator } from 'react-navigation'
 // Tab-Navigators
-import HomeTabNavigation from '../homeTab/views/HomeTabNavigation'
-import GroupTabNavigation from '../groupTab/views/GroupTabNavigation'
-import TaskTabNavigation from '../taskTab/views/TaskTabNavigation'
+import HomeTabNavigation from '../homeTab/components/HomeTabNavigation'
+import GroupTabNavigation from '../groupTab/components/GroupTabNavigation'
+import TaskTabNavigation from '../taskTab/components/TaskTabNavigation'
 
 
 const routeConfiguration = {
@@ -27,8 +27,9 @@ tabBarOptions:{
 export const TabBar = TabNavigator(routeConfiguration,tabBarConfiguration)
 
 export const tabBarReducer = (state,action) => {
+    console.log("action", action);
   if (action.type === 'JUMP_TO_TAB') {
-    return { ...state, index:0 }
+    return { ...state, index:action.payload.index }
   } else {
     return TabBar.router.getStateForAction(action,state)
   }

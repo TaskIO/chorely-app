@@ -5,10 +5,10 @@ import { applyMiddleware, combineReducers, createStore } from 'redux'
 import { createLogger } from 'redux-logger'
 
 // Navigation
-import { NavigatorHomeTab } from './homeTab/navigationConfiguration'
-import { NavigatorGroupTab } from './groupTab/navigationConfiguration'
-import { NavigatorTaskTab } from './taskTab/navigationConfiguration'
-import { TabBar, tabBarReducer } from './tabBar/navigationConfiguration'
+import { NavigatorHomeTab } from '../tabs/homeTab/navigationConfiguration'
+import { NavigatorGroupTab } from '../tabs/groupTab/navigationConfiguration'
+import { NavigatorTaskTab } from '../tabs/taskTab/navigationConfiguration'
+import { TabBar, tabBarReducer } from '../tabs/tabBar/navigationConfiguration'
 
 // Middleware
 const middleware = () => {

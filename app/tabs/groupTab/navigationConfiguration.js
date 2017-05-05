@@ -3,8 +3,8 @@
 import { StackNavigator } from 'react-navigation'
 
 // Screens
-import GroupTabScreenOne from './views/GroupTabScreenOne'
-import GroupTabScreenTwo from './views/GroupTabScreenTwo'
+import GroupTabScreenOne from './components/GroupTabScreenOne'
+import GroupTabScreenTwo from './components/GroupTabScreenTwo'
 
 const routeConfiguration = {
   GroupTabScreenOne: { screen: GroupTabScreenOne },
