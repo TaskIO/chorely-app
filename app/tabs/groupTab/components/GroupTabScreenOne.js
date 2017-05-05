@@ -1,7 +1,9 @@
 'use strict'
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-export default class GroupTabScreenOne extends React.Component {
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { connect } from 'react-redux'
+
+class GroupTabScreenOne extends React.Component {
   render(){
     return(
       <View style={{
@@ -10,19 +12,37 @@ export default class GroupTabScreenOne extends React.Component {
         alignItems:'center',
         justifyContent:'center'
       }}>
-        <Text>{ 'Group Screen One' }</Text>
+        <Text>Current Task: {this.props.allTasks && this.props.allTasks.selectedTask}</Text>
         <TouchableOpacity
-          onPress={ () => this.props.navigation.navigate('GroupTabScreenTwo') }
+          onPress={ () => this.props.navigation.dispatch({ type:'JUMP_TO_TAB', payload:{index:0} }) }
           style={{
             padding:20,
             borderRadius:20,
             backgroundColor:'blue',
             marginTop:20
           }}>
-          <Text>{'Go to next screen this tab'}</Text>
+          <Text>{'Back to Home'}</Text>
         </TouchableOpacity>
-
       </View>
     )
   }
 }
+
+export default connect(
+  state => {
+    return {
+      allTasks: state.tasks
+    }
+  }
+)(
+  GroupTabScreenOne
+)
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'khaki',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
