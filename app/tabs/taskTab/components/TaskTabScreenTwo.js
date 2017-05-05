@@ -1,7 +1,8 @@
 'use strict'
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { ListView, View, Text, TouchableOpacity } from 'react-native'
 export default class TaskTabScreenTwo extends React.Component {
+
   render(){
     return(
       <View style={{
@@ -10,7 +11,9 @@ export default class TaskTabScreenTwo extends React.Component {
         alignItems:'center',
         justifyContent:'center'
       }}>
-        <Text>{ 'Task Screen Two' }</Text>
+        <Text> Task Name</Text>
+        <Text> Task Description Here </Text>
+        <Text>Approved</Text>
         <TouchableOpacity
           onPress={ () => this.props.navigation.navigate('TaskTabScreenThree') }
           style={{

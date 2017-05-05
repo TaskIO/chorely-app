@@ -33,7 +33,7 @@ export default class TaskTabScreenOne extends React.Component {
           <Text>{'Go to next screen this tab'}</Text>
         </TouchableOpacity>
         <TouchableOpacity
-
+          onPress={ () => navigate('TaskTabScreenTwo')}
           style={{
             padding:20,
             borderRadius:20,
