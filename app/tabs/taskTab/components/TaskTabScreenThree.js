@@ -2,7 +2,7 @@
 import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import { Container, Content, Text, Button } from 'native-base';
-import getTheme from '../../../../native-base-theme/components';
+import getTheme from '../../../theme/native-base-theme/components';
 
 
 export default class TaskTabScreenThree extends React.Component {

@@ -4,7 +4,7 @@ import React from 'react'
 import { AppRegistry } from 'react-native'
 // Native Base
 import {StyleProvider, getTheme} from 'native-base'
-import material from '../native-base-theme/variables/material'
+import material from './theme/native-base-theme/variables/material'
 // Redux
 import { Provider } from 'react-redux'
 import store from './redux/store'
