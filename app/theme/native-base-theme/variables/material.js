@@ -121,7 +121,7 @@ export default {
 
 
     // Font
-  fontFamily: 'Roboto',
+  fontFamily: 'System',
   fontSizeBase: 15,
 
   get fontSizeH1() {
@@ -265,7 +265,7 @@ export default {
 
 
     // Title
-  titleFontfamily: (platform === 'ios') ? 'Roboto' : 'Roboto_medium',
+  titleFontfamily: (platform === 'ios') ? 'System' : 'System',
   titleFontSize: 19,
   subTitleFontSize: 14,
   subtitleColor: '#FFF',
