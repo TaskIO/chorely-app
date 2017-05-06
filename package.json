@@ -2,27 +2,22 @@
   "name": "chorely",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-config-fullstack": "^2.8.1",
-    "eslint-plugin-react": "^6.10.3",
-    "jest-expo": "^0.4.0",
-    "react-native-scripts": "0.0.29",
-    "react-test-renderer": "16.0.0-alpha.6"
-  },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js"
+    "test": "node node_modules/jest/bin/jest.js",
+    "theme": "node node_modules/native-base/ejectTheme.js"
   },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@expo/vector-icons": "^4.0.0",
     "expo": "^16.0.0",
+    "native-base": "^2.1.3",
     "react": "16.0.0-alpha.6",
     "react-native": "^0.43.4",
     "react-navigation": "^1.0.0-beta.9",
@@ -31,6 +26,14 @@
     "redux-devtools-extension": "^2.13.1",
     "redux-logger": "^3.0.1",
     "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-fullstack": "^2.8.1",
+    "eslint-plugin-react": "^6.10.3",
+    "jest-expo": "^0.4.0",
+    "react-native-scripts": "0.0.29",
+    "react-test-renderer": "16.0.0-alpha.6"
   },
   "license": "MIT",
   "author": "Daniel Fattal, Jason Miguel, Jeff Kandel",

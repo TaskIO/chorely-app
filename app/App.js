@@ -2,6 +2,9 @@
 // React
 import React from 'react'
 import { AppRegistry } from 'react-native'
+// Native Base
+import {StyleProvider, getTheme} from 'native-base'
+import material from '../native-base-theme/variables/material'
 // Redux
 import { Provider } from 'react-redux'
 import store from './redux/store'
@@ -11,7 +14,9 @@ class SampleNavigation extends React.Component {
   render(){
     return(
       <Provider store={store}>
-        <TabBarNavigation />
+        <StyleProvider style={getTheme(material)}>
+          <TabBarNavigation />
+        </StyleProvider>
       </Provider>
     )
   }

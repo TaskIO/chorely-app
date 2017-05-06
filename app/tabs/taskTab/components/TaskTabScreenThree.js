@@ -1,15 +1,15 @@
 'use strict'
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
+import { Container, Content, Text, Button } from 'native-base';
+import getTheme from '../../../../native-base-theme/components';
+
+
 export default class TaskTabScreenThree extends React.Component {
-  render(){
-        return(
-      <View style={{
-        flex:1,
-        backgroundColor:'blue',
-        alignItems:'center',
-        justifyContent:'center'
-      }}>
+  render() {
+    return (
+      <Container>
+          <Content>
         <Text> Task Name</Text>
         <Text> Task Description Here </Text>
         <Text>Approved</Text>
@@ -34,8 +34,8 @@ export default class TaskTabScreenThree extends React.Component {
           }}>
           <Text>{'Go back a screen this tab'}</Text>
         </TouchableOpacity>
-
-      </View>
+            </Content>
+        </Container>
     )
   }
 }
