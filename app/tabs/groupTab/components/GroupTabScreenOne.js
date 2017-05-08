@@ -3,6 +3,7 @@ import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
 
+
 class GroupTabScreenOne extends React.Component {
   render(){
     const { selectedTask, setBounty } = this.props.allTasks
@@ -16,6 +17,7 @@ class GroupTabScreenOne extends React.Component {
         <Text>Current Task: {selectedTask.name}</Text>
         <Text>Task Bounty: {setBounty}</Text>
         <TouchableOpacity
+          // Refactor to not dispatch inline
           onPress={ () => this.props.navigation.dispatch({ type:'JUMP_TO_TAB', payload:{index:0} }) }
           style={{
             padding:20,
