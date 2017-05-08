@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux'
-import { tabBar, homeTab, groupTab, taskTab } from './navigation'
+import { authenticated, tabBar, homeTab, groupTab, taskTab } from './navigation'
 import tasks from './tasks'
 
 
 
 const reducer = combineReducers({
+  authenticated,
   tabBar,
   homeTab,
   groupTab,

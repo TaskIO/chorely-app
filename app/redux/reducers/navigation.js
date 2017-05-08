@@ -1,9 +1,10 @@
 /* -----------------    IMPORTS     ------------------ */
 
-import { NavigatorHomeTab } from '../../tabs/homeTab/navigationConfiguration'
-import { NavigatorGroupTab } from '../../tabs/groupTab/navigationConfiguration'
-import { NavigatorTaskTab } from '../../tabs/taskTab/navigationConfiguration'
-import { NavigatorTabBar } from '../../tabs/tabBar/navigationConfiguration'
+import { NavigatorHomeTab } from '../../views/homeTab/navigationConfiguration'
+import { NavigatorGroupTab } from '../../views/groupTab/navigationConfiguration'
+import { NavigatorTaskTab } from '../../views/taskTab/navigationConfiguration'
+import { NavigatorTabBar } from '../../views/tabBar/navigationConfiguration'
+import { NavigatorLogin } from '../../views/login/navigationConfiguration'
 
 /* -----------------    ACTION TYPES     ------------------ */
 
@@ -35,7 +36,7 @@ export const tabBar = (state, action) => {
     return NavigatorTabBar.router.getStateForAction(action, state)
   }
 }
-
+export const authenticated = (state, action) => NavigatorLogin.router.getStateForAction(action, state)
 export const homeTab = (state, action) => NavigatorHomeTab.router.getStateForAction(action, state)
 export const groupTab = (state, action) => NavigatorGroupTab.router.getStateForAction(action, state)
 export const taskTab = (state, action) => NavigatorTaskTab.router.getStateForAction(action, state)
