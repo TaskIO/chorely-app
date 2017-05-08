@@ -17,19 +17,19 @@ const mapStateToProps = (state) => {
 class GroupTabNavigation extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'Group',
-    tabBarIcon: ({ tintColor }) => <Icon size={ 20 } name={ 'taxi' } color={ tintColor }/>
+    tabBarIcon: ({ tintColor }) => <Icon size={ 20 } name={ "group" } color={ tintColor }/>
   }
 
 render(){
-    const { dispatch, navigationState} = this.props
-return (
-      <NavigatorGroupTab
-        navigation={
-          addNavigationHelpers({
-            dispatch: dispatch,
-            state: navigationState
-          })
-        }
+  const { dispatch, navigationState} = this.props
+  return (
+    <NavigatorGroupTab
+      navigation={
+        addNavigationHelpers({
+          dispatch: dispatch,
+          state: navigationState
+        })
+      }
       />
     )
   }
