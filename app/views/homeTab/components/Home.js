@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import { Container, Content, Text, Button, Form, Item, Icon, Input, List, ListItem, Body, Label, Title } from 'native-base';
+import { Container, Content, Text, Button, Form, Item, Icon, Input, List, ListItem, Body, Label, Title, Header } from 'native-base';
 
 export default class Home extends React.Component {
   constructor() {
@@ -21,7 +21,11 @@ export default class Home extends React.Component {
     return (
       <Container>
         <Content>
-          <Title>My Groups</Title>
+          <Header>
+            <Body>
+              <Title>My Groups</Title>
+            </Body>
+          </Header>
           <List>
             <ListItem>
               <Icon name="home" />
