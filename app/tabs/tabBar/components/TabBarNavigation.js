@@ -6,6 +6,7 @@ import React from 'react'
 // Navigation
 import { addNavigationHelpers } from 'react-navigation'
 import { NavigatorTabBar } from '../navigationConfiguration'
+import { Footer, FooterTab, Container, Content } from 'native-base'
 
 //Redux
 import { connect } from 'react-redux'

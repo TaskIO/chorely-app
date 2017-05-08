@@ -3,18 +3,18 @@
 import { StackNavigator } from 'react-navigation'
 
 // Screens
-import HomeTabScreenOne from './components/HomeTabScreenOne'
-import HomeTabScreenTwo from './components/HomeTabScreenTwo'
+import Login from './components/Login'
+import Home from './components/Home'
 
 const routeConfiguration = {
-  HomeTabScreenOne: { screen: HomeTabScreenOne },
-  HomeTabScreenTwo: { screen: HomeTabScreenTwo },
+  Login: { screen: Login },
+  Home: { screen: Home },
 }
 
 // going to disable the header for now
 const stackNavigatorConfiguration = {
-  headerMode: 'none',
-  initialRouteName: 'HomeTabScreenOne'
+  headerMode: 'float',
+  initialRouteName: 'Login'
 }
 
 export const NavigatorHomeTab = StackNavigator(routeConfiguration,stackNavigatorConfiguration)
