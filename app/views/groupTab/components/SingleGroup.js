@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import { Text, Button, Container, Content, Title, Header, Body, Tabs, Tab } from 'native-base'
+import { Text, Button, Container, Content, Title, Header, Body, Tabs, Tab, Icon } from 'native-base'
 import { connect } from 'react-redux'
 import TaskList from './TaskList'
 import MemberList from './MemberList'
@@ -14,6 +14,11 @@ class SingleGroup extends React.Component {
           <Header>
             <Body>
               <Title>GROUP NAME</Title>
+              <Text>GROUP INFO</Text>
+              <Button>
+                <Icon name="add-circle" />
+                <Text>Create New Task</Text>
+              </Button>
             </Body>
           </Header>
           <Tabs>

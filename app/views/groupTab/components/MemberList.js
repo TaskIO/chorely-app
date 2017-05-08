@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import { Text, Button, Container, Content, Title, Header, Body, Tabs, Tab } from 'native-base'
+import { Text, Button, Container, Content, List, ListItem } from 'native-base'
 import { connect } from 'react-redux'
 
 export default class TaskList extends React.Component {
@@ -8,8 +8,16 @@ export default class TaskList extends React.Component {
     return (
       <Container>
         <Content>
-          <Text>MEMBER NAME</Text>
-          <Text>MEMBER IMAGE</Text>
+          <List>
+            <ListItem>
+              <Text>MEMBER NAME</Text>
+              <Text>IMAGE</Text>
+            </ListItem>
+            <ListItem>
+              <Text>MEMBER NAME</Text>
+              <Text>IMAGE</Text>
+            </ListItem>
+          </List>
         </Content>
       </Container>
     )

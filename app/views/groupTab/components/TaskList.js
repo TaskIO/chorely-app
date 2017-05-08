@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import { Text, Button, Container, Content, Title, Header, Body, Tabs, Tab } from 'native-base'
+import { Text, Button, Container, Content, List, ListItem } from 'native-base'
 import { connect } from 'react-redux'
 
 class TaskList extends React.Component {
@@ -9,8 +9,16 @@ class TaskList extends React.Component {
     return (
       <Container>
         <Content>
-          <Text>TASK NAME</Text>
-          <Text>DATE</Text>
+          <List>
+            <ListItem>
+              <Text>TASK NAME</Text>
+              <Text>DATE</Text>
+            </ListItem>
+            <ListItem>
+              <Text>TASK NAME</Text>
+              <Text>DATE</Text>
+            </ListItem>
+          </List>
         </Content>
       </Container>
     )
