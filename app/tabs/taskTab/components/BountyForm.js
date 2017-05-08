@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
 import { ListView, View, Text, TextInput, TouchableOpacity } from 'react-native'
-import store from '../../../redux/store'
+import store from '../../../redux/store' // Use connect instead of importing the store
 import { addBounty } from '../../../redux/reducers/tasks'
 
 export default class TaskTabScreenTwo extends React.Component {

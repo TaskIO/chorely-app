@@ -1,5 +1,5 @@
 /* -----------------    IMPORTS     ------------------ */
-
+// Default exports?
 import { NavigatorHomeTab } from '../../tabs/homeTab/navigationConfiguration'
 import { NavigatorGroupTab } from '../../tabs/groupTab/navigationConfiguration'
 import { NavigatorTaskTab } from '../../tabs/taskTab/navigationConfiguration'
@@ -29,7 +29,7 @@ export const jumpToTab = (index) => ({
 */
 
 export const tabBar = (state, action) => {
-  if (action.type === 'JUMP_TO_TAB') {
+  if (action.type === 'JUMP_TO_TAB') { // Use your constant
     return {...state, index: action.payload.index }
   } else {
     return NavigatorTabBar.router.getStateForAction(action, state)
