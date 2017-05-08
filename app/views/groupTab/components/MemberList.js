@@ -3,26 +3,15 @@ import React from 'react'
 import { Text, Button, Container, Content, Title, Header, Body, Tabs, Tab } from 'native-base'
 import { connect } from 'react-redux'
 
-class TaskList extends React.Component {
+export default class TaskList extends React.Component {
   render() {
-    const { selectedTask, setBounty } = this.props.allTasks
     return (
       <Container>
         <Content>
-          <Text>TASK NAME</Text>
-          <Text>DATE</Text>
+          <Text>MEMBER NAME</Text>
+          <Text>MEMBER IMAGE</Text>
         </Content>
       </Container>
     )
   }
 }
-
-export default connect(
-  state => {
-    return {
-      allTasks: state.tasks
-    }
-  }
-)(
-  TaskList
-)

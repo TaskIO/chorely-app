@@ -2,6 +2,8 @@
 import React from 'react'
 import { Text, Button, Container, Content, Title, Header, Body, Tabs, Tab } from 'native-base'
 import { connect } from 'react-redux'
+import TaskList from './TaskList'
+import MemberList from './MemberList'
 
 class SingleGroup extends React.Component {
   render() {
@@ -16,12 +18,16 @@ class SingleGroup extends React.Component {
           </Header>
           <Tabs>
             <Tab heading="Pending Tasks">
+              <TaskList />
             </Tab>
             <Tab heading="Active Tasks">
+              <TaskList />
             </Tab>
             <Tab heading="Completed Tasks">
+              <TaskList />
             </Tab>
             <Tab heading="Members">
+              <MemberList />
             </Tab>
           </Tabs>
           <Text>Current Task: {selectedTask.name}</Text>
