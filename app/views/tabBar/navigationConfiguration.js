@@ -4,12 +4,14 @@ import { TabNavigator, TabBarBottom } from 'react-navigation'
 import HomeTabNavigation from '../homeTab/components/HomeTabNavigation'
 import GroupTabNavigation from '../groupTab/components/GroupTabNavigation'
 import TaskTabNavigation from '../taskTab/components/TaskTabNavigation'
+import UserTabNavigation from '../userTab/components/UserTabNavigation'
 
 
 const routeConfiguration = {
   HomeTabNavigation: { screen: HomeTabNavigation },
   GroupTabNavigation: { screen: GroupTabNavigation },
   TaskTabNavigation: { screen: TaskTabNavigation },
+  UserTabNavigation: { screen: UserTabNavigation },
 }
 
 const tabBarConfiguration = {

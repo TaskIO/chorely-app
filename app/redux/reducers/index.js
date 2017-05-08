@@ -1,16 +1,17 @@
 import { combineReducers } from 'redux'
-import { authenticated, tabBar, homeTab, groupTab, taskTab } from './navigation'
+import { authenticated, tabBar, homeTab, groupTab, taskTab, userTab } from './navigation'
 import tasks from './tasks'
 
 
 
 const reducer = combineReducers({
   authenticated,
-  tabBar,
-  homeTab,
   groupTab,
+  homeTab,
+  tabBar,
+  tasks,
   taskTab,
-  tasks
+  userTab,
 })
 
 export default reducer

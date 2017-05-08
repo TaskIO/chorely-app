@@ -5,6 +5,7 @@ import { NavigatorGroupTab } from '../../views/groupTab/navigationConfiguration'
 import { NavigatorTaskTab } from '../../views/taskTab/navigationConfiguration'
 import { NavigatorTabBar } from '../../views/tabBar/navigationConfiguration'
 import { NavigatorLogin } from '../../views/login/navigationConfiguration'
+import NavigatorUserTab from '../../views/userTab/navigationConfiguration'
 
 /* -----------------    ACTION TYPES     ------------------ */
 
@@ -40,3 +41,4 @@ export const authenticated = (state, action) => NavigatorLogin.router.getStateFo
 export const homeTab = (state, action) => NavigatorHomeTab.router.getStateForAction(action, state)
 export const groupTab = (state, action) => NavigatorGroupTab.router.getStateForAction(action, state)
 export const taskTab = (state, action) => NavigatorTaskTab.router.getStateForAction(action, state)
+export const userTab = (state, action) => NavigatorUserTab.router.getStateForAction(action, state)
