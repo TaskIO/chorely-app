@@ -5,7 +5,7 @@ import React from 'react'
 
 // Navigation
 import { addNavigationHelpers } from 'react-navigation'
-import { NavigatorHomeTab } from '../navigationConfiguration'
+import NavigatorUserTab from '../navigationConfiguration'
 
 // Redux
 import { connect } from 'react-redux'
@@ -16,20 +16,20 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 const mapStateToProps = (state) => {
  return {
-  navigationState: state.homeTab
+  navigationState: state.userTab
   }
 }
 
-class HomeTabNavigation extends React.Component {
+class UserTabNavigation extends React.Component {
   static navigationOptions = {
-    tabBarLabel: 'Home',
-    tabBarIcon: ({ tintColor }) => <Icon size={ 20 } name="home" color={ tintColor }/>
+    tabBarLabel: 'Profile',
+    tabBarIcon: ({ tintColor }) => <Icon size={ 20 } name="user" color={ tintColor }/>
   }
 
   render(){
     const { navigationState, dispatch } = this.props
     return (
-      <NavigatorHomeTab
+      <NavigatorUserTab
         navigation={
           addNavigationHelpers({
             dispatch: dispatch,
@@ -40,4 +40,4 @@ class HomeTabNavigation extends React.Component {
     )
   }
 }
-export default connect(mapStateToProps)(HomeTabNavigation)
+export default connect(mapStateToProps)(UserTabNavigation)
