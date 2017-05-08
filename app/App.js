@@ -9,13 +9,13 @@ import material from './theme/native-base-theme/variables/material'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 // Navigation
-import TabBarNavigation from './tabs/tabBar/components/TabBarNavigation'
+import LoginNavigation from './views/login/components/LoginNavigation'
 class SampleNavigation extends React.Component {
   render(){
     return(
       <Provider store={store}>
         <StyleProvider style={getTheme(material)}>
-          <TabBarNavigation />
+          <LoginNavigation />
         </StyleProvider>
       </Provider>
     )
