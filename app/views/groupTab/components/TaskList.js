@@ -4,6 +4,12 @@ import { Text, Button, Container, Content, List, ListItem } from 'native-base'
 import { connect } from 'react-redux'
 
 class TaskList extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      status: 'Pending'
+    }
+  }
   render() {
     const { selectedTask, setBounty } = this.props.allTasks
     return (

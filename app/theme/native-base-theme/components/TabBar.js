@@ -52,6 +52,7 @@ export default (variables = variable) => {
       borderRightWidth: 0,
       borderBottomColor: '#ccc',
       backgroundColor: variables.tabBgColor,
+      fontSize: 2
   };
 
 
