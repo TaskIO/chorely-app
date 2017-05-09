@@ -3,18 +3,16 @@
 import { StackNavigator } from 'react-navigation'
 
 // Screens
-import GroupTabScreenOne from './components/GroupTabScreenOne'
-import GroupTabScreenTwo from './components/GroupTabScreenTwo'
+import SingleGroup from './components/SingleGroup'
 
 const routeConfiguration = {
-  GroupTabScreenOne: { screen: GroupTabScreenOne },
-  GroupTabScreenTwo: { screen: GroupTabScreenTwo },
+  SingleGroup: { screen: SingleGroup },
 }
 // going to disable the header for now
 
 const stackNavigatorConfiguration = {
   headerMode: 'none',
-  initialRoute: 'GroupTabScreenOne'
+  initialRoute: 'SingleGroup'
 }
 
 export const NavigatorGroupTab = StackNavigator(routeConfiguration,stackNavigatorConfiguration)

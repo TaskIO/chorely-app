@@ -7,9 +7,9 @@ export default (variables = variable) => {
   const platformStyle = variables.platformStyle;
   const platform = variables.platform;
 
-  const tabTheme = { 
+  const tabTheme = {
   	flex: 1,
-  	backgroundColor: '#FFF',
+  	backgroundColor: '#FFF'
    };
 
 
