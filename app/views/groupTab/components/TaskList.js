@@ -2,28 +2,31 @@
 import React from 'react'
 import { Text, Button, Container, Content, List, ListItem } from 'native-base'
 import { connect } from 'react-redux'
+import { fetchGroupTasks } from '../../../redux/reducers/tasks'
 
 class TaskList extends React.Component {
   constructor() {
     super()
     this.state = {
-      status: 'Pending'
+      status: 'Pending',
     }
   }
+  componentDidMount() {
+    this.props.fetchGroupTasks()
+  }
   render() {
-    const { selectedTask, setBounty } = this.props.allTasks
+    const tasks = this.props.allTasks.groupTasks
     return (
       <Container>
         <Content>
           <List>
-            <ListItem>
-              <Text>TASK NAME</Text>
-              <Text>DATE</Text>
-            </ListItem>
-            <ListItem>
-              <Text>TASK NAME</Text>
-              <Text>DATE</Text>
-            </ListItem>
+            {tasks.length ? tasks.map(task => {
+              return (
+                <ListItem key={task.id}>
+                  <Text>{task.description}</Text>
+                </ListItem>
+              )
+            }) : null}
           </List>
         </Content>
       </Container>
@@ -34,7 +37,14 @@ class TaskList extends React.Component {
 export default connect(
   state => {
     return {
-      allTasks: state.tasks
+      allTasks: state.tasks,
+    }
+  },
+  dispatch => {
+    return {
+      fetchGroupTasks: (groupId = 1) => {
+        dispatch(fetchGroupTasks(groupId))
+      }
     }
   }
 )(
