@@ -11,7 +11,7 @@ const routeConfiguration = {
 
 // going to disable the header for now
 const stackNavigatorConfiguration = {
-  headerMode: 'float',
+  headerMode: 'none',
   initialRouteName: 'Home'
 }
 
