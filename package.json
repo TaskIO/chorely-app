@@ -8,7 +8,8 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js",
-    "theme": "node node_modules/native-base/ejectTheme.js"
+    "theme": "node node_modules/native-base/ejectTheme.js",
+    "setup-env": "node bin/env-setup.js"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "jest": {
@@ -16,6 +17,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^4.0.0",
+    "dotenv": "^4.0.0",
     "expo": "^16.0.0",
     "native-base": "^2.1.3",
     "react": "16.0.0-alpha.6",

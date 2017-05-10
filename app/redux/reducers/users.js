@@ -40,6 +40,18 @@ export default function(state = defaultState, action) {
 /* ------------       DISPATCHERS     ------------------ */
 import {getAllGroupUsersQuery} from '../graphql/group/query.js'
 
+
+export const addViewerUser = user => dispatch => {
+  return fetch(`${process.env.LOCALSERVER}/?${getAllGroupUsersQuery()}`)
+    .then(fetchResult => {
+      return fetchResult.json()
+    })
+    .then(jsonData => {
+      dispatch(setGroupUsers(jsonData.data.groups[0].users))
+    })
+    .catch(console.error)
+}
+
 export const fetchGroupUsers = groupId => dispatch => {
   return fetch(`http://192.168.2.12:4000/?${getAllGroupUsersQuery()}`)
     .then(fetchResult => {
