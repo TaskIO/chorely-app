@@ -1,25 +1,35 @@
-const SET_SELECTED_TASK = 'SET_SELECTED_TASK';
-const SET_BOUNTY = 'SET_BOUNTY';
-const SET_GROUP_TASKS = 'SET_GROUP_TASKS'
-
 const defaultState = {
-  selectedTask: '',
-  bountyAmount: '',
-  groupTasks: []
+  groupTasks: [],
+  selectedTask: {}
 };
+
+/* -----------------    ACTION TYPES     ------------------ */
+const SET_GROUP_TASKS = 'SET_GROUP_TASKS'
+const SET_SELECTED_TASK = 'SET_SELECTED_TASK'
+
+/* ------------   ACTION CREATORS     ------------------ */
+
+const setGroupTasks = groupTasks => ({
+  type: SET_GROUP_TASKS,
+  groupTasks
+})
+
+const setSelectedTask = selectedTask => ({
+  type: SET_SELECTED_TASK,
+  selectedTask
+})
+
+/* ------------       REDUCERS     ------------------ */
 
 export default function(state = defaultState, action) {
   const newState = Object.assign({}, state);
 
   switch (action.type) {
-    case SET_SELECTED_TASK:
-      newState.selectedTask = action.selectedTask;
-      break;
-    case SET_BOUNTY:
-      newState.setBounty = action.setBounty;
-      break;
     case SET_GROUP_TASKS:
       newState.groupTasks = action.groupTasks;
+      break;
+    case SET_SELECTED_TASK:
+      newState.selectedTask = action.selectedTask;
       break;
     default:
       return state;
@@ -27,34 +37,28 @@ export default function(state = defaultState, action) {
   return newState;
 }
 
-const setSelectedTask = selectedTask => ({
-  type: SET_SELECTED_TASK,
-  selectedTask
-});
+/* ------------       DISPATCHERS     ------------------ */
 
-const setBounty = setBounty => ({
-  type: SET_BOUNTY,
-  setBounty
-});
-
-const setGroupTasks = groupTasks => ({
-  type: SET_GROUP_TASKS,
-  groupTasks
-})
-
-export const addSelectedTask = selectedTask => {
-  return setSelectedTask(selectedTask);
-};
-
-export const addBounty = addBounty => {
-  return setBounty(addBounty);
-};
+import {getGroupTasksQuery} from '../graphql/task/query.js'
+import {createNewTaskWithBounty, associateTaskAndBounty} from '../graphql/task/mutation.js'
 
 export const fetchGroupTasks = groupId => dispatch => {
-  fetch(`http://192.168.2.8:4000/?query=query%7Bgroups(id%3A%20${groupId})%7Btasks%7Bid%20description%20status%7D%7D%7D%0A`)
+  fetch(`http://192.168.2.8:4000/?${getGroupTasksQuery(groupId)}`)
     .then(response => response.json())
     .then(groupTasks => {
       dispatch(setGroupTasks(groupTasks.data.groups[0].tasks))
+    })
+    .catch(console.error)
+}
+
+export const createNewTask = (description, groupId, creatorId, amount) => dispatch => {
+  fetch(`http://192.168.2.8:4000/?${createNewTaskWithBounty(description, groupId, creatorId, amount)}`, { method: 'POST'})
+    .then(response => response.json())
+    .then(createdTaskAndBounty => {
+      const taskId = createdTaskAndBounty.data.tasksCreate.id
+      const bountyId = createdTaskAndBounty.data.bountiesCreate.id
+      dispatch(setSelectedTask(createdTaskAndBounty.data.tasksCreate))
+      return fetch(`http://192.168.2.8:4000/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST'})
     })
     .catch(console.error)
 }

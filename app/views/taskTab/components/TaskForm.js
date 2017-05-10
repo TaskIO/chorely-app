@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, Button, Content, Body, Form, Input, Label, Item } from 'native-base'
 
 export default function TaskForm (props) {
-  const { groupList, group, viewerGroups, toggleGroupList, changeGroup, taskInput, changeTaskInput } = props.parentProps
+  const { taskInput, changeTaskInput, bountyInput, changeBountyInput, createNewTask, group } = props.parentProps
   return (
     <Content>
       <Form>
@@ -13,13 +13,20 @@ export default function TaskForm (props) {
             value={taskInput}
           />
         </Item>
+        <Item stackedLabel>
+          <Label>Bounty (1-100):</Label>
+          <Input
+            onChangeText={changeBountyInput}
+            value={bountyInput}
+          />
+        </Item>
       </Form>
       <Body style={{flexDirection: 'row'}}>
         {
-        taskInput
+        taskInput && +bountyInput > 0 && +bountyInput <= 100
         ?
           <Button
-            onPress={ () => {}}
+            onPress={ () => {createNewTask(taskInput, group.id, 1, Math.round(+bountyInput))}}
             style={{flex: 1, maxWidth: 200, justifyContent: 'center'}}>
             <Text>Add Task</Text>
           </Button>

@@ -1,35 +1,40 @@
 'use strict'
 import React from 'react'
-import { Text, Input, Button, Container, Content, Header, Body, Title, Form, Item, Label, ListItem, Radio } from 'native-base'
-import store from '../../../redux/store'
-import { addSelectedTask } from '../../../redux/reducers/tasks'
+import { Container, Content, Header, Body, Title } from 'native-base'
 import { connect } from 'react-redux'
+
 import ChangeGroup from './ChangeGroup'
 import TaskForm from './TaskForm'
 
+import { createNewTask } from '../../../redux/reducers/tasks'
+import { fetchGroup } from '../../../redux/reducers/groups'
+
 class NewTask extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       taskInput: '',
-      group: {},
+      bountyInput: '',
+      group: props.viewerGroup,
       groupList: false
     }
     this.changeTaskInput = this.changeTaskInput.bind(this)
+    this.changeBountyInput = this.changeBountyInput.bind(this)
     this.changeGroup = this.changeGroup.bind(this)
     this.toggleGroupList = this.toggleGroupList.bind(this)
-  }
-  componentDidMount() {
-    this.setState({
-      group: this.props.viewerGroup
-    })
   }
   changeTaskInput(taskInput) {
     this.setState({
       taskInput
     })
   }
+  changeBountyInput(bountyInput) {
+    this.setState({
+      bountyInput
+    })
+  }
   changeGroup(group) {
+    this.props.fetchGroup(group.id)
     this.setState({
       group,
       groupList: false
@@ -44,11 +49,9 @@ class NewTask extends React.Component {
     const parentProps = Object.assign({}, this.state, this.props, {
       changeGroup: this.changeGroup,
       toggleGroupList: this.toggleGroupList,
-      changeTaskInput: this.changeTaskInput
+      changeTaskInput: this.changeTaskInput,
+      changeBountyInput: this.changeBountyInput
     })
-    const { navigate, dispatch } = this.props.navigation;
-    const { taskInput, group, groupList } = this.state
-    const viewerGroups = this.props.viewerGroups
     return (
       <Container>
         <Content>
@@ -74,7 +77,12 @@ export default connect(
   },
   dispatch => {
     return {
-
+      fetchGroup: groupId => {
+        dispatch(fetchGroup(groupId))
+      },
+      createNewTask: (description, groupId, creatorId = 1, amount) => {
+        dispatch(createNewTask(description, groupId, creatorId, amount))
+      }
     }
   }
 )(
