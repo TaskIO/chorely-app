@@ -2,7 +2,7 @@ const SET_SELECTED_USER = 'SET_SELECTED_USER';
 const SET_GROUP_USERS = 'SET_GROUP_USERS'
 
 const defaultState = {
-  selectedUser: '',
+  selectedUser: {},
   groupUsers: []
 };
 
