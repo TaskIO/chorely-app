@@ -38,7 +38,28 @@ export default function(state = defaultState, action) {
 }
 
 /* ------------       DISPATCHERS     ------------------ */
-import {getAllGroupUsersQuery} from '../graphql/group/query.js'
+import { getAllGroupUsersQuery } from '../graphql/group/query.js'
+import { postCreateAccountMutation } from '../graphql/viewer/mutation.js'
+
+export const createAccount = user => dispatch => {
+  return fetch('http://192.168.1.47:4000/?', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "query": `${postCreateAccountMutation(user)}`,
+      })
+    })
+    .then(fetchResult => {
+      return fetchResult.json()
+    })
+    .then(jsonResult => {
+      dispatch(setViewerUser(jsonResult.data.usersCreate))
+    })
+    .catch(console.error)
+}
 
 export const fetchGroupUsers = groupId => dispatch => {
   return fetch(`http://192.168.2.8:4000/?${getAllGroupUsersQuery()}`)
