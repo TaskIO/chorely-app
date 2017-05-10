@@ -8,8 +8,7 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js",
-    "theme": "node node_modules/native-base/ejectTheme.js",
-    "setup-env": "node bin/env-setup.js"
+    "theme": "node node_modules/native-base/ejectTheme.js"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "jest": {

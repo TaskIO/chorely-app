@@ -3,46 +3,46 @@ import React from 'react'
 import { TouchableOpacity, View, StyleSheet, Dimensions, Platform } from 'react-native'
 import { Button, Container, Text, Content, Form, Label, Item, Input } from 'native-base'
 import styles from './styles'
-import { createAccount } from '../../../redux/reducers/viewer'
+import { createAccount } from '../../../redux/reducers/users'
+import { connect } from 'react-redux'
 
-export default class CreateAccount extends React.Component {
-  constructor(props) {
-    super(props)
+class CreateAccount extends React.Component {
+    constructor(props) {
+      super(props)
 
-    this.state = {
-      name: '',
-      email: '',
-      password: ''
+      this.state = {
+        name: '',
+        email: '',
+        password: ''
+      }
+
+      this.handleNameChange = this.handleNameChange.bind(this)
+      this.handleEmailChange = this.handleEmailChange.bind(this)
+      this.handlePasswordChange = this.handlePasswordChange.bind(this)
     }
 
-    this.handleNameChange = this.handleNameChange.bind(this)
-    this.handleEmailChange = this.handleEmailChange.bind(this)
-    this.handlePasswordChange = this.handlePasswordChange.bind(this)
+    handleNameChange(name) {
+      this.setState({
+        name
+      })
+    }
 
-  }
+    handleEmailChange(email) {
+      this.setState({
+        email
+      })
+    }
 
-  handleNameChange(name) {
-    this.setState({
-      name
-    })
-  }
+    handlePasswordChange(password) {
+      this.setState({
+        password
+      })
+    }
 
-  handleEmailChange(email) {
-    this.setState({
-      email
-    })
-  }
-
-  handlePasswordChange(password) {
-    this.setState({
-      password
-    })
-  }
-
-  render() {
-    const { navigate, dispatch } = this.props.navigation
-    return (
-      <Container>
+    render() {
+      const { navigate, dispatch } = this.props.navigation
+      return (
+        <Container>
         <Content >
           <View style={styles.formContainer}>
           <Form>
@@ -61,8 +61,9 @@ export default class CreateAccount extends React.Component {
             <Button
             onPress={
               () => {
-
-                navigate('TabBarNavigation')
+                this.props.createAccount(this.state)
+                .then(navigate('TabBarNavigation'))
+                .catch(console.error)
               }
             }
             >
@@ -72,12 +73,12 @@ export default class CreateAccount extends React.Component {
           </View>
         </Content>
       </Container>
-    )
+      )
+    }
   }
-}
-/* -----------------    CONTAINER     ------------------ */
+  /* -----------------    CONTAINER     ------------------ */
 
-const mapState = (state) => {}
+const mapState = state => state
 
 const mapDispatch = { createAccount }
 
