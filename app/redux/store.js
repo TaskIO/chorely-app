@@ -2,12 +2,12 @@
 // Redux
 import { applyMiddleware, createStore } from 'redux'
 import { createLogger } from 'redux-logger'
-import thunk from 'redux-thunk'
+import reduxThunk from 'redux-thunk'
 import combinedReducer from './reducers/'
 
 // Middleware
 const middleware = () => {
-  return applyMiddleware(thunk,createLogger())
+  return applyMiddleware(reduxThunk, createLogger())
 }
 
 export default createStore(
