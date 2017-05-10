@@ -7,7 +7,7 @@ import combinedReducer from './reducers/'
 
 // Middleware
 const middleware = () => {
-  return applyMiddleware(createLogger())
+  return applyMiddleware(thunk,createLogger())
 }
 
 export default createStore(
