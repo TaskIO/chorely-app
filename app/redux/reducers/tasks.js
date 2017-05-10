@@ -51,7 +51,7 @@ export const addBounty = addBounty => {
 };
 
 export const fetchGroupTasks = groupId => dispatch => {
-  fetch(`http://192.168.2.8:4000/?query=query%7Bgroups(id%3A%20${groupId})%7Btasks%7Bid%20description%7D%7D%7D%0A`)
+  fetch(`http://192.168.2.8:4000/?query=query%7Bgroups(id%3A%20${groupId})%7Btasks%7Bid%20description%20status%7D%7D%7D%0A`)
     .then(response => response.json())
     .then(groupTasks => {
       dispatch(setGroupTasks(groupTasks.data.groups[0].tasks))
