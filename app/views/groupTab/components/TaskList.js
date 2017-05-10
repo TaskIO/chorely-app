@@ -19,7 +19,6 @@ class TaskList extends React.Component {
     if (status !== this.state.status) this.setState({status})
   }
   render() {
-    console.log(this.props.groupTasks)
     const groupTasks = this.props.groupTasks.filter(task => task.status === this.state.status)
     const statuses = ['Pending', 'Active', 'Completed']
     return (

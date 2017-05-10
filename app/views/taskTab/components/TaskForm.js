@@ -1,10 +1,10 @@
 'use strict'
 import React from 'react'
-import { Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Text, Input, Button, Container, Content, Header, Body, Title, Form, Item, Label } from 'native-base'
 import store from '../../../redux/store'
 import { addSelectedTask } from '../../../redux/reducers/tasks'
 
-export default class TaskTabScreenOne extends React.Component {
+export default class TaskForm extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -13,29 +13,36 @@ export default class TaskTabScreenOne extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     const { navigate, dispatch } = this.props.navigation;
     const taskInput = this.state.taskInput
     return (
-      <View>
-        <Text> What task do you want accomplished?</Text>
-        <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={taskInput => this.setState({taskInput})}
-          value={taskInput}
-        />
-        <TouchableOpacity
-          onPress={ () => {
-            store.dispatch(addSelectedTask({name:taskInput}))
-            navigate('BountyForm')
-          }}
-          style={{
-            padding:20,
-            borderRadius:20,
-            backgroundColor:'yellow'
-          }}>
-          <Text>{'Add Task'}</Text>
-        </TouchableOpacity>
-      </View>
+      <Container>
+        <Content>
+          <Header>
+            <Body>
+              <Title>New Task</Title>
+            </Body>
+          </Header>
+          <Form>
+            <Item stackedLabel>
+              <Label>Task Description:</Label>
+              <Input
+                onChangeText={newTaskInput => this.setState({taskInput: newTaskInput})}
+                value={taskInput}
+              />
+            </Item>
+          </Form>
+          <Button
+            onPress={ () => {
+              store.dispatch(addSelectedTask({name: taskInput}))
+              navigate('BountyForm')
+            }}
+            style={{flexDirection: 'row', justifyContent: 'center'}}>
+            <Text>{'Add Task'}</Text>
+          </Button>
+        </Content>
+      </Container>
     );
   }
 }
