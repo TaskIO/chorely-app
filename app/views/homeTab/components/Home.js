@@ -62,7 +62,7 @@ class HomeComponent extends React.Component {
 
 const mapState = (state) => {
   return {
-    groups: state.groups.groups,
+    groups: state.groups.viewerGroups,
     viewerGroup: state.groups.viewerGroup
   }
 }
