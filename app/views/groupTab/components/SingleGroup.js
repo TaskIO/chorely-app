@@ -23,7 +23,7 @@ class SingleGroup extends React.Component {
               <Button>
                 <Icon name="add-circle" />
                 <Text>Create New Task</Text>
-              </Button> */}
+            </Button> */}
           </Header>
           <Tabs>
             <Tab heading="Members">
