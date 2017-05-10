@@ -23,7 +23,7 @@ class SingleGroup extends React.Component {
               <Button>
                 <Icon name="add-circle" />
                 <Text>Create New Task</Text>
-              </Button> */}
+            </Button> */}
           </Header>
           <Tabs>
             <Tab heading="Members">
@@ -33,12 +33,6 @@ class SingleGroup extends React.Component {
               <TaskList />
             </Tab>
           </Tabs>
-          <Text>Current Task: {selectedTask.name}</Text>
-          <Text>Task Bounty: {setBounty}</Text>
-          <Button onPress={ () => this.props.navigation.dispatch({ type: 'JUMP_TO_TAB', payload: {index: 0} }) }>
-            <Text>{'Back to Home'}</Text>
-          </Button>
-          <Text>Members:</Text>
         </Content>
       </Container>
     )
