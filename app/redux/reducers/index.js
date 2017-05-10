@@ -14,8 +14,8 @@ const reducer = combineReducers({
   tabBar,
   tasks,
   taskTab,
+  users,
   userTab,
-  users
 })
 
 export default reducer

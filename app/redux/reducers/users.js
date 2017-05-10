@@ -1,20 +1,35 @@
-const SET_SELECTED_USER = 'SET_SELECTED_USER';
-const SET_GROUP_USERS = 'SET_GROUP_USERS'
-
 const defaultState = {
-  selectedUser: {},
-  groupUsers: []
+  viewerUser: {},
+  viewerUsers: []
 };
+
+/* -----------------    ACTION TYPES     ------------------ */
+const SET_VIEWER_USER = 'SET_VIEWER_USER';
+const SET_VIEWER_USERS = 'SET_VIEWER_USERS'
+
+/* ------------   ACTION CREATORS     ------------------ */
+
+export const setViewerUser = viewerUser => ({
+  type: SET_VIEWER_USER,
+  viewerUser
+});
+
+export const setViewerUsers = viewerUsers => ({
+  type: SET_VIEWER_USERS,
+  viewerUsers
+})
+
+/* ------------       REDUCERS     ------------------ */
 
 export default function(state = defaultState, action) {
   const newState = Object.assign({}, state);
 
   switch (action.type) {
-    case SET_SELECTED_USER:
-      newState.selectedUser = action.selectedUser;
+    case SET_VIEWER_USER:
+      newState.viewerUser = action.viewerUser;
       break;
-    case SET_GROUP_USERS:
-      newState.groupUsers = action.groupUsers;
+    case SET_VIEWER_USERS:
+      newState.viewerUsers = action.viewerUsers;
       break;
     default:
       return state;
@@ -22,25 +37,16 @@ export default function(state = defaultState, action) {
   return newState;
 }
 
-const setSelectedUser = selectedUser => ({
-  type: SET_SELECTED_USER,
-  selectedUser
-});
+/* ------------       DISPATCHERS     ------------------ */
+import {getAllViewerUsersQuery} from '../graphql/group/query.js'
 
-const setGroupUsers = groupUsers => ({
-  type: SET_GROUP_USERS,
-  groupUsers
-})
-
-export const addSelectedTask = selectedTask => {
-  return setSelectedTask(selectedTask);
-};
-
-export const fetchGroupUsers = groupId => dispatch => {
-  fetch(`http://192.168.2.12:4000/?query=%7Bgroups(id%3A%201)%20%7Bname%20users%7Bid%20name%20email%7D%7D%7D%0A`)
-    .then(response => response.json())
-    .then(groupUsers => {
-      dispatch(setGroupUsers(groupUsers.data.groups[0].users))
+export const fetchViewerUsers = groupId => dispatch => {
+  return fetch(`http://192.168.2.12:4000/?${getAllViewerUsersQuery()}`)
+    .then(fetchResult => {
+      return fetchResult.json()
+    })
+    .then(jsonData => {
+      dispatch(setViewerUsers(jsonData.data.groups[0].users))
     })
     .catch(console.error)
 }
