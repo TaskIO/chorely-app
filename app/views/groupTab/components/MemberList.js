@@ -2,11 +2,11 @@
 import React from 'react';
 import { Text, Button, Container, Content, List, ListItem } from 'native-base';
 import { connect } from 'react-redux';
-import { fetchViewerUsers } from '../../../redux/reducers/users';
+import { fetchGroupUsers } from '../../../redux/reducers/users';
 
 class UserList extends React.Component {
   componentDidMount() {
-    this.props.fetchViewerUsers();
+    this.props.fetchGroupUsers();
   }
 
   render() {
@@ -32,12 +32,12 @@ class UserList extends React.Component {
 export default connect(
   state => {
     return {
-      viewAllGroupMembers: state.users.viewerUsers
+      viewAllGroupMembers: state.users.groupUsers
     };
   },
   dispatch => {
     return {
-      fetchViewerUsers: (groupId = 1) => dispatch(fetchViewerUsers(groupId))
+      fetchGroupUsers: (groupId = 1) => dispatch(fetchGroupUsers(groupId))
     };
   }
 )(UserList);
