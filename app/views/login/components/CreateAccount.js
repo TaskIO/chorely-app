@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
 import { TouchableOpacity, View, StyleSheet, Dimensions, Platform } from 'react-native'
-import { Button, Container, Text, Content, Form, Label, Item, Input } from 'native-base'
+import { Button, Container, Text, Content, Form, Label, Item, Input, InputGroup } from 'native-base'
 import styles from './styles'
 import { createAccount } from '../../../redux/reducers/users'
 import { connect } from 'react-redux'
@@ -48,15 +48,22 @@ class CreateAccount extends React.Component {
           <Form>
             <Item stackedLabel>
               <Label>Username</Label>
-              <Input onChangeText={this.handleNameChange}/>
+              <InputGroup borderType="underline" >
+                <Input onChangeText={this.handleNameChange}/>
+              </InputGroup>
             </Item>
             <Item stackedLabel>
               <Label>Email</Label>
-              <Input onChangeText={this.handleEmailChange}/>
+              <InputGroup borderType="underline" >
+                <Input onChangeText={this.handleEmailChange}/>
+              </InputGroup>
+
             </Item>
             <Item stackedLabel last>
               <Label>Password</Label>
-              <Input onChangeText={this.handlePasswordChange}/>
+              <InputGroup borderType="underline" >
+                <Input onChangeText={this.handlePasswordChange}/>
+              </InputGroup>
             </Item>
             <Button
             onPress={
