@@ -61,7 +61,7 @@ class NewTask extends React.Component {
             </Body>
           </Header>
           <ChangeGroup parentProps={parentProps} />
-          <TaskForm parentProps={parentProps} />
+          {this.state.group.id ? <TaskForm parentProps={parentProps} /> : null}
         </Content>
       </Container>
     );

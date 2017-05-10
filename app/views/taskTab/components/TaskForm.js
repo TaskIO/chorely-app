@@ -3,6 +3,7 @@ import { Text, Button, Content, Body, Form, Input, Label, Item } from 'native-ba
 
 export default function TaskForm (props) {
   const { taskInput, changeTaskInput, bountyInput, changeBountyInput, createNewTask, group } = props.parentProps
+  const { dispatch } = props.parentProps.navigation
   return (
     <Content>
       <Form>
@@ -26,7 +27,10 @@ export default function TaskForm (props) {
         taskInput && +bountyInput > 0 && +bountyInput <= 100
         ?
           <Button
-            onPress={ () => {createNewTask(taskInput, group.id, 1, Math.round(+bountyInput))}}
+            onPress={ () => {
+              createNewTask(taskInput, group.id, 1, Math.round(+bountyInput))
+              dispatch({type: 'JUMP_TO_TAB', index: 1})
+            }}
             style={{flex: 1, maxWidth: 200, justifyContent: 'center'}}>
             <Text>Add Task</Text>
           </Button>

@@ -41,7 +41,7 @@ export default function(state = defaultState, action) {
 import {getAllViewerGroupsQuery, getViewerGroupQuery} from '../graphql/group/query.js'
 
 export const fetchGroups = () => dispatch => {
-  return fetch(`http://192.168.1.47:4000/?${getAllViewerGroupsQuery()}`)
+  return fetch(`http://192.168.2.8:4000?${getAllViewerGroupsQuery()}`)
     .then(fetchResult => {
       return fetchResult.json()
     })

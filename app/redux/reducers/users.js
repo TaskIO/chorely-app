@@ -41,7 +41,7 @@ export default function(state = defaultState, action) {
 import {getAllGroupUsersQuery} from '../graphql/group/query.js'
 
 export const fetchGroupUsers = groupId => dispatch => {
-  return fetch(`http://192.168.2.12:4000/?${getAllGroupUsersQuery()}`)
+  return fetch(`http://192.168.2.8:4000/?${getAllGroupUsersQuery()}`)
     .then(fetchResult => {
       return fetchResult.json()
     })

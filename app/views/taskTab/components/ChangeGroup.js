@@ -9,7 +9,7 @@ export default function ChangeGroup (props) {
         <Button
           onPress={toggleGroupList}
           style={{flex: 1, maxWidth: 200, justifyContent: 'center'}}>
-          <Text>Change Group</Text>
+          <Text>{group.id ? 'Change' : 'Select'} Group</Text>
         </Button>
       </Body>
       {groupList

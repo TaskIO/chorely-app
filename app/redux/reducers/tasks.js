@@ -46,6 +46,7 @@ export const fetchGroupTasks = groupId => dispatch => {
   fetch(`http://192.168.2.8:4000/?${getGroupTasksQuery(groupId)}`)
     .then(response => response.json())
     .then(groupTasks => {
+      console.log('THIS HERE', groupTasks)
       dispatch(setGroupTasks(groupTasks.data.groups[0].tasks))
     })
     .catch(console.error)
