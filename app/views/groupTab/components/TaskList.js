@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import { Text, Button, Container, Content, List, ListItem } from 'native-base'
+import { Text, Button, Container, Content, List, ListItem, Body } from 'native-base'
 import { connect } from 'react-redux'
 import { fetchGroupTasks } from '../../../redux/reducers/tasks'
 
@@ -10,23 +10,37 @@ class TaskList extends React.Component {
     this.state = {
       status: 'Pending',
     }
+    this.toggleStatus = this.toggleStatus.bind(this)
   }
   componentDidMount() {
     this.props.fetchGroupTasks()
   }
+  toggleStatus(status) {
+    if (status !== this.state.status) this.setState({status})
+  }
   render() {
-    const tasks = this.props.allTasks.groupTasks
+    const groupTasks = this.props.groupTasks
+    const statuses = ['Pending', 'Active', 'Completed']
     return (
       <Container>
         <Content>
+          <Body style={{justifyContent: 'center', flexDirection: 'row'}}>
+            {statuses.map(status => {
+              return (
+                <Button key={status} onPress={() => this.toggleStatus(status)}>
+                  <Text>{status}</Text>
+                </Button>
+              )
+            })}
+          </Body>
           <List>
-            {tasks.length ? tasks.map(task => {
+            {groupTasks.length ? groupTasks.map(task => {
               return (
                 <ListItem key={task.id}>
                   <Text>{task.description}</Text>
                 </ListItem>
               )
-            }) : null}
+            }) : <Text>No {this.state.status} Tasks</Text>}
           </List>
         </Content>
       </Container>
@@ -37,7 +51,7 @@ class TaskList extends React.Component {
 export default connect(
   state => {
     return {
-      allTasks: state.tasks,
+      groupTasks: state.tasks.groupTasks,
     }
   },
   dispatch => {
