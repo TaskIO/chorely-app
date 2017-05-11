@@ -1,41 +1,44 @@
-'use strict'
 import React from 'react'
-import { Text, TextInput, TouchableOpacity, View } from 'react-native'
-import store from '../../../redux/store'
-import { addSelectedTask } from '../../../redux/reducers/tasks'
+import { Text, Button, Content, Body, Form, Input, Label, Item } from 'native-base'
 
-export default class TaskTabScreenOne extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      taskInput: ''
-    }
-  }
-
-  render() {
-    const { navigate, dispatch } = this.props.navigation;
-    const taskInput = this.state.taskInput
-    return (
-      <View>
-        <Text> What task do you want accomplished?</Text>
-        <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={taskInput => this.setState({taskInput})}
-          value={taskInput}
-        />
-        <TouchableOpacity
-          onPress={ () => {
-            store.dispatch(addSelectedTask({name:taskInput}))
-            navigate('BountyForm')
-          }}
-          style={{
-            padding:20,
-            borderRadius:20,
-            backgroundColor:'yellow'
-          }}>
-          <Text>{'Add Task'}</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+export default function TaskForm (props) {
+  const { taskInput, changeTaskInput, bountyInput, changeBountyInput, createNewTask, group } = props.parentProps
+  const { dispatch } = props.parentProps.navigation
+  return (
+    <Content>
+      <Form>
+        <Item stackedLabel>
+          <Label>Task Description:</Label>
+          <Input
+            onChangeText={changeTaskInput}
+            value={taskInput}
+          />
+        </Item>
+        <Item stackedLabel>
+          <Label>Bounty (1-100):</Label>
+          <Input
+            onChangeText={changeBountyInput}
+            value={bountyInput}
+          />
+        </Item>
+      </Form>
+      <Body style={{flexDirection: 'row'}}>
+        {
+        taskInput && +bountyInput > 0 && +bountyInput <= 100
+        ?
+          <Button
+            onPress={ () => {
+              createNewTask(taskInput, group.id, 1, Math.round(+bountyInput))
+              dispatch({type: 'JUMP_TO_TAB', index: 1})
+            }}
+            style={{flex: 1, maxWidth: 200, justifyContent: 'center'}}>
+            <Text>Add Task</Text>
+          </Button>
+        : <Button disabled style={{flex: 1, maxWidth: 200, justifyContent: 'center'}}>
+          <Text>Add Task</Text>
+        </Button>
+        }
+      </Body>
+    </Content>
+  )
 }

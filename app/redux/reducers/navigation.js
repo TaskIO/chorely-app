@@ -32,7 +32,7 @@ export const jumpToTab = (index) => ({
 
 export const tabBar = (state, action) => {
   if (action.type === 'JUMP_TO_TAB') {
-    return {...state, index: action.payload.index }
+    return {...state, index: action.index }
   } else {
     return NavigatorTabBar.router.getStateForAction(action, state)
   }

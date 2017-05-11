@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 import { Container, Content, Text, Button, Form, Item, Icon, Input, List, ListItem, Body, Label, Title, Header } from 'native-base'
 import GroupListItem from '../../groupTab/components/GroupListItem'
 import { setViewerGroup } from '../../../redux/reducers/groups'
+import { setGroupUsers } from '../../../redux/reducers/users'
+import { setGroupTasks } from '../../../redux/reducers/users'
+
 
 
 class HomeComponent extends React.Component {
@@ -16,7 +19,6 @@ class HomeComponent extends React.Component {
   }
 
   toggleForm() {
-    console.log('testing',this.props)
     const formState = this.state.showForm
     this.setState({
       showForm: !formState
