@@ -40,7 +40,8 @@ export default function(state = defaultState, action) {
 /* ------------       DISPATCHERS     ------------------ */
 import { getAllGroupUsersQuery } from '../graphql/group/query.js'
 import { postCreateAccountMutation } from '../graphql/viewer/mutation.js'
-
+import { getViewer } from '../graphql/viewer/query.js'
+import { setViewerGroups } from './groups'
 export const createAccount = user => dispatch => {
   return fetch('http://192.168.1.47:4000/?', {
       method: 'POST',
@@ -61,8 +62,22 @@ export const createAccount = user => dispatch => {
     .catch(console.error)
 }
 
+export const fetchViewer = user => dispatch => {
+  return fetch(`http://192.168.1.47:4000/?${getViewer(user.email)}`)
+    .then(fetchResult => {
+      return fetchResult.json()
+    })
+    .then(jsonResult => {
+      const [viewerUser] = jsonResult.data.users
+      const viewerGroups = viewerUser.groups
+      dispatch(setViewerUser(viewerUser))
+      dispatch(setViewerGroups(viewerGroups))
+    })
+    .catch(console.error)
+}
+
 export const fetchGroupUsers = groupId => dispatch => {
-  return fetch(`http://192.168.2.12:4000/?${getAllGroupUsersQuery()}`)
+  return fetch(`http://192.168.1.47:4000/?${getAllGroupUsersQuery()}`)
     .then(fetchResult => {
       return fetchResult.json()
     })

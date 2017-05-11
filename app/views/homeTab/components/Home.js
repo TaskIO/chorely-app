@@ -1,23 +1,20 @@
  'use strict'
  import React from 'react'
-import { connect } from 'react-redux'
-import { Container, Content, Text, Button, Form, Item, Icon, Input, List, ListItem, Body, Label, Title, Header } from 'native-base'
-import GroupListItem from '../../groupTab/components/GroupListItem'
-import { fetchGroups } from '../../../redux/reducers/groups'
+ import { connect } from 'react-redux'
+ import { Container, Content, Text, Button, Form, Item, Icon, Input, List, ListItem, Body, Label, Title, Header } from 'native-base'
+ import GroupListItem from '../../groupTab/components/GroupListItem'
+ import { fetchGroups } from '../../../redux/reducers/groups'
 
 
-class HomeComponent extends React.Component {
-  constructor(props) {
-    super(props)
+ class HomeComponent extends React.Component {
+   constructor(props) {
+     super(props)
      this.state = {
        showForm: false
      }
      this.toggleForm = this.toggleForm.bind(this)
    }
 
-  componentDidMount() {
-    this.props.fetchGroups()
-  }
    toggleForm() {
      const formState = this.state.showForm
      this.setState({
@@ -58,15 +55,16 @@ class HomeComponent extends React.Component {
    }
  }
 
-/* -----------------    CONTAINER     ------------------ */
+ /* -----------------    CONTAINER     ------------------ */
 
-const mapState = (state) => {
-  return {
-    groups: state.groups.viewerGroups,
-    viewerGroup: state.groups.viewerGroup
-  }
-}
+ const mapState = (state) => {
+   return {
+     viewerUser: state.users.viewerUser,
+     groups: state.groups.viewerGroups,
+     viewerGroup: state.groups.viewerGroup
+   }
+ }
 
-const mapDispatch = { fetchGroups }
+ const mapDispatch = { fetchGroups }
 
-export default connect(mapState, mapDispatch)(HomeComponent)
+ export default connect(mapState, mapDispatch)(HomeComponent)
