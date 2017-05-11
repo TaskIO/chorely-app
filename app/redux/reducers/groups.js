@@ -29,15 +29,3 @@ export default function(state = defaultState, action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-import {getAllViewerGroupsQuery} from '../graphql/group/query.js'
-
-export const fetchGroups = () => dispatch => {
-  return fetch(`http://192.168.1.47:4000/?${getAllViewerGroupsQuery()}`)
-    .then(fetchResult => {
-      return fetchResult.json()
-    })
-    .then(jsonData =>{
-      dispatch(setViewerGroups(jsonData.data.groups))
-    })
-    .catch(console.error)
-}
