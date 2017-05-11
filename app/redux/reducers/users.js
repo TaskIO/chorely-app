@@ -77,12 +77,15 @@ export const fetchViewer = user => dispatch => {
 }
 
 export const fetchGroupUsers = groupId => dispatch => {
-  return fetch(`http://192.168.1.47:4000/?${getAllGroupUsersQuery(groupId)}`)
-    .then(fetchResult => {
-      return fetchResult.json()
-    })
-    .then(jsonData => {
-      dispatch(setGroupUsers(jsonData.data.groups[0].users))
-    })
-    .catch(console.error)
+  console.log("groupId", groupId);
+  if (groupId) {
+    return fetch(`http://192.168.1.47:4000/?${getAllGroupUsersQuery(groupId)}`)
+      .then(fetchResult => {
+        return fetchResult.json()
+      })
+      .then(jsonData => {
+        dispatch(setGroupUsers(jsonData.data.groups[0].users))
+      })
+      .catch(console.error)
+  }
 }

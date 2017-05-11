@@ -1,16 +1,16 @@
-'use strict';
-import React from 'react';
-import { Text, Button, Container, Content, List, ListItem } from 'native-base';
-import { connect } from 'react-redux';
-import { fetchGroupUsers } from '../../../redux/reducers/users';
+'use strict'
+import React from 'react'
+import { Text, Button, Container, Content, List, ListItem } from 'native-base'
+import { connect } from 'react-redux'
+import { fetchGroupUsers } from '../../../redux/reducers/users'
 
 class UserList extends React.Component {
   componentDidMount() {
-    this.props.fetchGroupUsers();
+    this.props.fetchGroupUsers(this.props.viewerGroup.id)
   }
 
   render() {
-    const { viewAllGroupMembers } = this.props;
+    const { viewAllGroupMembers } = this.props
     return (
       <Container>
         <Content>
@@ -20,24 +20,25 @@ class UserList extends React.Component {
                 <ListItem key={user.id}>
                   <Text>{user.name}</Text>
                 </ListItem>
-              );
+              )
             })}
           </List>
         </Content>
       </Container>
-    );
+    )
   }
 }
 
 export default connect(
   state => {
     return {
-      viewAllGroupMembers: state.users.groupUsers
-    };
+      viewAllGroupMembers: state.users.groupUsers,
+      viewerGroup: state.groups.viewerGroup
+    }
   },
   dispatch => {
     return {
-      fetchGroupUsers: (groupId = 1) => dispatch(fetchGroupUsers(groupId))
-    };
+      fetchGroupUsers: (groupId) => dispatch(fetchGroupUsers(groupId))
+    }
   }
-)(UserList);
+)(UserList)

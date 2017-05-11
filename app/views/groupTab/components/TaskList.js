@@ -13,7 +13,7 @@ class TaskList extends React.Component {
     this.toggleStatus = this.toggleStatus.bind(this)
   }
   componentDidMount() {
-    this.props.fetchGroupTasks()
+    this.props.fetchGroupTasks(this.props.viewerGroup.id)
   }
   toggleStatus(status) {
     if (status !== this.state.status) this.setState({status})
@@ -52,11 +52,12 @@ export default connect(
   state => {
     return {
       groupTasks: state.tasks.groupTasks,
+      viewerGroup: state.groups.viewerGroup
     }
   },
   dispatch => {
     return {
-      fetchGroupTasks: (groupId = 1) => {
+      fetchGroupTasks: (groupId) => {
         dispatch(fetchGroupTasks(groupId))
       }
     }

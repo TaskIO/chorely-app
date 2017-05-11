@@ -1,2 +1,1 @@
-export const getAllViewerGroupsQuery = () => ('query={ groups { name id }}')
-export const getAllGroupUsersQuery = () => ('query={ groups(id: 1) { name users { id name email }}}')
+export const getAllGroupUsersQuery = (id) => (`query={ groups(id: "${id}") { name users { id name email }}}`)
