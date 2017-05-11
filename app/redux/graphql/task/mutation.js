@@ -40,3 +40,20 @@ export const associateTaskAndBounty = (taskId, bountyId) => {
     }`
   )
 }
+
+export const createNewBounty = (amount, userId) => {
+  return (
+    `query=mutation AddBountyToTask($bounty: bountiesInput!) {
+      bountiesCreate(bounties: $bounty) {
+        id
+        amount
+        user_id
+      }
+    }&operationName=AddBountyToTask&variables={
+      "bounty": {
+        "amount": ${amount},
+        "user_id": ${userId}
+      }
+    }`
+  )
+}
