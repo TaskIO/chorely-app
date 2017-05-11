@@ -22,11 +22,11 @@ class SingleGroup extends React.Component {
             </Button>
           </Header>
           <Tabs>
-            <Tab heading="Members">
-              <MemberList />
-            </Tab>
             <Tab heading="Tasks">
               <TaskList navigate={navigate} />
+            </Tab>
+            <Tab heading="Members">
+              <MemberList />
             </Tab>
           </Tabs>
         </Content>

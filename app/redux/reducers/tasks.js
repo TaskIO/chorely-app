@@ -34,7 +34,6 @@ export default function(state = defaultState, action) {
     default:
       return state;
   }
-  console.log('TASKS STATE', newState)
   return newState;
 }
 /* ------------       DISPATCHERS     ------------------ */

@@ -20,6 +20,7 @@ class SingleTask extends React.Component {
     })
   }
   render() {
+    const { navigate } = this.props.navigation
     const { selectedTask, addBountyToTask, viewerGroup } = this.props
     let { bountyAmount } = this.state
     const bountyStatus = selectedTask.bounties.some(bounty => {
@@ -42,6 +43,7 @@ class SingleTask extends React.Component {
               addBountyToTask={addBountyToTask}
               viewerGroup={viewerGroup}
               selectedTask={selectedTask}
+              navigate={navigate}
               />
           }
         </Content>
