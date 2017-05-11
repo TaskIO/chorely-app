@@ -77,7 +77,7 @@ export const fetchViewer = user => dispatch => {
 }
 
 export const fetchGroupUsers = groupId => dispatch => {
-  return fetch(`http://192.168.1.47:4000/?${getAllGroupUsersQuery()}`)
+  return fetch(`http://192.168.1.47:4000/?${getAllGroupUsersQuery(groupId)}`)
     .then(fetchResult => {
       return fetchResult.json()
     })
