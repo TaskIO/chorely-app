@@ -305,7 +305,7 @@ export default (variables = variable) => {
     shadowRadius: (platformStyle==='material') ? 1.2 : undefined,
     top: 0,
     left: 0,
-    right: 0,
+    right: 0
   };
 
 

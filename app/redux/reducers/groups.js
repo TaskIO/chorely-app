@@ -5,12 +5,18 @@ const defaultState = {
 
 /* -----------------    ACTION TYPES     ------------------ */
 const SET_VIEWER_GROUPS = 'SET_VIEWER_GROUPS'
+const SET_VIEWER_GROUP = 'SET_VIEWER_GROUP'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
 export const setViewerGroups = (viewerGroups) => ({
   type: SET_VIEWER_GROUPS,
   viewerGroups: viewerGroups
+})
+
+export const setViewerGroup = (viewerGroup) => ({
+  type: SET_VIEWER_GROUP,
+  viewerGroup: viewerGroup
 })
 
 /* ------------       REDUCERS     ------------------ */
@@ -21,6 +27,9 @@ export default function(state = defaultState, action) {
     case SET_VIEWER_GROUPS:
       newState.viewerGroups = action.viewerGroups
       break
+    case SET_VIEWER_GROUP:
+      newState.viewerGroup = action.viewerGroup
+      break
     default:
       return state
   }
@@ -29,15 +38,26 @@ export default function(state = defaultState, action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-import {getAllViewerGroupsQuery} from '../graphql/group/query.js'
+import {getAllViewerGroupsQuery, getViewerGroupQuery} from '../graphql/group/query.js'
 
 export const fetchGroups = () => dispatch => {
-  return fetch(`http://192.168.1.47:4000/?${getAllViewerGroupsQuery()}`)
+  return fetch(`http://192.168.2.8:4000?${getAllViewerGroupsQuery()}`)
     .then(fetchResult => {
       return fetchResult.json()
     })
-    .then(jsonData =>{
+    .then(jsonData => {
       dispatch(setViewerGroups(jsonData.data.groups))
+    })
+    .catch(console.error)
+}
+
+export const fetchGroup = groupId => dispatch => {
+  return fetch(`http://192.168.2.8:4000/?${getViewerGroupQuery(groupId)}`)
+    .then(fetchResult => {
+      return fetchResult.json()
+    })
+    .then(jsonData => {
+      dispatch(setViewerGroup(jsonData.data.groups[0]))
     })
     .catch(console.error)
 }
