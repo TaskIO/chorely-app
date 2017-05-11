@@ -2,13 +2,13 @@
 import React from 'react'
 import { Text, ListItem, Body, Icon } from 'native-base';
 
-export default ({ name, icon, setViewerGroup, id }) => (
+export default ({ selectGroup, group }) => (
   <ListItem
-    onPress={ () => { setViewerGroup(id) } }
+    onPress={ () => { selectGroup(group) } }
   >
     <Icon name='home' />
     <Body>
-      <Text>{name}</Text>
+      <Text>{group.name}</Text>
     </Body>
   </ListItem>
 )

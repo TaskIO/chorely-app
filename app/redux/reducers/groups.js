@@ -40,7 +40,15 @@ export default function(state = defaultState, action) {
 }
 
 /* ------------       DISPATCHERS     ------------------ */
-import {getAllViewerGroupsQuery, getViewerGroupQuery} from '../graphql/group/query.js'
+import { getAllViewerGroupsQuery, getViewerGroupQuery } from '../graphql/group/query.js'
+import { setGroupUsers } from './users'
+import { setGroupTasks } from './tasks'
+
+export const selectGroup = (group) => dispatch => {
+  dispatch(setViewerGroup(group))
+  dispatch(setGroupUsers(group.users))
+  dispatch(setGroupTasks(group.tasks))
+}
 
 export const fetchGroups = () => dispatch => {
   return fetch(`http://192.168.2.8:4000?${getAllViewerGroupsQuery()}`)

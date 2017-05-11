@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Container, Content, Text, Button, Form, Item, Icon, Input, List, ListItem, Body, Label, Title, Header } from 'native-base'
 import GroupListItem from '../../groupTab/components/GroupListItem'
-import { setViewerGroup } from '../../../redux/reducers/groups'
+import { selectGroup } from '../../../redux/reducers/groups'
 import { setGroupUsers } from '../../../redux/reducers/users'
 import { setGroupTasks } from '../../../redux/reducers/users'
 
@@ -38,9 +38,8 @@ class HomeComponent extends React.Component {
           {this.props.groups.map(group=>(
             <GroupListItem
               key={group.id}
-              name={group.name}
-              id={group.id}
-              setViewerGroup={this.props.setViewerGroup}
+              group={group}
+              selectGroup={this.props.selectGroup}
             />))}
          </List>
          <Button transparent onPress={this.toggleForm}>
@@ -76,8 +75,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch)=>{
   return{
-    setViewerGroup:(id)=>{
-      dispatch(setViewerGroup(id))
+    selectGroup:(id)=>{
+      dispatch(selectGroup(id))
   }
   }
 }

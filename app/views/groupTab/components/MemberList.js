@@ -5,10 +5,6 @@ import { connect } from 'react-redux'
 import { fetchGroupUsers } from '../../../redux/reducers/users'
 
 class UserList extends React.Component {
-  componentDidMount() {
-    this.props.fetchGroupUsers(this.props.viewerGroup.id)
-  }
-
   render() {
     const { viewAllGroupMembers } = this.props
     return (

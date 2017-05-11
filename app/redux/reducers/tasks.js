@@ -9,12 +9,12 @@ const SET_SELECTED_TASK = 'SET_SELECTED_TASK'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-const setGroupTasks = groupTasks => ({
+export const setGroupTasks = groupTasks => ({
   type: SET_GROUP_TASKS,
   groupTasks
 })
 
-const setSelectedTask = selectedTask => ({
+export const setSelectedTask = selectedTask => ({
   type: SET_SELECTED_TASK,
   selectedTask
 })
@@ -41,16 +41,6 @@ export default function(state = defaultState, action) {
 
 import {getGroupTasksQuery} from '../graphql/task/query.js'
 import {createNewTaskWithBounty, associateTaskAndBounty} from '../graphql/task/mutation.js'
-
-export const fetchGroupTasks = groupId => dispatch => {
-  fetch(`http://192.168.2.8:4000/?${getGroupTasksQuery(groupId)}`)
-    .then(response => response.json())
-    .then(groupTasks => {
-      console.log('THIS HERE', groupTasks)
-      dispatch(setGroupTasks(groupTasks.data.groups[0].tasks))
-    })
-    .catch(console.error)
-}
 
 export const createNewTask = (description, groupId, creatorId, amount) => dispatch => {
   fetch(`http://192.168.2.8:4000/?${createNewTaskWithBounty(description, groupId, creatorId, amount)}`, { method: 'POST'})

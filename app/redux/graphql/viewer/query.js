@@ -20,6 +20,7 @@ export const getViewer = (email)=>(
     tasks{
       id
       description
+      status
       creator_id
       assignee_id
       bounties{
