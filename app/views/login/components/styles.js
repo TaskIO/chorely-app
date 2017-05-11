@@ -8,5 +8,11 @@ export default {
     flex: 1,
     marginTop: deviceHeight / 8,
     marginBottom: 30,
+  },
+  welcomeButton:{
+    flex: 1,
+    flexDirection:'column',
+    alignItems:'center',
+    justifyContent:'center'
   }
 }
