@@ -5,11 +5,12 @@ import { StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import TaskList from './TaskList'
 import MemberList from './MemberList'
+import { jumpToTab } from '../../../redux/reducers/navigation'
 
 class SingleGroup extends React.Component {
   render() {
     const { selectedTask, setBounty } = this.props.allTasks
-    const { navigate } = this.props.navigation
+    const { navigate, dispatch } = this.props.navigation
     return (
       <Container>
         <Content>
@@ -17,7 +18,7 @@ class SingleGroup extends React.Component {
             <Item>
               <Input placeholder="Search" />
             </Item>
-            <Button transparent>
+            <Button transparent onPress={() => dispatch(jumpToTab(2))}>
               <Icon name="add-circle" />
             </Button>
             {/* <Text>GROUP INFO</Text>

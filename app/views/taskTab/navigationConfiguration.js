@@ -2,12 +2,12 @@
 import { StackNavigator } from 'react-navigation'
 
 // Screens
-import TaskForm from './components/TaskForm'
+import NewTask from './components/NewTask'
 import BountyForm from './components/BountyForm'
 import TaskTabScreenThree from './components/TaskTabScreenThree'
 
 const routeConfiguration = {
-  TaskForm: { screen: TaskForm },
+  NewTask: { screen: NewTask },
   BountyForm: { screen: BountyForm },
   TaskTabScreenThree: { screen: TaskTabScreenThree },
 
@@ -15,7 +15,7 @@ const routeConfiguration = {
 // going to disable the header for now
 const stackNavigatorConfiguration = {
   headerMode: 'none',
-  initialRoute: 'TaskForm'
+  initialRoute: 'NewTask'
 }
 
 export const NavigatorTaskTab = StackNavigator(routeConfiguration,stackNavigatorConfiguration)
