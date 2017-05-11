@@ -4,6 +4,7 @@ import { Container, Content, Text, Input, Body, Button, Header, Title, Card, Car
 import { connect } from 'react-redux'
 import SetBounty from './SetBounty'
 import ViewBounty from './ViewBounty'
+import { addBountyToTask } from '../../../redux/reducers/tasks'
 
 class SingleTask extends React.Component {
   constructor() {
@@ -19,11 +20,11 @@ class SingleTask extends React.Component {
     })
   }
   render() {
-    const { selectedTask } = this.props
+    const { selectedTask, addBountyToTask, viewerGroup } = this.props
     let { bountyAmount } = this.state
     const bountyStatus = selectedTask.bounties.some(bounty => {
-      bountyAmount = bounty.amount
-      return bounty.user_id === 1
+      if (bounty.user_id === 2) bountyAmount = bounty.amount
+      return bounty.user_id === 2
     })
     return (
       <Container>
@@ -35,7 +36,13 @@ class SingleTask extends React.Component {
           </Header>
           {bountyStatus
             ? <ViewBounty bountyAmount={bountyAmount} />
-            : <SetBounty bountyAmount={bountyAmount} changeBounty={this.changeBounty} />
+            : <SetBounty
+              bountyAmount={bountyAmount}
+              changeBounty={this.changeBounty}
+              addBountyToTask={addBountyToTask}
+              viewerGroup={viewerGroup}
+              selectedTask={selectedTask}
+              />
           }
         </Content>
       </Container>
@@ -47,7 +54,15 @@ export default connect(
   state => {
     return {
       selectedTask: state.tasks.selectedTask,
-      viewerUser: state.users.viewerUser
+      viewerUser: state.users.viewerUser,
+      viewerGroup: state.groups.viewerGroup
+    }
+  },
+  dispatch => {
+    return {
+      addBountyToTask: (amount, userId, taskId, groupId) => {
+        dispatch(addBountyToTask(amount, userId, taskId, groupId))
+      }
     }
   }
 )(

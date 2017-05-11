@@ -16,5 +16,5 @@ export const getGroupTasksWithBounties = groupId => (
   `
 )
 
-export const getGroupTasksQuery = groupId => (`query=query{ groups(id: ${groupId}) {tasks { id description status }}}`)
+export const getGroupTasksQuery = groupId => (`query=query{ groups(id: ${groupId}) {tasks { id description status bounties {id amount user_id}}}}`)
 

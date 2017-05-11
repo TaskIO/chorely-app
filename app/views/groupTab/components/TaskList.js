@@ -35,7 +35,7 @@ class TaskList extends React.Component {
               )
             })}
           </Body>
-          <List>
+          <List style={{flex: 1, flexDirection: 'column'}}>
             <ListItem>
               <Text>{this.state.status} Tasks:</Text>
             </ListItem>
