@@ -9,6 +9,7 @@ import MemberList from './MemberList'
 class SingleGroup extends React.Component {
   render() {
     const { selectedTask, setBounty } = this.props.allTasks
+    const { navigate } = this.props.navigation
     return (
       <Container>
         <Content>
@@ -30,7 +31,7 @@ class SingleGroup extends React.Component {
               <MemberList />
             </Tab>
             <Tab heading="Tasks">
-              <TaskList />
+              <TaskList navigate={navigate} />
             </Tab>
           </Tabs>
         </Content>
