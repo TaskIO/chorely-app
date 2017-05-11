@@ -68,7 +68,7 @@ export const fetchViewer = user => dispatch => {
       return fetchResult.json()
     })
     .then(jsonResult => {
-      const [viewerUser] = jsonResult.data.users
+      const viewerUser = jsonResult.data.users[0]
       const viewerGroups = viewerUser.groups
       dispatch(setViewerUser(viewerUser))
       dispatch(setViewerGroups(viewerGroups))

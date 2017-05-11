@@ -67,7 +67,7 @@ class FetchViewer extends React.Component {
               }
             }
             >
-            <Text>{'Create Account'}</Text>
+            <Text>{'Login'}</Text>
             </Button>
           </Form>
           </View>
