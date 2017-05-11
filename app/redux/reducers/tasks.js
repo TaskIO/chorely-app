@@ -36,11 +36,14 @@ export default function(state = defaultState, action) {
   }
   return newState;
 }
-
 /* ------------       DISPATCHERS     ------------------ */
 
-import {getGroupTasksQuery} from '../graphql/task/query.js'
-import {createNewTaskWithBounty, associateTaskAndBounty} from '../graphql/task/mutation.js'
+import {getGroupTasksQuery, getGroupTasksWithBounties} from '../graphql/task/query.js'
+import {createNewTaskWithBounty, associateTaskAndBounty, createNewBounty} from '../graphql/task/mutation.js'
+
+export const addSelectedTask = selectedTask => {
+  return setSelectedTask(selectedTask);
+};
 
 export const createNewTask = (description, groupId, creatorId, amount) => dispatch => {
   fetch(`http://192.168.2.8:4000/?${createNewTaskWithBounty(description, groupId, creatorId, amount)}`, { method: 'POST'})
@@ -50,6 +53,19 @@ export const createNewTask = (description, groupId, creatorId, amount) => dispat
       const bountyId = createdTaskAndBounty.data.bountiesCreate.id
       dispatch(setSelectedTask(createdTaskAndBounty.data.tasksCreate))
       return fetch(`http://192.168.2.8:4000/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST'})
+    })
+    .catch(console.error)
+}
+
+export const addBountyToTask = (amount, userId, taskId, groupId) => dispatch => {
+  fetch(`http://192.168.2.8:4000/?${createNewBounty(amount, userId)}`, { method: 'POST' })
+    .then(response => response.json())
+    .then(createdBounty => {
+      const bountyId = createdBounty.data.bountiesCreate.id
+      return fetch(`http://192.168.2.8:4000/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST' })
+    })
+    .then(() => {
+      fetchGroupTasks(groupId)
     })
     .catch(console.error)
 }

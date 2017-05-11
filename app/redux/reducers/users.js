@@ -43,7 +43,7 @@ import { postCreateAccountMutation } from '../graphql/viewer/mutation.js'
 import { getViewer } from '../graphql/viewer/query.js'
 import { setViewerGroups } from './groups'
 export const createAccount = user => dispatch => {
-  return fetch('http://192.168.1.47:4000/?', {
+  return fetch('http://192.168.2.8:4000/?', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

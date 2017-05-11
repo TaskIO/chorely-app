@@ -1,8 +1,8 @@
 'use strict'
 import React from 'react'
-import { Text, Button, Container, Content, List, ListItem, Body } from 'native-base'
+import { Text, Button, Container, Content, List, ListItem, Body, Title } from 'native-base'
 import { connect } from 'react-redux'
-import { fetchGroupTasks } from '../../../redux/reducers/tasks'
+import { fetchGroupTasks, addSelectedTask } from '../../../redux/reducers/tasks'
 
 class TaskList extends React.Component {
   constructor() {
@@ -18,6 +18,8 @@ class TaskList extends React.Component {
   render() {
     const groupTasks = this.props.groupTasks.filter(task => task.status === this.state.status)
     const statuses = ['Pending', 'Active', 'Completed']
+    const setSelectedTask = this.props.addSelectedTask
+    const navigate = this.props.navigate
     return (
       <Container>
         <Content>
@@ -30,11 +32,22 @@ class TaskList extends React.Component {
               )
             })}
           </Body>
-          <List>
+          <List style={{flex: 1, flexDirection: 'column'}}>
+            <ListItem>
+              <Text>{this.state.status} Tasks:</Text>
+            </ListItem>
             {groupTasks.length ? groupTasks.map(task => {
               return (
                 <ListItem key={task.id}>
-                  <Text>{task.description}</Text>
+                  <Button
+                    transparent
+                    onPress={() => {
+                      setSelectedTask(task)
+                      navigate('SingleTask')
+                    }}
+                    >
+                    <Text>{task.description}</Text>
+                  </Button>
                 </ListItem>
               )
             }) : <Text>No {this.state.status} Tasks</Text>}
@@ -56,6 +69,9 @@ export default connect(
     return {
       fetchGroupTasks: (groupId) => {
         dispatch(fetchGroupTasks(groupId))
+      },
+      addSelectedTask: selectedTask => {
+        dispatch(addSelectedTask(selectedTask))
       }
     }
   }

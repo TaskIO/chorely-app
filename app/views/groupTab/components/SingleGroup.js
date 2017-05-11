@@ -9,8 +9,7 @@ import { jumpToTab } from '../../../redux/reducers/navigation'
 
 class SingleGroup extends React.Component {
   render() {
-    const { selectedTask, setBounty } = this.props.allTasks
-    const { dispatch } = this.props.navigation
+    const { navigate, dispatch } = this.props.navigation
     return (
       <Container>
         <Content>
@@ -21,18 +20,13 @@ class SingleGroup extends React.Component {
             <Button transparent onPress={() => dispatch(jumpToTab(2))}>
               <Icon name="add-circle" />
             </Button>
-            {/* <Text>GROUP INFO</Text>
-              <Button>
-                <Icon name="add-circle" />
-                <Text>Create New Task</Text>
-            </Button> */}
           </Header>
           <Tabs>
+            <Tab heading="Tasks">
+              <TaskList navigate={navigate} />
+            </Tab>
             <Tab heading="Members">
               <MemberList />
-            </Tab>
-            <Tab heading="Tasks">
-              <TaskList />
             </Tab>
           </Tabs>
         </Content>
@@ -40,14 +34,6 @@ class SingleGroup extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  tabs: {
-    borderWidth: 1,
-    borderColor: '#000000',
-    fontSize: 8
-  }
-})
 
 export default connect(
   state => {
