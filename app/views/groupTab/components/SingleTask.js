@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import { Container, Content, Text, Input, Body, Button, Header, Title, Card, CardItem } from 'native-base';
+import { Container, Content, Body, Header, Title } from 'native-base';
 import { connect } from 'react-redux'
 import SetBounty from './SetBounty'
 import ViewBounty from './ViewBounty'
