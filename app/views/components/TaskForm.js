@@ -2,8 +2,8 @@ import React from 'react'
 import { Text, Button, Content, Body, Form, Input, Label, Item } from 'native-base'
 
 export default function TaskForm (props) {
-  const { taskInput, changeTaskInput, bountyInput, changeBountyInput, createNewTask, group } = props.parentProps
-  const { dispatch } = props.parentProps.navigation
+  const { taskInput, changeTaskInput, bountyInput, changeBountyInput, createNewTask, group, viewerUser, fetchViewer, selectGroup } = props.parentProps
+  const { navigate } = props.parentProps.navigation
   return (
     <Content>
       <Form>
@@ -26,15 +26,26 @@ export default function TaskForm (props) {
         {
         taskInput && +bountyInput > 0 && +bountyInput <= 100
         ?
-          <Button
-            onPress={ () => {
-              createNewTask(taskInput, group.id, 1, Math.round(+bountyInput))
-              dispatch({type: 'JUMP_TO_TAB', index: 1})
+        <Button
+            onPress={() => {
+              createNewTask(taskInput, group.id, viewerUser.id, Math.round(+bountyInput))
+                // .then(newTask => {
+                //   const taskToAdd = newTask.data.tasksCreate
+                //   taskToAdd.bounties = [newTask.data.bountiesCreate]
+                //   group.tasks.push(taskToAdd)
+                //   selectGroup(group)
+                //   return fetchViewer(viewerUser)
+                // })
+                .then(() => {
+                  navigate('Group', {groupId: group.id})
+                })
+                .catch(console.error)
             }}
             style={{flex: 1, maxWidth: 200, justifyContent: 'center'}}>
-            <Text>Add Task</Text>
-          </Button>
-        : <Button disabled style={{flex: 1, maxWidth: 200, justifyContent: 'center'}}>
+          <Text>Add Task</Text>
+        </Button>
+        :
+        <Button disabled style={{flex: 1, maxWidth: 200, justifyContent: 'center'}}>
           <Text>Add Task</Text>
         </Button>
         }

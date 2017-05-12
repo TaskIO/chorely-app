@@ -2,7 +2,7 @@ import React from 'react'
 import { Content, Text, Input, Body, Button, Card, CardItem } from 'native-base';
 
 export default function SetBounty (props) {
-  const { bountyAmount, changeBounty, addBountyToTask, viewerGroup, selectedTask, navigate, viewerUser } = props
+  const { bountyAmount, changeBounty, addBountyToTask, selectedTask, navigate, viewerUser } = props
   return (
     <Content>
       <Card>
@@ -16,7 +16,7 @@ export default function SetBounty (props) {
       </Card>
       {+bountyAmount > 0 && +bountyAmount <= 100
         ? <Button onPress={() => {
-            addBountyToTask(bountyAmount, viewerUser.id, selectedTask.id, viewerGroup.id)
+            addBountyToTask(bountyAmount, viewerUser.id, selectedTask.id)
             navigate('Group')
           }}>
           <Text>Confirm Bounty</Text>

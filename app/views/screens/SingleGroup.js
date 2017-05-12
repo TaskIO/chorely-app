@@ -4,8 +4,13 @@ import { Button, Container, Content, Header, Item, Tabs, Tab, Icon, Input } from
 import { connect } from 'react-redux'
 import TaskList from '../components/TaskList'
 import MemberList from '../components/MemberList'
+import { selectGroup } from '../../redux/reducers/groups'
 
 class SingleGroup extends React.Component {
+  componentDidMount() {
+    const groupId = this.props.navigation.state.params.groupId
+    this.props.selectGroup(groupId)
+  }
   render() {
     const { navigate } = this.props.navigation
     return (
@@ -37,6 +42,13 @@ export default connect(
   state => {
     return {
       allTasks: state.tasks
+    }
+  },
+  dispatch => {
+    return {
+      selectGroup: groupId => {
+        dispatch(selectGroup(groupId))
+      }
     }
   }
 )(

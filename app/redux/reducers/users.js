@@ -38,7 +38,6 @@ export default function(state = defaultState, action) {
 }
 
 /* ------------       DISPATCHERS     ------------------ */
-import { getAllGroupUsersQuery } from '../graphql/group/query.js'
 import { postCreateAccountMutation } from '../graphql/viewer/mutation.js'
 import { getViewer } from '../graphql/viewer/query.js'
 import { setViewerGroups } from './groups'

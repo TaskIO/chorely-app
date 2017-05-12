@@ -8,6 +8,7 @@ import TaskForm from '../components/TaskForm'
 
 import { createNewTask } from '../../redux/reducers/tasks'
 import { selectGroup } from '../../redux/reducers/groups'
+import { fetchViewer } from '../../redux/reducers/users'
 
 class NewTask extends React.Component {
   constructor(props) {
@@ -72,7 +73,8 @@ export default connect(
   state => {
     return {
       viewerGroups: state.groups.viewerGroups,
-      viewerGroup: state.groups.viewerGroup
+      viewerGroup: state.groups.viewerGroup,
+      viewerUser: state.users.viewerUser
     }
   },
   dispatch => {
@@ -81,7 +83,10 @@ export default connect(
         dispatch(selectGroup(group))
       },
       createNewTask: (description, groupId, creatorId = 1, amount) => {
-        dispatch(createNewTask(description, groupId, creatorId, amount))
+        return dispatch(createNewTask(description, groupId, creatorId, amount))
+      },
+      fetchViewer: user => {
+        dispatch(fetchViewer(user))
       }
     }
   }

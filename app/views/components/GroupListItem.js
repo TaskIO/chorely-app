@@ -5,8 +5,7 @@ import { Text, ListItem, Body, Icon } from 'native-base'
 export default ({ group, navigate, selectGroup }) => (
   <ListItem
     onPress={ () => {
-      selectGroup(group)
-      navigate('Group')
+      navigate('Group', {groupId: group.id})
       }
     }
   >

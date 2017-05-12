@@ -43,18 +43,15 @@ import {createNewTaskWithBounty, associateTaskAndBounty, createNewBounty} from '
 // dev constants
 import { ipAddress, port} from '../../../constants/dev'
 
-export const addSelectedTask = selectedTask => {
-  return setSelectedTask(selectedTask)
-}
-
 export const createNewTask = (description, groupId, creatorId, amount) => dispatch => {
-  fetch(`http://${ipAddress}:${port}/?${createNewTaskWithBounty(description, groupId, creatorId, amount)}`, { method: 'POST'})
+  return fetch(`http://${ipAddress}:${port}/?${createNewTaskWithBounty(description, groupId, creatorId, amount)}`, { method: 'POST'})
     .then(response => response.json())
     .then(createdTaskAndBounty => {
       const taskId = createdTaskAndBounty.data.tasksCreate.id
       const bountyId = createdTaskAndBounty.data.bountiesCreate.id
       dispatch(setSelectedTask(createdTaskAndBounty.data.tasksCreate))
-      return fetch(`http://${ipAddress}:${port}/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST'})
+      fetch(`http://${ipAddress}:${port}/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST'})
+      return createdTaskAndBounty
     })
     .catch(console.error)
 }

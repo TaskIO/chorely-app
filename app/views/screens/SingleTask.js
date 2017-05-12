@@ -23,7 +23,7 @@ class SingleTask extends React.Component {
     const { navigate } = this.props.navigation
     const { selectedTask, addBountyToTask, viewerGroup, viewerUser } = this.props
     let { bountyAmount } = this.state
-    const bountyStatus = selectedTask.bounties.some(bounty => {
+    const bountyStatus = selectedTask.bounties && selectedTask.bounties.some(bounty => {
       if (bounty.user.id === viewerUser.id) bountyAmount = bounty.amount
       return bounty.user.id === viewerUser.id
     })

@@ -5,10 +5,16 @@ export const createNewTaskWithBounty = (description, groupId, creatorId, amount)
         id
         description
         status
+        creator_id
+        assignee_id
       }
       bountiesCreate(bounties: $bounty) {
         id
         amount
+        user {
+          id
+          name
+        }
       }
     }&operationName=CreateTaskForGroup&variables={
       "task": {
