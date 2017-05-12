@@ -13,7 +13,9 @@ class HomeComponent extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showForm: false
+      showForm: false,
+      groupName: '',
+      groupDescription: ''
     }
     this.toggleForm = this.toggleForm.bind(this)
   }
@@ -29,40 +31,45 @@ class HomeComponent extends React.Component {
     const { navigate } = this.props.navigation
     return (
       <Container>
-       <Content>
-         <Header>
-           <Body>
-             <Title>My Groups</Title>
-           </Body>
-         </Header>
-         <List>
-          {this.props.groups.map(group=>(
-            <GroupListItem
-              key={group.id}
-              group={group}
-              navigate={navigate}
-              selectGroup={this.props.selectGroup}
-            />))}
-         </List>
-         <Button transparent onPress={this.toggleForm}>
-           <Icon name="add-circle" />
-           <Text>New Group</Text>
-         </Button>
-         <Button onPress={()=>{navigate('Profile')}}>
-           <Text>Temp Button to Profile</Text>
-         </Button>
-         {formState &&
-         <Form>
-           <Item stackedLabel>
-             <Label>Group Name</Label>
-             <Input />
-           </Item>
-           <Item stackedLabel>
-             <Label>Other Stuff</Label>
-             <Input />
-           </Item>
-         </Form>}
-       </Content>
+        <Content>
+          <Header>
+            <Body>
+              <Title>My Groups</Title>
+            </Body>
+          </Header>
+          <List>
+            {this.props.groups.map(group=>(
+              <GroupListItem
+                key={group.id}
+                group={group}
+                navigate={navigate}
+                selectGroup={this.props.selectGroup}
+              />))}
+          </List>
+          <Button transparent onPress={this.toggleForm}>
+            <Icon name="add-circle" />
+            <Text>New Group</Text>
+          </Button>
+          <Button onPress={()=>{navigate('Profile')}}>
+            <Text>Temp Button to Profile</Text>
+          </Button>
+          {formState &&
+            <Form>
+              <Item stackedLabel>
+                <Label>Group Name</Label>
+                <Input value={this.state.groupName}/>
+              </Item>
+              <Item stackedLabel>
+                <Label>Group Description</Label>
+                <Input value={this.state.groupDescription}/>
+              </Item>
+              <Button onPress={() => {
+                console.log('HEYY!!!!!! THESE ARE PROPS', this.state.groupName, this.state.groupDescription)
+              }}>
+                <Text> Create Group </Text>
+              </Button>
+            </Form>}
+        </Content>
      </Container>
     )
   }

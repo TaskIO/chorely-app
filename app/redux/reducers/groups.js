@@ -37,7 +37,8 @@ export default function(state = defaultState, action) {
 }
 
 /* ------------       DISPATCHERS     ------------------ */
-import { getAllViewerGroupsQuery, getViewerGroupQuery } from '../graphql/group/query.js'
+import { createSingleGroup } from '../graphql/group/mutation'
+import { getAllViewerGroupsQuery, getViewerGroupQuery } from '../graphql/group/query'
 import { setGroupUsers } from './users'
 import { setGroupTasks } from './tasks'
 
@@ -48,6 +49,17 @@ export const selectGroup = (group) => dispatch => {
   dispatch(setViewerGroup(group))
   dispatch(setGroupUsers(group.users))
   dispatch(setGroupTasks(group.tasks))
+}
+
+export const createNewGroup = (name, description) => dispatch => {
+  fetch(`http://${ipAddress}:${port}/?${createSingleGroup(name, description)}`, { method: 'POST'})
+    .then(response => response.json())
+    .then(createdNewGroup => {
+      const groupId = createdNewGroup.data.groupsCreate.id
+      dispatch(setSelectedTask(createdNewGroup.data.tasksCreate))
+      return fetch(`http://${ipAddress}:${port}/?${associateTaskAndBounty(userId, groupId)}`, { method: 'POST'})
+    })
+    .catch(console.error)
 }
 
 export const fetchGroups = () => dispatch => {
