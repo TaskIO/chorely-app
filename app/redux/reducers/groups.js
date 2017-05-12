@@ -49,25 +49,3 @@ export const selectGroup = (group) => dispatch => {
   dispatch(setGroupUsers(group.users))
   dispatch(setGroupTasks(group.tasks))
 }
-
-export const fetchGroups = () => dispatch => {
-  return fetch(`http://${ipAddress}:${port}?${getAllViewerGroupsQuery()}`)
-    .then(fetchResult => {
-      return fetchResult.json()
-    })
-    .then(jsonData => {
-      dispatch(setViewerGroups(jsonData.data.groups))
-    })
-    .catch(console.error)
-}
-
-export const fetchGroup = groupId => dispatch => {
-  return fetch(`http://${ipAddress}:${port}/?${getViewerGroupQuery(groupId)}`)
-    .then(fetchResult => {
-      return fetchResult.json()
-    })
-    .then(jsonData => {
-      dispatch(setViewerGroup(jsonData.data.groups[0]))
-    })
-    .catch(console.error)
-}

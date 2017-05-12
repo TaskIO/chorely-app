@@ -21,11 +21,11 @@ class SingleTask extends React.Component {
   }
   render() {
     const { navigate } = this.props.navigation
-    const { selectedTask, addBountyToTask, viewerGroup } = this.props
+    const { selectedTask, addBountyToTask, viewerGroup, viewerUser } = this.props
     let { bountyAmount } = this.state
     const bountyStatus = selectedTask.bounties.some(bounty => {
-      if (bounty.user_id === 2) bountyAmount = bounty.amount
-      return bounty.user_id === 2
+      if (bounty.user.id === viewerUser.id) bountyAmount = bounty.amount
+      return bounty.user.id === viewerUser.id
     })
     return (
       <Container>
@@ -44,6 +44,7 @@ class SingleTask extends React.Component {
               viewerGroup={viewerGroup}
               selectedTask={selectedTask}
               navigate={navigate}
+              viewerUser={viewerUser}
               />
           }
         </Content>

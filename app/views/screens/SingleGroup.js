@@ -1,15 +1,13 @@
 'use strict'
 import React from 'react'
-import { Text, Button, Container, Content, Title, Header, Item, Tabs, Tab, Icon, Input } from 'native-base'
-import { StyleSheet } from 'react-native'
+import { Button, Container, Content, Header, Item, Tabs, Tab, Icon, Input } from 'native-base'
 import { connect } from 'react-redux'
 import TaskList from '../components/TaskList'
 import MemberList from '../components/MemberList'
-import { jumpToTab } from '../../redux/reducers/navigation'
 
 class SingleGroup extends React.Component {
   render() {
-    const { navigate, dispatch } = this.props.navigation
+    const { navigate } = this.props.navigation
     return (
       <Container>
         <Content>
@@ -17,7 +15,7 @@ class SingleGroup extends React.Component {
             <Item>
               <Input placeholder="Search" />
             </Item>
-            <Button transparent onPress={() => dispatch(jumpToTab(2))}>
+            <Button transparent onPress={() => navigate('NewTask')}>
               <Icon name="add-circle" />
             </Button>
           </Header>

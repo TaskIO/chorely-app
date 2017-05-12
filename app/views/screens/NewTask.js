@@ -3,11 +3,11 @@ import React from 'react'
 import { Container, Content, Header, Body, Title } from 'native-base'
 import { connect } from 'react-redux'
 
-import ChangeGroup from './ChangeGroup'
-import TaskForm from './TaskForm'
+import ChangeGroup from '../components/ChangeGroup'
+import TaskForm from '../components/TaskForm'
 
 import { createNewTask } from '../../redux/reducers/tasks'
-import { fetchGroup } from '../../redux/reducers/groups'
+import { selectGroup } from '../../redux/reducers/groups'
 
 class NewTask extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class NewTask extends React.Component {
     })
   }
   changeGroup(group) {
-    this.props.fetchGroup(group.id)
+    this.props.selectGroup(group)
     this.setState({
       group,
       groupList: false
@@ -77,8 +77,8 @@ export default connect(
   },
   dispatch => {
     return {
-      fetchGroup: groupId => {
-        dispatch(fetchGroup(groupId))
+      selectGroup: group => {
+        dispatch(selectGroup(group))
       },
       createNewTask: (description, groupId, creatorId = 1, amount) => {
         dispatch(createNewTask(description, groupId, creatorId, amount))

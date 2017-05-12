@@ -9,6 +9,7 @@ import Home from '../screens/Home'
 import Group from '../screens/SingleGroup'
 import Task from '../screens/SingleTask'
 import Profile from '../screens/Profile'
+import NewTask from '../screens/NewTask'
 
 const routeConfiguration = {
   Welcome: { screen: Welcome },
@@ -18,6 +19,7 @@ const routeConfiguration = {
   Group: { screen: Group },
   Task: { screen: Task },
   Profile: { screen: Profile },
+  NewTask: { screen: NewTask }
 }
 
 const stackNavigatorConfiguration = {
