@@ -1,7 +1,7 @@
 
 import { Dimensions, Platform } from 'react-native'
 
-const deviceHeight = Dimensions.get('window').height;
+const deviceHeight = Dimensions.get('window').height
 
 export default {
   formContainer: {

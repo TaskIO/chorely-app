@@ -1,6 +1,6 @@
 /* -----------------    IMPORTS     ------------------ */
 
-import { NavigatorLogin } from '../../views/navigation/navigationConfiguration'
+import { Navigator } from '../../views/navigation/navigationConfiguration'
 
 /* -----------------    ACTION TYPES     ------------------ */
 
@@ -25,4 +25,4 @@ export const jumpToTab = (index) => ({
 * found in ...Navigation.js files.  Unclear error messages appear if these don't stay synced.
 */
 
-export const authenticated = (state, action) => NavigatorLogin.router.getStateForAction(action, state)
+export const authenticated = (state, action) => Navigator.router.getStateForAction(action, state)

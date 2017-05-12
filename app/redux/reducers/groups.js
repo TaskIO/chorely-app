@@ -30,9 +30,6 @@ export default function(state = defaultState, action) {
     case SET_VIEWER_GROUPS:
       newState.viewerGroups = action.viewerGroups
       break
-    case SET_VIEWER_GROUP:
-      newState.viewerGroup = action.viewerGroup
-      break
     default:
       return state
   }

@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import { Text, ListItem, Body, Icon } from 'native-base';
+import { Text, ListItem, Body, Icon } from 'native-base'
 
 export default ({ group, navigate, selectGroup }) => (
   <ListItem
