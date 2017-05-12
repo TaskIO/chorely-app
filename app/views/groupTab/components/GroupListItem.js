@@ -2,9 +2,13 @@
 import React from 'react'
 import { Text, ListItem, Body, Icon } from 'native-base';
 
-export default ({ selectGroup, group }) => (
+export default ({ group, navigate, selectGroup }) => (
   <ListItem
-    onPress={ () => { selectGroup(group) } }
+    onPress={ () => {
+      selectGroup(group)
+      navigate('Group')
+      }
+    }
   >
     <Icon name='home' />
     <Body>

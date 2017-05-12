@@ -26,6 +26,7 @@ class HomeComponent extends React.Component {
   }
   render() {
     const formState = this.state.showForm
+    const { navigate } = this.props.navigation
     return (
       <Container>
        <Content>
@@ -39,6 +40,7 @@ class HomeComponent extends React.Component {
             <GroupListItem
               key={group.id}
               group={group}
+              navigate={navigate}
               selectGroup={this.props.selectGroup}
             />))}
          </List>
@@ -73,11 +75,11 @@ const mapState = (state) => {
   }
 }
 
-const mapDispatch = (dispatch)=>{
-  return{
-    selectGroup:(id)=>{
+const mapDispatch = (dispatch) => {
+  return {
+    selectGroup: (id) => {
       dispatch(selectGroup(id))
-  }
+    }
   }
 }
 

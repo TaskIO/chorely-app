@@ -62,7 +62,7 @@ class FetchViewer extends React.Component {
             onPress={
               () => {
                 this.props.fetchViewer(this.state)
-                .then(navigate('TabBarNavigation'))
+                .then(navigate('Home'))
                 .catch(console.error)
               }
             }

@@ -43,7 +43,7 @@ class TaskList extends React.Component {
                     transparent
                     onPress={() => {
                       setSelectedTask(task)
-                      navigate('SingleTask')
+                      navigate('Task')
                     }}
                     >
                     <Text>{task.description}</Text>

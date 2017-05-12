@@ -1,11 +1,6 @@
 /* -----------------    IMPORTS     ------------------ */
 
-import { NavigatorHomeTab } from '../../views/homeTab/navigationConfiguration'
-import { NavigatorGroupTab } from '../../views/groupTab/navigationConfiguration'
-import { NavigatorTaskTab } from '../../views/taskTab/navigationConfiguration'
-import { NavigatorTabBar } from '../../views/tabBar/navigationConfiguration'
 import { NavigatorLogin } from '../../views/login/navigationConfiguration'
-import NavigatorUserTab from '../../views/userTab/navigationConfiguration'
 
 /* -----------------    ACTION TYPES     ------------------ */
 
@@ -30,15 +25,4 @@ export const jumpToTab = (index) => ({
 * found in ...Navigation.js files.  Unclear error messages appear if these don't stay synced.
 */
 
-export const tabBar = (state, action) => {
-  if (action.type === 'JUMP_TO_TAB') {
-    return {...state, index: action.index }
-  } else {
-    return NavigatorTabBar.router.getStateForAction(action, state)
-  }
-}
 export const authenticated = (state, action) => NavigatorLogin.router.getStateForAction(action, state)
-export const homeTab = (state, action) => NavigatorHomeTab.router.getStateForAction(action, state)
-export const groupTab = (state, action) => NavigatorGroupTab.router.getStateForAction(action, state)
-export const taskTab = (state, action) => NavigatorTaskTab.router.getStateForAction(action, state)
-export const userTab = (state, action) => NavigatorUserTab.router.getStateForAction(action, state)
