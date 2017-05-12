@@ -47,7 +47,6 @@ import { setViewerGroups } from './groups'
 import { ipAddress, port} from '../../../constants/dev'
 
 export const createAccount = user => dispatch => {
-      console.log("`http://${ipAddress}:${port}/?`", `http://${ipAddress}:${port}/?`);
   return fetch(`http://${ipAddress}:${port}/?`, {
       method: 'POST',
       headers: {

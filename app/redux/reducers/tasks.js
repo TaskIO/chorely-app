@@ -41,6 +41,9 @@ export default function(state = defaultState, action) {
 import {getGroupTasksQuery, getGroupTasksWithBounties} from '../graphql/task/query.js'
 import {createNewTaskWithBounty, associateTaskAndBounty, createNewBounty} from '../graphql/task/mutation.js'
 
+// dev constants
+import { ipAddress, port} from '../../../constants/dev'
+
 export const addSelectedTask = selectedTask => {
   return setSelectedTask(selectedTask);
 };
