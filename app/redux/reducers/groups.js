@@ -30,9 +30,6 @@ export default function(state = defaultState, action) {
     case SET_VIEWER_GROUPS:
       newState.viewerGroups = action.viewerGroups
       break
-    case SET_VIEWER_GROUP:
-      newState.viewerGroup = action.viewerGroup
-      break
     default:
       return state
   }
@@ -44,6 +41,9 @@ import { getAllViewerGroupsQuery, getViewerGroupQuery } from '../graphql/group/q
 import { setGroupUsers } from './users'
 import { setGroupTasks } from './tasks'
 
+// dev constants
+import { ipAddress, port} from '../../../constants/dev'
+
 export const selectGroup = (group) => dispatch => {
   dispatch(setViewerGroup(group))
   dispatch(setGroupUsers(group.users))
@@ -51,7 +51,7 @@ export const selectGroup = (group) => dispatch => {
 }
 
 export const fetchGroups = () => dispatch => {
-  return fetch(`http://192.168.1.15:4000?${getAllViewerGroupsQuery()}`)
+  return fetch(`http://${ipAddress}:${port}?${getAllViewerGroupsQuery()}`)
     .then(fetchResult => {
       return fetchResult.json()
     })
@@ -62,7 +62,7 @@ export const fetchGroups = () => dispatch => {
 }
 
 export const fetchGroup = groupId => dispatch => {
-  return fetch(`http://192.168.1.15:4000/?${getViewerGroupQuery(groupId)}`)
+  return fetch(`http://${ipAddress}:${port}/?${getViewerGroupQuery(groupId)}`)
     .then(fetchResult => {
       return fetchResult.json()
     })

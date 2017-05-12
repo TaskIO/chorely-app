@@ -2,7 +2,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import { Container, Content, Button, Text } from 'native-base'
-import styles from './styles'
+import styles from '../styles/welcomeStyles'
 
 export default class Welcome extends React.Component {
   render() {

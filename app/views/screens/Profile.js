@@ -10,18 +10,12 @@ export default class Profile extends React.Component {
       <Container>
         <Content>
           <Text>Profile page!</Text>
-          <TouchableOpacity
+          <Button
           onPress={
-            () => navigate('Welcome')
-          }
-          style={{
-            padding:20,
-            borderRadius:20,
-            backgroundColor:'yellow',
-            marginTop:20
-          }}>
+            () => navigate('Home')
+          }>
           <Text>{'Logout'}</Text>
-          </TouchableOpacity>
+          </Button>
         </Content>
       </Container>
     )
