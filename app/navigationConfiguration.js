@@ -2,13 +2,13 @@
 import { StackNavigator } from 'react-navigation'
 
 // Screens
-import Welcome from '../screens/Welcome'
-import CreateAccount from '../screens/CreateAccount'
-import Login from '../screens/Login'
-import Home from '../screens/Home'
-import Group from '../screens/SingleGroup'
-import Task from '../screens/SingleTask'
-import Profile from '../screens/Profile'
+import Welcome from './views/screens/Welcome'
+import CreateAccount from './views/screens/CreateAccount'
+import Login from './views/screens/Login'
+import Home from './views/screens/Home'
+import Group from './views/screens/SingleGroup'
+import Task from './views/screens/SingleTask'
+import Profile from './views/screens/Profile'
 
 const routeConfiguration = {
   Welcome: { screen: Welcome },

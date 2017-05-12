@@ -2,7 +2,7 @@
 import React from 'react'
 import { TouchableOpacity, View, StyleSheet, Dimensions, Platform } from 'react-native'
 import { Button, Container, Text, Content, Form, Label, Item, Input, InputGroup } from 'native-base'
-import styles from '../styles/welcomeStyles'
+import styles from '../../theme/styles/welcomeStyles'
 import { fetchViewer } from '../../redux/reducers/users'
 import { connect } from 'react-redux'
 
