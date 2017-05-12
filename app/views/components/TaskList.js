@@ -2,7 +2,7 @@
 import React from 'react'
 import { Text, Button, Container, Content, List, ListItem, Body, Title } from 'native-base'
 import { connect } from 'react-redux'
-import { addSelectedTask } from '../../../redux/reducers/tasks'
+import { addSelectedTask } from '../../redux/reducers/tasks'
 
 class TaskList extends React.Component {
   constructor() {

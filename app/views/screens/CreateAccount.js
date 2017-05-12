@@ -2,11 +2,11 @@
 import React from 'react'
 import { TouchableOpacity, View, StyleSheet, Dimensions, Platform } from 'react-native'
 import { Button, Container, Text, Content, Form, Label, Item, Input, InputGroup } from 'native-base'
-import styles from './styles'
-import { fetchViewer } from '../../../redux/reducers/users'
+import styles from '../styles/welcomeStyles'
+import { createAccount } from '../../redux/reducers/users'
 import { connect } from 'react-redux'
 
-class FetchViewer extends React.Component {
+class CreateAccount extends React.Component {
     constructor(props) {
       super(props)
 
@@ -47,10 +47,17 @@ class FetchViewer extends React.Component {
           <View style={styles.formContainer}>
           <Form>
             <Item stackedLabel>
+              <Label>Username</Label>
+              <InputGroup borderType="underline" >
+                <Input onChangeText={this.handleNameChange}/>
+              </InputGroup>
+            </Item>
+            <Item stackedLabel>
               <Label>Email</Label>
               <InputGroup borderType="underline" >
                 <Input onChangeText={this.handleEmailChange}/>
               </InputGroup>
+
             </Item>
             <Item stackedLabel last>
               <Label>Password</Label>
@@ -61,13 +68,13 @@ class FetchViewer extends React.Component {
             <Button
             onPress={
               () => {
-                this.props.fetchViewer(this.state)
-                .then(navigate('Home'))
+                this.props.createAccount(this.state)
+                .then(navigate('TabBarNavigation'))
                 .catch(console.error)
               }
             }
             >
-            <Text>{'Login'}</Text>
+            <Text>{'Create Account'}</Text>
             </Button>
           </Form>
           </View>
@@ -80,6 +87,6 @@ class FetchViewer extends React.Component {
 
 const mapState = state => state
 
-const mapDispatch = { fetchViewer }
+const mapDispatch = { createAccount }
 
-export default connect(mapState, mapDispatch)(FetchViewer)
+export default connect(mapState, mapDispatch)(CreateAccount)

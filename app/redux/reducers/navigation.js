@@ -1,6 +1,6 @@
 /* -----------------    IMPORTS     ------------------ */
 
-import { NavigatorLogin } from '../../views/login/navigationConfiguration'
+import { NavigatorLogin } from '../../views/navigation/navigationConfiguration'
 
 /* -----------------    ACTION TYPES     ------------------ */
 
