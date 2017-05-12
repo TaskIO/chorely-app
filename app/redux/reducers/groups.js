@@ -51,7 +51,7 @@ export const selectGroup = (group) => dispatch => {
 }
 
 export const fetchGroups = () => dispatch => {
-  return fetch(`http://192.168.2.8:4000?${getAllViewerGroupsQuery()}`)
+  return fetch(`http://192.168.1.15:4000?${getAllViewerGroupsQuery()}`)
     .then(fetchResult => {
       return fetchResult.json()
     })
@@ -62,7 +62,7 @@ export const fetchGroups = () => dispatch => {
 }
 
 export const fetchGroup = groupId => dispatch => {
-  return fetch(`http://192.168.2.8:4000/?${getViewerGroupQuery(groupId)}`)
+  return fetch(`http://192.168.1.15:4000/?${getViewerGroupQuery(groupId)}`)
     .then(fetchResult => {
       return fetchResult.json()
     })
