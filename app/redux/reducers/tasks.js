@@ -46,7 +46,7 @@ export const addSelectedTask = selectedTask => {
 };
 
 export const fetchGroupTasks = groupId => dispatch => {
-  fetch(`http://192.168.1.15:4000/?${getGroupTasksWithBounties(groupId)}`)
+  fetch(`http://${ipAddress}:${port}/?${getGroupTasksWithBounties(groupId)}`)
     .then(response => response.json())
     .then(groupTasks => {
       dispatch(setGroupTasks(groupTasks.data.groups[0].tasks))
@@ -55,23 +55,23 @@ export const fetchGroupTasks = groupId => dispatch => {
 }
 
 export const createNewTask = (description, groupId, creatorId, amount) => dispatch => {
-  fetch(`http://192.168.1.15:4000/?${createNewTaskWithBounty(description, groupId, creatorId, amount)}`, { method: 'POST'})
+  fetch(`http://${ipAddress}:${port}/?${createNewTaskWithBounty(description, groupId, creatorId, amount)}`, { method: 'POST'})
     .then(response => response.json())
     .then(createdTaskAndBounty => {
       const taskId = createdTaskAndBounty.data.tasksCreate.id
       const bountyId = createdTaskAndBounty.data.bountiesCreate.id
       dispatch(setSelectedTask(createdTaskAndBounty.data.tasksCreate))
-      return fetch(`http://192.168.2.8:4000/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST'})
+      return fetch(`http://${ipAddress}:${port}/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST'})
     })
     .catch(console.error)
 }
 
 export const addBountyToTask = (amount, userId, taskId, groupId) => dispatch => {
-  fetch(`http://192.168.1.15:4000/?${createNewBounty(amount, userId)}`, { method: 'POST' })
+  fetch(`http://${ipAddress}:${port}/?${createNewBounty(amount, userId)}`, { method: 'POST' })
     .then(response => response.json())
     .then(createdBounty => {
       const bountyId = createdBounty.data.bountiesCreate.id
-      return fetch(`http://192.168.1.15:4000/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST' })
+      return fetch(`http://${ipAddress}:${port}/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST' })
     })
     .then(() => {
       fetchGroupTasks(groupId)
