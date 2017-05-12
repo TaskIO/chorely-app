@@ -2,7 +2,7 @@
 import React from 'react'
 import { Text, Button, Container, Content, List, ListItem, Body, Title } from 'native-base'
 import { connect } from 'react-redux'
-import { fetchGroupTasks, addSelectedTask } from '../../../redux/reducers/tasks'
+import { addSelectedTask } from '../../../redux/reducers/tasks'
 
 class TaskList extends React.Component {
   constructor() {
@@ -11,9 +11,6 @@ class TaskList extends React.Component {
       status: 'Pending',
     }
     this.toggleStatus = this.toggleStatus.bind(this)
-  }
-  componentDidMount() {
-    this.props.fetchGroupTasks()
   }
   toggleStatus(status) {
     if (status !== this.state.status) this.setState({status})
@@ -65,13 +62,11 @@ export default connect(
   state => {
     return {
       groupTasks: state.tasks.groupTasks,
+      viewerGroup: state.groups.viewerGroup
     }
   },
   dispatch => {
     return {
-      fetchGroupTasks: (groupId = 1) => {
-        dispatch(fetchGroupTasks(groupId))
-      },
       addSelectedTask: selectedTask => {
         dispatch(addSelectedTask(selectedTask))
       }

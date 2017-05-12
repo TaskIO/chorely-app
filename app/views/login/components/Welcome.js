@@ -1,38 +1,34 @@
 'use strict'
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View } from 'react-native'
+import { Container, Content, Button, Text } from 'native-base'
+import styles from './styles'
 
 export default class Welcome extends React.Component {
   render() {
     const { navigate, dispatch } = this.props.navigation
-    return(
-      <View>
+    return (
+      <Container>
+      <Content>
+      <View style={styles.formContainer}>
           <Text>{'Welcome'}</Text>
-          <TouchableOpacity
+          <Button
             onPress={
               () => navigate('Login')
             }
-            style={{
-              padding:20,
-              borderRadius:20,
-              backgroundColor:'yellow',
-              marginTop:20
-            }}>
+            style={styles.welcomeButton}
+            >
             <Text>{'Go to Login'}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={
-                () => navigate('CreateAccount')
-              }
-              style={{
-                padding:20,
-                borderRadius:20,
-                backgroundColor:'yellow',
-                marginTop:20
-              }}>
-              <Text>{'go to Create Account'}</Text>
-              </TouchableOpacity>
+          </Button>
+          <Button
+            onPress={
+              () => navigate('CreateAccount')
+            }>
+            <Text>{'Create Account'}</Text>
+            </Button>
       </View>
+      </Content>
+      </Container>
     )
   }
 }
