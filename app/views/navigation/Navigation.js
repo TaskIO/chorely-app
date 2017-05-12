@@ -5,7 +5,7 @@ import React from 'react'
 
 // Navigation
 import { addNavigationHelpers } from 'react-navigation'
-import { NavigatorLogin } from '../navigationConfiguration'
+import { Navigator } from './navigationConfiguration'
 
 // Redux
 import { connect } from 'react-redux'
@@ -17,11 +17,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-class LoginNavigation extends React.Component {
+class Navigation extends React.Component {
   render(){
     const { navigationState, dispatch } = this.props
     return (
-      <NavigatorLogin
+      <Navigator
         navigation={
           addNavigationHelpers({
             dispatch: dispatch,
@@ -32,4 +32,4 @@ class LoginNavigation extends React.Component {
     )
   }
 }
-export default connect(mapStateToProps)(LoginNavigation)
+export default connect(mapStateToProps)(Navigation)

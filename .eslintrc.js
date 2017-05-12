@@ -1,6 +1,6 @@
 module.exports = {
   extends: "fullstack",
   "rules": {
-    "semi": [1, "always"]
+    "semi": [1, "never"]
   }
 }
