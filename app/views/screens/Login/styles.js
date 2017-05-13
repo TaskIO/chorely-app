@@ -1,6 +1,5 @@
 import { Dimensions, Platform } from 'react-native'
 import { cloudWhite, belizeBlue } from '../../../../constants/colors'
-console.log("cloudWhite", cloudWhite);
 
 const deviceHeight = Dimensions.get('window').height
 
