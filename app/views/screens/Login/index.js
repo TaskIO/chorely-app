@@ -1,10 +1,11 @@
 'use strict'
 import React from 'react'
-import { TouchableOpacity, View, StyleSheet, Dimensions, Platform } from 'react-native'
-import { Button, Container, Text, Content, Form, Label, Item, Input, InputGroup } from 'native-base'
-import styles from './styles'
+import { Image, StatusBar } from 'react-native'
+import { Button, Container, Text, Content, Form, Label, Item, Input, InputGroup, Fab, Icon } from 'native-base'
 import { fetchViewer } from '../../../redux/reducers/users'
 import { connect } from 'react-redux'
+import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
+import s from './styles'
 
 class Login extends React.Component {
     constructor(props) {
@@ -40,39 +41,54 @@ class Login extends React.Component {
     }
 
     render() {
-      const { navigate, dispatch } = this.props.navigation
+      const { navigate } = this.props.navigation
       return (
         <Container>
-        <Content >
-          <View style={styles.formContainer}>
-          <Form>
-            <Item stackedLabel>
-              <Label>Email</Label>
-              <InputGroup borderType="underline" >
-                <Input onChangeText={this.handleEmailChange}/>
+        <Image source={welcomeScreenBg} style={s.imageContainer}>
+        <StatusBar hidden={true}/>
+          <Content contentContainerStyle={s.content} >
+            <Form style={s.form}>
+              <Item
+                stackedLabel
+                style={s.item}
+              >
+              <Label style={s.label}>
+              Email
+              </Label>
+              <InputGroup  >
+              <Input
+                style={s.input}
+                onChangeText={this.handleEmailChange}
+              />
               </InputGroup>
-            </Item>
-            <Item stackedLabel last>
-              <Label>Password</Label>
-              <InputGroup borderType="underline" >
-                <Input onChangeText={this.handlePasswordChange}/>
+              </Item>
+              <Item stackedLabel style={s.item}>
+              <Label style={s.label}>
+              Password
+              </Label>
+              <InputGroup  >
+              <Input
+                style={s.input}
+                onChangeText={this.handlePasswordChange}
+              />
               </InputGroup>
-            </Item>
-            <Button
-            onPress={
-              () => {
-                this.props.fetchViewer(this.state)
-                .then(navigate('Home'))
-                .catch(console.error)
-              }
-            }
-            >
-            <Text>{'Login'}</Text>
-            </Button>
-          </Form>
-          </View>
-        </Content>
-      </Container>
+              </Item>
+              <Fab
+                style={s.fab}
+                onPress={
+                  () => {
+                    this.props.fetchViewer(this.state)
+                    .then(navigate('Home'))
+                    .catch(console.error)
+                  }
+                }
+              >
+              <Icon style={s.icon} name="arrow-forward"/>
+              </Fab>
+            </Form>
+          </Content>
+        </Image>
+        </Container>
       )
     }
   }
@@ -83,3 +99,11 @@ const mapState = state => state
 const mapDispatch = { fetchViewer }
 
 export default connect(mapState, mapDispatch)(Login)
+// <Button
+//               block
+//               style={s.button}
+//
+//               }
+//               >
+//               <Text>{'Login'}</Text>
+//               </Button>

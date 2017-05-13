@@ -1,4 +1,6 @@
 import { Dimensions, Platform } from 'react-native'
+import { cloudWhite, belizeBlue } from '../../../../constants/colors'
+console.log("cloudWhite", cloudWhite);
 
 const deviceHeight = Dimensions.get('window').height
 
@@ -8,11 +10,33 @@ export default {
     width: null,
     height: null,
   },
-  row: {
+  content: {
     flex: 1,
-    padding:10,
-    flexDirection:'column',
+    padding: 10,
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
+  form: {
+    flex: 1,
+    marginTop:deviceHeight/6,
+    alignItems: 'center',
+  },
+  item: {
+    borderWidth:34,
+    marginRight:15,
+  },
+  label:{
+    fontSize:24,
+    color:cloudWhite,
+  },
+  input: {
+    color:cloudWhite,
+  },
+  fab: {
+    backgroundColor: cloudWhite,
+  },
+  icon:{
+    color: belizeBlue
+  },
 }
