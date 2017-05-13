@@ -1,12 +1,19 @@
 'use strict'
+//  R/RN/NB components
 import React from 'react'
 import { Image, StatusBar } from 'react-native'
-import { Button, Container, Text, Content, Form, Label, Item, Input, InputGroup, Fab, Icon } from 'native-base'
+import { Container, Content, Form, Input, InputGroup, Item, Label } from 'native-base'
+
+// additional components
+import SignInFab from '../../components/SignInFab'
+
+// styles and background image
 import s from './styles'
 import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
-import { createAccount } from '../../../redux/reducers/users'
-import SignInFab from '../../components/SignInFab'
+
+// redux and dispatchers
 import { connect } from 'react-redux'
+import { createAccount } from '../../../redux/reducers/users'
 
 class CreateAccount extends React.Component {
     constructor(props) {
@@ -42,11 +49,10 @@ class CreateAccount extends React.Component {
     }
 
     render() {
-      const { navigate, dispatch } = this.props.navigation
       return (
         <Container>
         <Image source={welcomeScreenBg} style={s.imageContainer}>
-        <StatusBar hidden={true}/>
+        <StatusBar hidden={true} />
           <Content contentContainerStyle={s.content} >
             <Form style={s.form}>
               <Item stackedLabel style={s.item}>

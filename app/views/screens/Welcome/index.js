@@ -1,10 +1,14 @@
 'use strict'
+//  R/RN/NB components
 import React from 'react'
-import { Image, StatusBar, View } from 'react-native'
-import { Button, Col, Container, Content, Icon, H1, Text, Row } from 'native-base'
+import { Image, StatusBar } from 'react-native'
+import { Container, Content} from 'native-base'
+
+// custom components
 import WelcomeSplash from '../../components/WelcomeSplash'
 import WelcomeButtons from '../../components/WelcomeButtons'
 
+// styles and background image
 import styles from './styles'
 import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
 
