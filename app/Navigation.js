@@ -2,6 +2,8 @@
 
 // React
 import React from 'react'
+import { BackAndroid } from 'react-native'
+
 
 // Navigation
 import { addNavigationHelpers } from 'react-navigation'

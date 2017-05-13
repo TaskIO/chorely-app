@@ -3,11 +3,11 @@ import React from 'react'
 import { Container, Content, Header, Body, Title } from 'native-base'
 import { connect } from 'react-redux'
 
-import ChangeGroup from './ChangeGroup'
-import TaskForm from './TaskForm'
+import ChangeGroup from '../ChangeGroup'
+import TaskForm from '../TaskForm'
 
-import { createNewTask } from '../../redux/reducers/tasks'
-import { fetchGroup } from '../../redux/reducers/groups'
+import { createNewTask } from '../../../redux/reducers/tasks'
+import { fetchGroup } from '../../../redux/reducers/groups'
 
 class NewTask extends React.Component {
   constructor(props) {

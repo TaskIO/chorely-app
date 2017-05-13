@@ -3,9 +3,9 @@ import React from 'react'
 import { Text, Button, Container, Content, Title, Header, Item, Tabs, Tab, Icon, Input } from 'native-base'
 import { StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import TaskList from '../components/TaskList'
-import MemberList from '../components/MemberList'
-import { jumpToTab } from '../../redux/reducers/navigation'
+import TaskList from '../../components/TaskList'
+import MemberList from '../../components/MemberList'
+import { jumpToTab } from '../../../redux/reducers/navigation'
 
 class SingleGroup extends React.Component {
   render() {

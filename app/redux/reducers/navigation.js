@@ -1,6 +1,6 @@
 /* -----------------    IMPORTS     ------------------ */
 
-import { Navigator } from '../../views/navigation/navigationConfiguration'
+import { Navigator } from '../../navigationConfiguration'
 
 /* -----------------    ACTION TYPES     ------------------ */
 

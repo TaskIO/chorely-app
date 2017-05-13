@@ -2,7 +2,7 @@
 import React from 'react'
 import { Text, Button, Container, Content, List, ListItem } from 'native-base'
 import { connect } from 'react-redux'
-import { fetchGroupUsers } from '../../redux/reducers/users'
+import { fetchGroupUsers } from '../../../redux/reducers/users'
 
 class UserList extends React.Component {
   render() {

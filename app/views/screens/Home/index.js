@@ -2,10 +2,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Container, Content, Text, Button, Form, Item, Icon, Input, List, ListItem, Body, Label, Title, Header } from 'native-base'
-import GroupListItem from '../components/GroupListItem'
-import { selectGroup } from '../../redux/reducers/groups'
-import { setGroupUsers } from '../../redux/reducers/users'
-import { setGroupTasks } from '../../redux/reducers/users'
+import GroupListItem from '../../components/GroupListItem'
+import { selectGroup } from '../../../redux/reducers/groups'
+import { setGroupUsers } from '../../../redux/reducers/users'
+import { setGroupTasks } from '../../../redux/reducers/users'
 
 
 
