@@ -13,6 +13,11 @@ class SingleGroup extends React.Component {
   }
   render() {
     const { navigate } = this.props.navigation
+    if (this.props.navigation.state.params.refresh) {
+      console.log('REFRESHING! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+      this.props.navigation.state.params.refresh = false
+      this.props.selectGroup(this.props.navigation.state.params.groupId)
+    }
     return (
       <Container>
         <Content>

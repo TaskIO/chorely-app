@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, Button, Content, Body, Form, Input, Label, Item } from 'native-base'
 
 export default function TaskForm (props) {
-  const { taskInput, changeTaskInput, bountyInput, changeBountyInput, createNewTask, group, viewerUser, fetchViewer, selectGroup } = props.parentProps
+  const { taskInput, changeTaskInput, bountyInput, changeBountyInput, createNewTask, group, viewerUser } = props.parentProps
   const { navigate } = props.parentProps.navigation
   return (
     <Content>
@@ -29,13 +29,6 @@ export default function TaskForm (props) {
         <Button
             onPress={() => {
               createNewTask(taskInput, group.id, viewerUser.id, Math.round(+bountyInput))
-                // .then(newTask => {
-                //   const taskToAdd = newTask.data.tasksCreate
-                //   taskToAdd.bounties = [newTask.data.bountiesCreate]
-                //   group.tasks.push(taskToAdd)
-                //   selectGroup(group)
-                //   return fetchViewer(viewerUser)
-                // })
                 .then(() => {
                   navigate('Group', {groupId: group.id})
                 })

@@ -24,6 +24,10 @@ export const getGroup = groupId => (
           id
           name
         }
+        debtor {
+          id
+          name
+        }
         bounties {
           id
           amount

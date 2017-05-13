@@ -38,7 +38,7 @@ export default function(state = defaultState, action) {
 }
 /* ------------       DISPATCHERS     ------------------ */
 
-import {createNewTaskWithBounty, associateTaskAndBounty, createNewBounty} from '../graphql/task/mutation.js'
+import {createNewTaskWithBounty, associateTaskAndBounty, createNewBounty, completeTask} from '../graphql/task/mutation.js'
 
 // dev constants
 import { ipAddress, port} from '../../../constants/dev'
@@ -57,11 +57,20 @@ export const createNewTask = (description, groupId, creatorId, amount) => dispat
 }
 
 export const addBountyToTask = (amount, userId, taskId) => dispatch => {
-  fetch(`http://${ipAddress}:${port}/?${createNewBounty(amount, userId)}`, { method: 'POST' })
+  return fetch(`http://${ipAddress}:${port}/?${createNewBounty(amount, userId)}`, { method: 'POST' })
     .then(response => response.json())
     .then(createdBounty => {
       const bountyId = createdBounty.data.bountiesCreate.id
-      return fetch(`http://${ipAddress}:${port}/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST' })
+      fetch(`http://${ipAddress}:${port}/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST' })
+      return createdBounty
+    })
+    .catch(console.error)
+}
+
+export const taskStatusComplete = taskId => dispatch => {
+  return fetch(`http://${ipAddress}:${port}/?${completeTask(taskId)}`, { method: 'POST' })
+    .then(completedTask => {
+      console.log(completedTask)
     })
     .catch(console.error)
 }

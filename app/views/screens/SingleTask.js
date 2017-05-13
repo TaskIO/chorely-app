@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import SetBounty from '../components/SetBounty'
 import ViewBounty from '../components/ViewBounty'
 import CompleteBounty from '../components/CompleteBounty'
-import { addBountyToTask } from '../../redux/reducers/tasks'
+import { addBountyToTask, taskStatusComplete } from '../../redux/reducers/tasks'
 
 class SingleTask extends React.Component {
   constructor() {
@@ -22,12 +22,15 @@ class SingleTask extends React.Component {
   }
   render() {
     const { navigate } = this.props.navigation
-    const { selectedTask, addBountyToTask, viewerGroup, viewerUser } = this.props
+    const { selectedTask, setBountyToTask, viewerGroup, viewerUser, completeTask } = this.props
     let { bountyAmount } = this.state
     let previousBountyAmount = 0
     const bountyStatus = selectedTask.bounties && selectedTask.bounties.some(bounty => {
-      if (bounty.amount > previousBountyAmount) previousBountyAmount = bounty.amount
       return bounty.user.id === viewerUser.id
+    })
+    selectedTask.bounties && selectedTask.bounties.forEach(bounty => {
+      if (bounty.amount > previousBountyAmount) previousBountyAmount = bounty.amount
+      if (bounty.user.id === viewerUser.id) bountyAmount = bounty.amount
     })
     return (
       <Container>
@@ -41,11 +44,11 @@ class SingleTask extends React.Component {
           ?
           <Content>
             {bountyStatus
-            ? <ViewBounty bountyAmount={previousBountyAmount} />
+            ? <ViewBounty bountyAmount={bountyAmount} />
             : <SetBounty
                 bountyAmount={bountyAmount}
                 changeBounty={this.changeBounty}
-                addBountyToTask={addBountyToTask}
+                setBountyToTask={setBountyToTask}
                 viewerGroup={viewerGroup}
                 selectedTask={selectedTask}
                 navigate={navigate}
@@ -58,6 +61,9 @@ class SingleTask extends React.Component {
             bountyAmount={previousBountyAmount}
             selectedTask={selectedTask}
             viewerUser={viewerUser}
+            navigate={navigate}
+            viewerGroup={viewerGroup}
+            completeTask={completeTask}
             />
           }
         </Content>
@@ -76,8 +82,11 @@ export default connect(
   },
   dispatch => {
     return {
-      addBountyToTask: (amount, userId, taskId, groupId) => {
-        dispatch(addBountyToTask(amount, userId, taskId, groupId))
+      setBountyToTask: (amount, userId, taskId, groupId) => {
+        return dispatch(addBountyToTask(amount, userId, taskId, groupId))
+      },
+      completeTask: taskId => {
+        return dispatch(taskStatusComplete(taskId))
       }
     }
   }

@@ -82,7 +82,7 @@ export default connect(
       selectGroup: group => {
         dispatch(selectGroup(group))
       },
-      createNewTask: (description, groupId, creatorId = 1, amount) => {
+      createNewTask: (description, groupId, creatorId, amount) => {
         return dispatch(createNewTask(description, groupId, creatorId, amount))
       },
       fetchViewer: user => {

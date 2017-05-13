@@ -63,3 +63,20 @@ export const createNewBounty = (amount, userId) => {
     }`
   )
 }
+
+export const completeTask = taskId => {
+  return (
+    `query=mutation CompleteTask($task: tasksInput!) {
+      tasksUpdate(tasks: $task) {
+        id
+        description
+        status
+      }
+    }&operationName=CompleteTask&variables={
+      "task": {
+        "id": ${taskId},
+        "status": "Completed"
+      }
+    }`
+  )
+}
