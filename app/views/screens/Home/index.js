@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Container, Content, Text, Button, Form, Item, Icon, Input, List, ListItem, Body, Label, Title, Header } from 'native-base'
 import GroupListItem from '../../components/GroupListItem'
-import { selectGroup } from '../../../redux/reducers/groups'
+import { selectGroup, createNewGroup } from '../../../redux/reducers/groups'
 import { setGroupUsers } from '../../../redux/reducers/users'
 import { setGroupTasks } from '../../../redux/reducers/users'
 
@@ -18,6 +18,8 @@ class HomeComponent extends React.Component {
       groupDescription: ''
     }
     this.toggleForm = this.toggleForm.bind(this)
+    this.handleGroupNameChange = this.handleGroupNameChange.bind(this)
+    this.handleGroupDescriptionChange = this.handleGroupDescriptionChange.bind(this)
   }
 
   toggleForm() {
@@ -26,9 +28,19 @@ class HomeComponent extends React.Component {
       showForm: !formState
     })
   }
+
+  handleGroupNameChange(groupName) {
+    this.setState({ groupName })
+  }
+
+  handleGroupDescriptionChange(groupDescription) {
+    this.setState({ groupDescription})
+  }
+
   render() {
     const formState = this.state.showForm
     const { navigate } = this.props.navigation
+    const { addGroup } = this.props
     return (
       <Container>
         <Content>
@@ -57,14 +69,15 @@ class HomeComponent extends React.Component {
             <Form>
               <Item stackedLabel>
                 <Label>Group Name</Label>
-                <Input value={this.state.groupName}/>
+                <Input onChangeText={this.handleGroupNameChange}/>
               </Item>
               <Item stackedLabel>
                 <Label>Group Description</Label>
-                <Input value={this.state.groupDescription}/>
+                <Input onChangeText={this.handleGroupDescriptionChange}/>
               </Item>
               <Button onPress={() => {
                 console.log('HEYY!!!!!! THESE ARE PROPS', this.state.groupName, this.state.groupDescription)
+                addGroup(this.state.groupName, this.state.groupDescription, this.props.viewerUser.id)
               }}>
                 <Text> Create Group </Text>
               </Button>
@@ -89,6 +102,9 @@ const mapDispatch = (dispatch) => {
   return {
     selectGroup: (id) => {
       dispatch(selectGroup(id))
+    },
+    addGroup: (name, description, userId) => {
+      dispatch(createNewGroup(name, description, userId))
     }
   }
 }

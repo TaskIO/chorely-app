@@ -6,9 +6,9 @@ export const createSingleGroup = (name, description) => {
     description
   }
 }&operationName=CreateGroup&variables={
-      "task": {
-        "name": "${name}"
-        "description": "${description}",
+      "group": {
+        "name": "${name}",
+        "description": "${description}"
       }
     }`
 }
