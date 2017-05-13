@@ -8,11 +8,9 @@ export default {
     width: null,
     height: null,
   },
-  row: {
+  content: {
     flex: 1,
     padding:10,
-    flexDirection:'column',
     justifyContent: 'center',
-    alignItems: 'center',
   }
 }

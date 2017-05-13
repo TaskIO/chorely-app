@@ -6,7 +6,7 @@ import styles from './styles'
 import { fetchViewer } from '../../../redux/reducers/users'
 import { connect } from 'react-redux'
 
-class FetchViewer extends React.Component {
+class Login extends React.Component {
     constructor(props) {
       super(props)
 
@@ -82,4 +82,4 @@ const mapState = state => state
 
 const mapDispatch = { fetchViewer }
 
-export default connect(mapState, mapDispatch)(FetchViewer)
+export default connect(mapState, mapDispatch)(Login)
