@@ -14,12 +14,16 @@ export default class Welcome extends React.Component {
       <Image source={welcomeScreenBg} style={styles.imageContainer}>
       <StatusBar barStyle='light-content'/>
       <Content contentContainerStyle = {styles.row}>
-        <Icon name='home'/>
-        <H1 >Welcome to Chorely</H1>
+        <View style={styles.row}>
+          <Icon name='home'/>
+          <H1 >Welcome to Chorely</H1>
+        </View>
+        <View style={styles.row}>
         <Button block
           onPress={
             () => navigate('Login')
           }
+          style={{marginTop:10}}
         >
         <Text>{'LOGIN'}</Text>
         </Button>
@@ -32,7 +36,7 @@ export default class Welcome extends React.Component {
         >
         <Text>{'SIGN UP'}</Text>
         </Button>
-
+        </View>
       </Content>
       </Image>
       </Container>
