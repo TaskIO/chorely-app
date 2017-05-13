@@ -12,9 +12,9 @@ import Profile from './views/screens/Profile'
 
 const routeConfiguration = {
   Welcome: { screen: Welcome },
+  Home: { screen: Home },
   CreateAccount: { screen: CreateAccount },
   Login: { screen: Login },
-  Home: { screen: Home },
   Group: { screen: Group },
   Task: { screen: Task },
   Profile: { screen: Profile },
