@@ -44,7 +44,7 @@ import { getViewer } from '../graphql/viewer/query.js'
 import { setViewerGroups } from './groups'
 
 // dev constants
-import { ipAddress, port} from '../../../constants/dev'
+import { ipAddress, port } from '../../../constants/dev'
 
 export const createAccount = user => dispatch => {
   return fetch(`http://${ipAddress}:${port}/?`, {
@@ -57,9 +57,7 @@ export const createAccount = user => dispatch => {
         "query": `${postCreateAccountMutation(user)}`,
       })
     })
-    .then(fetchResult => {
-      return fetchResult.json()
-    })
+    .then(fetchResult => (fetchResult.json()))
     .then(jsonResult => {
       dispatch(setViewerUser(jsonResult.data.usersCreate))
     })
