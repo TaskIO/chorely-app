@@ -1,12 +1,10 @@
 'use strict'
+// R/RN components
 import React from 'react'
 import { Content, Text, Button } from 'native-base'
+
+// styles
 import s from './styles'
-
-// Button styles override Text styles
-// workaround for the time being
-import cloudWhite from '../../../../constants/colors'
-
 
 export default ({ navigate }) => (
   <Content>
