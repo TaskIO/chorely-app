@@ -1,7 +1,7 @@
 'use strict'
 // React
 import React from 'react'
-import { AppRegistry } from 'react-native'
+import { AppRegistry, StatusBar } from 'react-native'
 // Native Base
 import {StyleProvider, getTheme} from 'native-base'
 import material from './theme/native-base-theme/variables/material'

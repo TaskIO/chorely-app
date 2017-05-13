@@ -2,8 +2,8 @@
 import React from 'react'
 import { TouchableOpacity, View, StyleSheet, Dimensions, Platform } from 'react-native'
 import { Button, Container, Text, Content, Form, Label, Item, Input, InputGroup } from 'native-base'
-import styles from '../../theme/styles/welcomeStyles'
-import { createAccount } from '../../redux/reducers/users'
+import styles from './styles'
+import { createAccount } from '../../../redux/reducers/users'
 import { connect } from 'react-redux'
 
 class CreateAccount extends React.Component {

@@ -2,9 +2,9 @@
 import React from 'react'
 import { Container, Content, Text, Input, Body, Button, Header, Title, Card, CardItem } from 'native-base';
 import { connect } from 'react-redux'
-import SetBounty from '../components/SetBounty'
-import ViewBounty from '../components/ViewBounty'
-import { addBountyToTask } from '../../redux/reducers/tasks'
+import SetBounty from '../../components/SetBounty'
+import ViewBounty from '../../components/ViewBounty'
+import { addBountyToTask } from '../../../redux/reducers/tasks'
 
 class SingleTask extends React.Component {
   constructor() {
