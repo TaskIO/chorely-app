@@ -11,9 +11,9 @@ import Task from './views/screens/SingleTask'
 import Profile from './views/screens/Profile'
 
 const routeConfiguration = {
-  Login: { screen: Login },
   Welcome: { screen: Welcome },
   CreateAccount: { screen: CreateAccount },
+  Login: { screen: Login },
   Home: { screen: Home },
   Group: { screen: Group },
   Task: { screen: Task },

@@ -23,13 +23,3 @@ export default ({ navigate }) => (
     </Button>
   </Content>
 )
-
-// index
-// <Grid style={s.splash}>
-//   <Col style={s.leftCol}>
-//     <Icon style={s.icon} name={selectIcon()}/>
-//   </Col>
-//   <Col style={s.rightCol}>
-//     <Text style={s.text}>Welcome to Chorely</Text>
-//   </Col>
-//   </Grid>
