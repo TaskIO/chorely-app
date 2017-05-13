@@ -47,6 +47,7 @@ import { setViewerGroups } from './groups'
 import { ipAddress, port} from '../../../constants/dev'
 
 export const createAccount = user => dispatch => {
+    console.log("user", user);
   return fetch(`http://${ipAddress}:${port}/?`, {
       method: 'POST',
       headers: {
@@ -61,6 +62,7 @@ export const createAccount = user => dispatch => {
       return fetchResult.json()
     })
     .then(jsonResult => {
+      console.log("jsonResult.data.usersCreate", jsonResult.data.usersCreate);
       dispatch(setViewerUser(jsonResult.data.usersCreate))
     })
     .catch(console.error)

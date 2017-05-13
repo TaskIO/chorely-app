@@ -1,9 +1,11 @@
 'use strict'
 import React from 'react'
-import { TouchableOpacity, View, StyleSheet, Dimensions, Platform } from 'react-native'
-import { Button, Container, Text, Content, Form, Label, Item, Input, InputGroup } from 'native-base'
-import styles from './styles'
+import { Image, StatusBar } from 'react-native'
+import { Button, Container, Text, Content, Form, Label, Item, Input, InputGroup, Fab, Icon } from 'native-base'
+import s from './styles'
+import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
 import { createAccount } from '../../../redux/reducers/users'
+import SignInFab from '../../components/SignInFab'
 import { connect } from 'react-redux'
 
 class CreateAccount extends React.Component {
@@ -43,43 +45,47 @@ class CreateAccount extends React.Component {
       const { navigate, dispatch } = this.props.navigation
       return (
         <Container>
-        <Content >
-          <View style={styles.formContainer}>
-          <Form>
-            <Item stackedLabel>
-              <Label>Username</Label>
-              <InputGroup borderType="underline" >
-                <Input onChangeText={this.handleNameChange}/>
-              </InputGroup>
-            </Item>
-            <Item stackedLabel>
-              <Label>Email</Label>
-              <InputGroup borderType="underline" >
-                <Input onChangeText={this.handleEmailChange}/>
-              </InputGroup>
-
-            </Item>
-            <Item stackedLabel last>
-              <Label>Password</Label>
-              <InputGroup borderType="underline" >
-                <Input onChangeText={this.handlePasswordChange}/>
-              </InputGroup>
-            </Item>
-            <Button
-            onPress={
-              () => {
-                this.props.createAccount(this.state)
-                .then(navigate('TabBarNavigation'))
-                .catch(console.error)
-              }
-            }
-            >
-            <Text>{'Create Account'}</Text>
-            </Button>
-          </Form>
-          </View>
-        </Content>
-      </Container>
+        <Image source={welcomeScreenBg} style={s.imageContainer}>
+        <StatusBar hidden={true}/>
+          <Content contentContainerStyle={s.content} >
+            <Form style={s.form}>
+              <Item stackedLabel style={s.item}>
+                <Label style={s.label}> Username </Label>
+                <InputGroup >
+                  <Input
+                    style={s.input}
+                    onChangeText={this.handleNameChange}
+                  />
+                </InputGroup>
+              </Item>
+              <Item stackedLabel style={s.item}>
+                <Label style={s.label}> Email </Label>
+                <InputGroup >
+                  <Input
+                    style={s.input}
+                    onChangeText={this.handleEmailChange}
+                  />
+                </InputGroup>
+              </Item>
+              <Item stackedLabel style={s.item}>
+                <Label style={s.label}> Password </Label>
+                <InputGroup >
+                  <Input
+                    style={s.input}
+                    secureTextEntry={true}
+                    onChangeText={this.handlePasswordChange}
+                  />
+                </InputGroup>
+              </Item>
+              <SignInFab
+                signInAction={this.props.createAccount}
+                state={this.state}
+                navigate={this.props.navigation.navigate}
+              />
+            </Form>
+          </Content>
+        </Image>
+        </Container>
       )
     }
   }
