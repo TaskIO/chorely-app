@@ -24,7 +24,7 @@ const routeConfiguration = {
 
 const stackNavigatorConfiguration = {
   headerMode: 'none',
-  initialRoute: 'Welcome'
+  initialRoute: 'Login'
 }
 
 export const Navigator = StackNavigator(routeConfiguration, stackNavigatorConfiguration)
