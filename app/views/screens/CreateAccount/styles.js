@@ -1,4 +1,6 @@
-import { Dimensions, Platform } from 'react-native'
+'use strict'
+
+import { Dimensions } from 'react-native'
 import { cloudWhite, belizeBlue } from '../../../../constants/colors'
 
 const deviceHeight = Dimensions.get('window').height
@@ -18,24 +20,24 @@ export default {
   },
   form: {
     flex: 1,
-    marginTop:deviceHeight/6,
+    marginTop: deviceHeight / 6,
     alignItems: 'center',
   },
   item: {
-    borderWidth:34,
-    marginRight:15,
+    borderWidth: 34,
+    marginRight: 15,
   },
-  label:{
-    fontSize:24,
-    color:cloudWhite,
+  label: {
+    fontSize: 24,
+    color: cloudWhite,
   },
   input: {
-    color:cloudWhite,
+    color: cloudWhite,
   },
   fab: {
     backgroundColor: cloudWhite,
   },
-  icon:{
+  icon: {
     color: belizeBlue
   },
 }
