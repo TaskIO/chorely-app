@@ -9,7 +9,7 @@ import WelcomeSplash from '../../components/WelcomeSplash'
 import WelcomeButtons from '../../components/WelcomeButtons'
 
 // styles and background image
-import styles from './styles'
+import s from './styles'
 import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
 
 
@@ -18,9 +18,9 @@ export default class Welcome extends React.Component {
     const { navigate } = this.props.navigation
     return (
       <Container>
-      <Image source={welcomeScreenBg} style={styles.imageContainer}>
+      <Image source={welcomeScreenBg} style={s.imageContainer}>
       <StatusBar hidden={true}/>
-      <Content contentContainerStyle = {styles.content}>
+      <Content contentContainerStyle = {s.content}>
       <WelcomeSplash />
       <WelcomeButtons navigate={navigate} />
       </Content>
