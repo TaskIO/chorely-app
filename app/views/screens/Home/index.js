@@ -31,10 +31,12 @@ class HomeComponent extends React.Component {
                 />))}
              </List>
           :
-          <Content contentContainerStyle={s.grid}>
-          <Text>This is a test.</Text>
-          <Text>The Test continues</Text>
-          </Content>
+          <Grid style={s.grid}>
+          <Col style={s.column}>
+            <Text style={s.mainText}>No groups yet</Text>
+            <Text style={s.parenthetical}>(Add one below)</Text>
+          </Col>
+          </Grid>
        }
           </Content>
          <AddFAB navigate={navigate}/>

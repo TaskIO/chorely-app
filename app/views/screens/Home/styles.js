@@ -1,6 +1,6 @@
 'use strict'
 import { Dimensions } from 'react-native'
-import { cloudWhite, belizeBlue } from '../../../../constants/colors'
+import { cloudWhite, belizeBlue, silver } from '../../../../constants/colors'
 
 const deviceHeight = Dimensions.get('window').height
 
@@ -16,15 +16,27 @@ export default {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'yellow',
   },
   grid: {
     flex: 1,
-    // flexDirection: 'row',
     marginBottom: deviceHeight / 4,
     alignItems: 'center',
-    backgroundColor: 'pink'
   },
+  column: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  mainText: {
+    fontSize: 34,
+    color: cloudWhite,
+    textAlign:'center',
+  },
+  parenthetical: {
+    fontSize: 20,
+    color: silver,
+    textAlign:'center',
+  },
+
   item: {
     borderWidth: 34,
     marginRight: 15,
