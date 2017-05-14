@@ -10,7 +10,7 @@ export default ({ setSelectedTask, task, navigate }) => {
       onPress = {
         () => {
           setSelectedTask(task)
-          navigate('Task')
+          navigate('CompleteTask')
         }
       }
     >

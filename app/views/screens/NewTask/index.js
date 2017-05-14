@@ -1,14 +1,18 @@
 'use strict'
+//  R/RN/NB components
 import React from 'react'
 import { Image, StatusBar } from 'react-native'
-import { Form, Item, Label, Input, InputGroup, Container, Content, Header, Body, Title } from 'native-base'
-import { connect } from 'react-redux'
+import { Form, Item, Label, Input, InputGroup, Container, Content} from 'native-base'
+
+// additional components
+import SubmitFAB from '../../components/SubmitFAB'
 
 // styles and background image
 import s from './styles'
-import SubmitFAB from '../../components/SubmitFAB'
 import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
 
+// redux and dispatchers
+import { connect } from 'react-redux'
 import { createNewTask } from '../../../redux/reducers/tasks'
 import { fetchViewer } from '../../../redux/reducers/users'
 

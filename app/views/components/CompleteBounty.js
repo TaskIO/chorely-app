@@ -1,7 +1,7 @@
 import React from 'react'
-import { Content, Text, Body, Card, CardItem, Button } from 'native-base';
+import { Content, Text, Body, Card, CardItem, Button } from 'native-base'
 
-export default function CompleteBounty (props) {
+export default (props) => {
   const { bountyAmount, viewerUser, selectedTask, navigate, viewerGroup, completeTask } = props
   return (
     <Content>

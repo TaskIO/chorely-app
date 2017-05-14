@@ -64,7 +64,7 @@ class SingleGroup extends React.Component {
   }
 }
 
-
+  /* -----------------    CONTAINER     ------------------ */
 const mapState = state => {
   return {
     tasks: state.tasks.groupTasks
