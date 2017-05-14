@@ -8,3 +8,4 @@ export default {
     color: belizeBlue
   },
 }
+

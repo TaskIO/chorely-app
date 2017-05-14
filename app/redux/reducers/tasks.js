@@ -70,7 +70,6 @@ export const addBountyToTask = (amount, userId, taskId) => dispatch => {
 export const taskStatusComplete = taskId => dispatch => {
   return fetch(`http://${ipAddress}:${port}/?${completeTask(taskId)}`, { method: 'POST' })
     .then(completedTask => {
-      console.log(completedTask)
     })
     .catch(console.error)
 }

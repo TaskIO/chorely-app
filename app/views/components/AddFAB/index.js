@@ -3,10 +3,10 @@ import React from 'react'
 import { Fab, Icon } from 'native-base'
 import s from './styles'
 
-export default ({navigate}) => (
+export default ({navigate, location}) => (
   <Fab style={s.fab}
     onPress={() => {
-      navigate('Profile')
+      navigate(location)
     }
   }>
   <Icon style={s.icon} name="add"/>

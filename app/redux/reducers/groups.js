@@ -45,7 +45,7 @@ import { setGroupTasks } from './tasks'
 import { getGroup } from '../graphql/group/query'
 
 // dev constants
-import { ipAddress, port} from '../../../constants/dev'
+import { ipAddress, port } from '../../../constants/dev'
 
 export const selectGroup = groupId => dispatch => {
   fetch(`http://${ipAddress}:${port}/?${getGroup(+groupId)}`)
@@ -59,13 +59,13 @@ export const selectGroup = groupId => dispatch => {
     .catch(console.error)
 }
 
-export const createNewGroup = (name, description, userId) => dispatch => {
-   fetch(`http://${ipAddress}:${port}/?${createSingleGroup(name, description)}`, { method: 'POST'})
-  .then(response => response.json())
-  .then(createdNewGroup => {
-    console.log(createdNewGroup);
-    const groupId = createdNewGroup.data.groupsCreate.id
-    return fetch(`http://${ipAddress}:${port}/?${associateUserAndGroup(userId, groupId)}`, { method: 'POST'})
-  })
-  .catch(console.error)
+export const createNewGroup = groupData => dispatch => {
+  const { name, description, viewerId } = groupData
+  return fetch(`http://${ipAddress}:${port}/?${createSingleGroup(name, description)}`, { method: 'POST' })
+    .then(response => (response.json()))
+    .then(createdNewGroup => {
+      const groupId = createdNewGroup.data.groupsCreate.id
+      return fetch(`http://${ipAddress}:${port}/?${associateUserAndGroup(viewerId, groupId)}`, { method: 'POST' })
+    })
+    .catch(console.error)
 }

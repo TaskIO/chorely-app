@@ -10,16 +10,18 @@ import Group from './views/screens/SingleGroup'
 import Task from './views/screens/SingleTask'
 import Profile from './views/screens/Profile'
 import NewTask from './views/screens/NewTask'
+import NewGroup from './views/screens/NewGroup'
 
 const routeConfiguration = {
-  Home: { screen: Home },
-  Login: { screen: Login },
-  Welcome: { screen: Welcome },
+  NewGroup: { screen: NewGroup },
   CreateAccount: { screen: CreateAccount },
+  Login: { screen: Login },
+  Home: { screen: Home },
+  Welcome: { screen: Welcome },
   Group: { screen: Group },
   Task: { screen: Task },
   Profile: { screen: Profile },
-  NewTask: { screen: NewTask }
+  NewTask: { screen: NewTask },
 }
 
 const stackNavigatorConfiguration = {

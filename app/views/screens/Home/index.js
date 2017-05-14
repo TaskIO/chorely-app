@@ -1,34 +1,32 @@
 'use strict'
+//  R/RN/NB components
 import React from 'react'
-import { connect } from 'react-redux'
-import { View, Image, StatusBar } from 'react-native'
-import { Container, Content, Text, Button, Form, Item, Icon, Input, Grid, Row, Col, List, ListItem, Body, Label, Title, Header } from 'native-base'
+import { Image, StatusBar } from 'react-native'
+import { Container, Content, Text, Grid,  Col, List } from 'native-base'
+
+// additional components
 import AddFAB from '../../components/AddFAB'
 import GroupListItem from '../../components/GroupListItem'
-import {
-  selectGroup,
-  createNewGroup,
-  fetchGroups,
-  addToUserGroups
-} from '../../../redux/reducers/groups'
-import { setGroupUsers } from '../../../redux/reducers/users'
-import { setGroupTasks } from '../../../redux/reducers/users'
 
-import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
+// styles and background image
 import s from './styles'
+import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
 
-class HomeComponent extends React.Component {
+// redux and dispatchers
+import { connect } from 'react-redux'
+import { selectGroup } from '../../../redux/reducers/groups'
+
+class HomeComponent extends React.Component{
   render() {
     const { navigate } = this.props.navigation
-    const { addGroup } = this.props
     return (
       <Container>
-
-       <Image source={welcomeScreenBg} style={s.imageContainer}>
-       <StatusBar hidden={true}/>
-       <Content contentContainerStyle={s.content}>
-       {
-        (this.props.groups.length) ? <List>
+        <Image source={welcomeScreenBg} style={s.imageContainer}>
+        <StatusBar hidden={true} />
+        <Content contentContainerStyle={s.content}>
+        {
+          (this.props.groups.length) ?
+            <List>
               {this.props.groups.map( group => (
                 <GroupListItem
                   key={group.id}
@@ -36,17 +34,20 @@ class HomeComponent extends React.Component {
                   navigate={navigate}
                   selectGroup={this.props.selectGroup}
                 />))}
-             </List>
+            </List>
           :
-          <Grid style={s.grid}>
-          <Col style={s.column}>
-            <Text style={s.mainText}>No groups yet</Text>
-            <Text style={s.parenthetical}>(Add one below)</Text>
-          </Col>
-          </Grid>
-       }
-          </Content>
-         <AddFAB navigate={navigate}/>
+            <Grid style={s.grid}>
+            <Col style={s.column}>
+              <Text style={s.mainText}>No groups yet</Text>
+              <Text style={s.parenthetical}>(Add one below)</Text>
+            </Col>
+            </Grid>
+        }
+      </Content>
+          <AddFAB
+            navigate={navigate}
+            location={'NewGroup'}
+          />
          </Image>
      </Container>
     )
@@ -67,9 +68,6 @@ const mapDispatch = dispatch => {
   return {
     selectGroup: id => {
       dispatch(selectGroup(id))
-    },
-    addGroup: (name, description, userId) => {
-      dispatch(createNewGroup(name, description, userId))
     }
   }
 }
