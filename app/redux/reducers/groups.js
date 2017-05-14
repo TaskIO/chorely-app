@@ -37,38 +37,24 @@ export default function(state = defaultState, action) {
 }
 
 /* ------------       DISPATCHERS     ------------------ */
+
 import { createSingleGroup, associateUserAndGroup } from '../graphql/group/mutation'
 import { getAllViewerGroupsQuery, getViewerGroupQuery } from '../graphql/group/query'
 import { setGroupUsers } from './users'
 import { setGroupTasks } from './tasks'
+import { getGroup } from '../graphql/group/query'
 
 // dev constants
 import { ipAddress, port} from '../../../constants/dev'
 
-export const selectGroup = (group) => dispatch => {
-  dispatch(setViewerGroup(group))
-  dispatch(setGroupUsers(group.users))
-  dispatch(setGroupTasks(group.tasks))
-}
-
-export const fetchGroups = () => dispatch => {
-  return fetch(`http://${ipAddress}:${port}?${getAllViewerGroupsQuery()}`)
-    .then(fetchResult => {
-      return fetchResult.json()
-    })
-    .then(jsonData => {
-      dispatch(setViewerGroups(jsonData.data.groups))
-    })
-    .catch(console.error)
-}
-
-export const fetchGroup = groupId => dispatch => {
-  return fetch(`http://${ipAddress}:${port}/?${getViewerGroupQuery(groupId)}`)
-    .then(fetchResult => {
-      return fetchResult.json()
-    })
-    .then(jsonData => {
-      dispatch(setViewerGroup(jsonData.data.groups[0]))
+export const selectGroup = groupId => dispatch => {
+  fetch(`http://${ipAddress}:${port}/?${getGroup(+groupId)}`)
+    .then(response => response.json())
+    .then(selectedGroup => {
+      const group = selectedGroup.data.groups[0]
+      dispatch(setViewerGroup(group))
+      dispatch(setGroupUsers(group.users))
+      dispatch(setGroupTasks(group.tasks))
     })
     .catch(console.error)
 }

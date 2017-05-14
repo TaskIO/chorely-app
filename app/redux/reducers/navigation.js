@@ -4,15 +4,7 @@ import { Navigator } from '../../navigationConfiguration'
 
 /* -----------------    ACTION TYPES     ------------------ */
 
-const JUMP_TO_TAB = 'JUMP_TO_TAB'
-
 /* ------------   ACTION CREATORS     ------------------ */
-
-export const jumpToTab = (index) => ({
-  type: JUMP_TO_TAB,
-  index
-})
-
 
 /* ------------       REDUCERS     ------------------ */
 

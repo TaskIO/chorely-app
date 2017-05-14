@@ -2,7 +2,7 @@
 import React from 'react'
 import { Text, Button, Container, Content, List, ListItem, Body, Title } from 'native-base'
 import { connect } from 'react-redux'
-import { addSelectedTask } from '../../../redux/reducers/tasks'
+import { setSelectedTask } from '../../../redux/reducers/tasks'
 
 class TaskList extends React.Component {
   constructor() {
@@ -18,7 +18,7 @@ class TaskList extends React.Component {
   render() {
     const groupTasks = this.props.groupTasks.filter(task => task.status === this.state.status)
     const statuses = ['Pending', 'Active', 'Completed']
-    const setSelectedTask = this.props.addSelectedTask
+    const setSelectedTask = this.props.setSelectedTask
     const navigate = this.props.navigate
     return (
       <Container>
@@ -67,8 +67,8 @@ export default connect(
   },
   dispatch => {
     return {
-      addSelectedTask: selectedTask => {
-        dispatch(addSelectedTask(selectedTask))
+      setSelectedTask: selectedTask => {
+        dispatch(setSelectedTask(selectedTask))
       }
     }
   }

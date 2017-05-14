@@ -1,34 +1,17 @@
-export const getViewer = (email)=>(
-`query={users(where:{email:"${email}"}){
-  id
-  name
-  image
-  phoneNumber
-  email
-  groups{
-    id
-    name
-    description
-    image
-    users{
+export const getViewer = email => (
+  `query={
+    users(where: {email: "${email}"}) {
       id
       name
       image
       phoneNumber
       email
-    }
-    tasks{
-      id
-      description
-      status
-      creator_id
-      assignee_id
-      bounties{
+      groups {
         id
-        amount
+        name
+        description
+        image
       }
     }
-  }
-
-}}`
+  }`
 )
