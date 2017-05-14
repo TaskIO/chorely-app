@@ -3,12 +3,12 @@ import React from 'react'
 import { Container, Content, Header, Body, Title } from 'native-base'
 import { connect } from 'react-redux'
 
-import ChangeGroup from '../components/ChangeGroup'
-import TaskForm from '../components/TaskForm'
+import ChangeGroup from '../../components/ChangeGroup'
+import TaskForm from '../../components/TaskForm'
 
-import { createNewTask } from '../../redux/reducers/tasks'
-import { selectGroup } from '../../redux/reducers/groups'
-import { fetchViewer } from '../../redux/reducers/users'
+import { createNewTask } from '../../../redux/reducers/tasks'
+import { selectGroup } from '../../../redux/reducers/groups'
+import { fetchViewer } from '../../../redux/reducers/users'
 
 class NewTask extends React.Component {
   constructor(props) {

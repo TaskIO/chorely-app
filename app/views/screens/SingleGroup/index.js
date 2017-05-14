@@ -2,9 +2,9 @@
 import React from 'react'
 import { Button, Container, Content, Header, Item, Tabs, Tab, Icon, Input } from 'native-base'
 import { connect } from 'react-redux'
-import TaskList from '../components/TaskList'
-import MemberList from '../components/MemberList'
-import { selectGroup } from '../../redux/reducers/groups'
+import TaskList from '../../components/TaskList'
+import MemberList from '../../components/MemberList'
+import { selectGroup } from '../../../redux/reducers/groups'
 
 class SingleGroup extends React.Component {
   componentDidMount() {
@@ -14,7 +14,7 @@ class SingleGroup extends React.Component {
   render() {
     const { navigate } = this.props.navigation
     if (this.props.navigation.state.params.refresh) {
-      console.log('REFRESHING! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+      console.log('REFRESHING!')
       this.props.navigation.state.params.refresh = false
       this.props.selectGroup(this.props.navigation.state.params.groupId)
     }

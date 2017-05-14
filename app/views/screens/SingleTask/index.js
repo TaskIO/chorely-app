@@ -2,10 +2,10 @@
 import React from 'react'
 import { Container, Content, Body, Header, Title } from 'native-base';
 import { connect } from 'react-redux'
-import SetBounty from '../components/SetBounty'
-import ViewBounty from '../components/ViewBounty'
-import CompleteBounty from '../components/CompleteBounty'
-import { addBountyToTask, taskStatusComplete } from '../../redux/reducers/tasks'
+import SetBounty from '../../components/SetBounty'
+import ViewBounty from '../../components/ViewBounty'
+import CompleteBounty from '../../components/CompleteBounty'
+import { addBountyToTask, taskStatusComplete } from '../../../redux/reducers/tasks'
 
 class SingleTask extends React.Component {
   constructor() {
