@@ -68,6 +68,7 @@ class NewGroup extends React.Component {
                 submitAction={this.props.createNewGroup}
                 state={this.state}
                 location={'Home'}
+                locationParams={{}}
                 navigate={this.props.navigation.navigate}
               />
             </Form>

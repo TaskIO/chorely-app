@@ -87,6 +87,7 @@ class CreateAccount extends React.Component {
                 submitAction={this.props.createAccount}
                 state={this.state}
                 location={'Home'}
+                locationParams={{}}
                 navigate={this.props.navigation.navigate}
               />
             </Form>

@@ -43,7 +43,8 @@ import {createNewTaskWithBounty, associateTaskAndBounty, createNewBounty, comple
 // dev constants
 import { ipAddress, port} from '../../../constants/dev'
 
-export const createNewTask = (description, groupId, creatorId, amount) => dispatch => {
+export const createNewTask = taskData => dispatch => {
+  let {description, groupId, creatorId, amount} = taskData
   return fetch(`http://${ipAddress}:${port}/?${createNewTaskWithBounty(description, groupId, creatorId, amount)}`, { method: 'POST'})
     .then(response => response.json())
     .then(createdTaskAndBounty => {

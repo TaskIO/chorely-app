@@ -13,15 +13,15 @@ import NewTask from './views/screens/NewTask'
 import NewGroup from './views/screens/NewGroup'
 
 const routeConfiguration = {
-  GroupTasks: { screen: GroupTasks },
   Welcome: { screen: Welcome },
   Login: { screen: Login },
   CreateAccount: { screen: CreateAccount },
   Home: { screen: Home },
   NewGroup: { screen: NewGroup },
+  GroupTasks: { screen: GroupTasks },
+  NewTask: { screen: NewTask },
   Task: { screen: Task },
   Profile: { screen: Profile },
-  NewTask: { screen: NewTask },
 }
 
 const stackNavigatorConfiguration = {

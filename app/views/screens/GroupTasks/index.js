@@ -18,9 +18,8 @@ import { selectGroup } from '../../../redux/reducers/groups'
 
 class SingleGroup extends React.Component {
   componentDidMount() {
-    // const groupId = this.props.navigation.state.params.groupId
-    //console.log(DELTE THIS AND CHANE THE HARDCODE BELOW)
-    this.props.selectGroup(1)
+    const groupId = this.props.navigation.state.params.groupId
+    this.props.selectGroup(groupId)
   }
   render() {
     const { navigate } = this.props.navigation

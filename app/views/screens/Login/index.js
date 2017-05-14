@@ -71,6 +71,7 @@ class Login extends React.Component {
                 submitAction={this.props.fetchViewer}
                 state={this.state}
                 location={'Home'}
+                locationParams={{}}
                 navigate={this.props.navigation.navigate}
               />
             </Form>

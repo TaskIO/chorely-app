@@ -3,12 +3,12 @@ import React from 'react'
 import { Fab, Icon } from 'native-base'
 import s from './styles'
 
-export default ({ navigate, location, state, submitAction }) => (
+export default ({ navigate, location, locationParams, state, submitAction }) => (
   <Fab
-    style = {s.fab}
+    style = {(s.fab)}
     onPress={() => {
       submitAction(state)
-      .then(navigate(location))
+      .then(navigate(location, locationParams))
       .catch(console.error)
     }
   }>
