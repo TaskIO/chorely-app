@@ -11,7 +11,7 @@ export default ({ group, navigate }) => {
   return (
     <ListItem
       onPress = {
-        () => {navigate('Group', { groupId: group.id })}
+        () => {navigate('GroupTasks', { groupId: group.id })}
       }
     >
     <Icon style={s.icon} name='home' />

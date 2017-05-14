@@ -30,7 +30,7 @@ export default function TaskForm (props) {
             onPress={() => {
               createNewTask(taskInput, group.id, viewerUser.id, Math.round(+bountyInput))
                 .then(() => {
-                  navigate('Group', {groupId: group.id})
+                  navigate('GroupTasks', {groupId: group.id})
                 })
                 .catch(console.error)
             }}
