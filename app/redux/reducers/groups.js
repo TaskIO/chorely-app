@@ -51,17 +51,6 @@ export const selectGroup = (group) => dispatch => {
   dispatch(setGroupTasks(group.tasks))
 }
 
-export const createNewGroup = (name, description, userId) => dispatch => {
-  fetch(`http://${ipAddress}:${port}/?${createSingleGroup(name, description)}`, { method: 'POST'})
-    .then(response => response.json())
-    .then(createdNewGroup => {
-      console.log(createdNewGroup)
-      const groupId = createdNewGroup.data.groupsCreate.id
-      return fetch(`http://${ipAddress}:${port}/?${associateUserAndGroup(userId, groupId)}`, { method: 'POST'})
-    })
-    .catch(console.error)
-}
-
 export const fetchGroups = () => dispatch => {
   return fetch(`http://${ipAddress}:${port}?${getAllViewerGroupsQuery()}`)
     .then(fetchResult => {
@@ -82,4 +71,15 @@ export const fetchGroup = groupId => dispatch => {
       dispatch(setViewerGroup(jsonData.data.groups[0]))
     })
     .catch(console.error)
+}
+
+export const createNewGroup = (name, description, userId) => dispatch => {
+   fetch(`http://${ipAddress}:${port}/?${createSingleGroup(name, description)}`, { method: 'POST'})
+  .then(response => response.json())
+  .then(createdNewGroup => {
+    console.log(createdNewGroup);
+    const groupId = createdNewGroup.data.groupsCreate.id
+    return fetch(`http://${ipAddress}:${port}/?${associateUserAndGroup(userId, groupId)}`, { method: 'POST'})
+  })
+  .catch(console.error)
 }

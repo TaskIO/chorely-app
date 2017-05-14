@@ -1,13 +1,16 @@
 'use strict'
 import React from 'react'
 import { connect } from 'react-redux'
-import { Container, Content, Text, Button, Form, Item, Icon, Input, List, ListItem, Body, Label, Title, Header } from 'native-base'
+import { Container, Content, Text, Button, Form, Item, Icon, Input, List, Body, Label, Title, Header } from 'native-base'
 import GroupListItem from '../../components/GroupListItem'
-import { selectGroup, createNewGroup } from '../../../redux/reducers/groups'
+import {
+  selectGroup,
+  createNewGroup,
+  fetchGroups,
+  addToUserGroups
+} from '../../../redux/reducers/groups'
 import { setGroupUsers } from '../../../redux/reducers/users'
 import { setGroupTasks } from '../../../redux/reducers/users'
-
-
 
 class HomeComponent extends React.Component {
   constructor(props) {
@@ -19,7 +22,9 @@ class HomeComponent extends React.Component {
     }
     this.toggleForm = this.toggleForm.bind(this)
     this.handleGroupNameChange = this.handleGroupNameChange.bind(this)
-    this.handleGroupDescriptionChange = this.handleGroupDescriptionChange.bind(this)
+    this.handleGroupDescriptionChange = this.handleGroupDescriptionChange.bind(
+      this
+    )
   }
 
   toggleForm() {
@@ -34,7 +39,7 @@ class HomeComponent extends React.Component {
   }
 
   handleGroupDescriptionChange(groupDescription) {
-    this.setState({ groupDescription})
+    this.setState({ groupDescription })
   }
 
   render() {
@@ -50,47 +55,57 @@ class HomeComponent extends React.Component {
             </Body>
           </Header>
           <List>
-            {this.props.groups.map(group=>(
+            {this.props.groups.map(group => (
               <GroupListItem
                 key={group.id}
                 group={group}
                 navigate={navigate}
                 selectGroup={this.props.selectGroup}
-              />))}
+              />
+            ))}
           </List>
           <Button transparent onPress={this.toggleForm}>
             <Icon name="add-circle" />
             <Text>New Group</Text>
           </Button>
-          <Button onPress={()=>{navigate('Profile')}}>
+          <Button
+            onPress={() => {
+              navigate('Profile')
+            }}
+          >
             <Text>Temp Button to Profile</Text>
           </Button>
           {formState &&
             <Form>
               <Item stackedLabel>
                 <Label>Group Name</Label>
-                <Input onChangeText={this.handleGroupNameChange}/>
+                <Input onChangeText={this.handleGroupNameChange} />
               </Item>
               <Item stackedLabel>
                 <Label>Group Description</Label>
-                <Input onChangeText={this.handleGroupDescriptionChange}/>
+                <Input onChangeText={this.handleGroupDescriptionChange} />
               </Item>
-              <Button onPress={() => {
-                console.log('HEYY!!!!!! THESE ARE PROPS', this.state.groupName, this.state.groupDescription)
-                addGroup(this.state.groupName, this.state.groupDescription, this.props.viewerUser.id)
-              }}>
+              <Button
+                onPress={() => {
+                  addGroup(
+                    this.state.groupName,
+                    this.state.groupDescription,
+                    this.props.viewerUser.id
+                  )
+                }}
+              >
                 <Text> Create Group </Text>
               </Button>
             </Form>}
         </Content>
-     </Container>
+      </Container>
     )
   }
 }
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = (state) => {
+const mapState = state => {
   return {
     viewerUser: state.users.viewerUser,
     groups: state.groups.viewerGroups,
@@ -98,9 +113,9 @@ const mapState = (state) => {
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
-    selectGroup: (id) => {
+    selectGroup: id => {
       dispatch(selectGroup(id))
     },
     addGroup: (name, description, userId) => {
