@@ -44,12 +44,12 @@ class HomeComponent extends React.Component{
             </Col>
             </Grid>
         }
-      </Content>
-          <AddFAB
-            navigate={navigate}
-            location={'NewGroup'}
-          />
-         </Image>
+        </Content>
+        <AddFAB
+          navigate={navigate}
+          location={'NewGroup'}
+        />
+        </Image>
      </Container>
     )
   }

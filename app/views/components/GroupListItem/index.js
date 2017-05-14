@@ -7,6 +7,7 @@ import s from './styles'
 export default ({ group, navigate }) => {
   let { name, description } = group
   description = (description.length > 25) ? `${description.slice(0,15)}...` : description
+
   return (
     <ListItem
       onPress = {
@@ -18,5 +19,6 @@ export default ({ group, navigate }) => {
       <Text style={s.mainText}>{name}</Text>
       <Text note style={s.parenthetical} > {description} </Text>
     </Body>
-    </ListItem>)
-    }
+    </ListItem>
+  )
+}
