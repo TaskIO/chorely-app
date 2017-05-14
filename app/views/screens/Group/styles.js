@@ -30,6 +30,11 @@ export default {
     flex: 1,
     alignItems: 'center',
   },
+  filter: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
   mainText: {
     fontSize: 34,
     color: cloudWhite,
