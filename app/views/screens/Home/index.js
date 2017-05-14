@@ -28,12 +28,13 @@ class HomeComponent extends React.Component{
           (this.props.groups.length) ?
             <List style={s.list}>
               {this.props.groups.map( group => {
-                return <GroupListItem
+                return (<GroupListItem
                   key={group.id}
                   group={group}
                   navigate={navigate}
                   selectGroup={this.props.selectGroup}
-                />
+                  />
+                )
               })}
             </List>
           :
