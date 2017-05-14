@@ -5,7 +5,7 @@ import { Image, StatusBar } from 'react-native'
 import { Container, Content, Form, Input, InputGroup, Item, Label } from 'native-base'
 
 // additional components
-import SignInFab from '../../components/SignInFAB'
+import SignInFab from '../../components/SignInFab'
 
 // styles and background image
 import s from './styles'

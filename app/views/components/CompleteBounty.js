@@ -17,7 +17,7 @@ export default function CompleteBounty (props) {
             <Button onPress={() => {
               completeTask(selectedTask.id)
                 .then(() => {
-                  navigate('Group', {groupId: viewerGroup.id, refresh: true})
+                  navigate('Group', {groupId: viewerGroup.id})
                 })
                 .catch(console.error)
             }}>
