@@ -1,11 +1,10 @@
 'use strict'
 import React from 'react'
 import { Text, Button, Container, Content, List, ListItem, Body, Title } from 'native-base'
-import { connect } from 'react-redux'
 import { setSelectedTask } from '../../../redux/reducers/tasks'
 import s from './styles'
 
-export default ({ task, navigate }) => {
+export default ({ setSelectedTask, task, navigate }) => {
   return (
     <ListItem
       onPress = {

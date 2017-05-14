@@ -15,6 +15,7 @@ import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
 // redux and dispatchers
 import { connect } from 'react-redux'
 import { selectGroup } from '../../../redux/reducers/groups'
+import { setSelectedTask } from '../../../redux/reducers/tasks'
 
 class SingleGroup extends React.Component {
   componentDidMount() {
@@ -36,6 +37,7 @@ class SingleGroup extends React.Component {
                 key={task.id}
                 task={task}
                 navigate={navigate}
+                setSelectedTask = {this.props.setSelectedTask}
               />
             })}
           <Button iconLeft transparent style={s.filter}>
@@ -54,7 +56,6 @@ class SingleGroup extends React.Component {
         <AddFAB
           navigate={navigate}
           location={'NewTask'}
-
         />
         </Content>
         </Image>
@@ -70,21 +71,6 @@ const mapState = state => {
   }
 }
 
-const mapDispatch = {selectGroup}
+const mapDispatch = {selectGroup, setSelectedTask}
 
 export default connect(mapState, mapDispatch)(SingleGroup)
-
-
-//   <Button transparent onPress={() => navigate('NewTask')}>
-//     <Icon name="add-circle" />
-//   </Button>
-// </Header>
-
-// <Tabs>
-//   <Tab heading="Tasks">
-//
-//   </Tab>
-//   <Tab heading="Members">
-//     <MemberList />
-//   </Tab>
-// </Tabs>
