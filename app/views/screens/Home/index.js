@@ -5,7 +5,12 @@ import { View, Image, StatusBar } from 'react-native'
 import { Container, Content, Text, Button, Form, Item, Icon, Input, Grid, Row, Col, List, ListItem, Body, Label, Title, Header } from 'native-base'
 import AddFAB from '../../components/AddFAB'
 import GroupListItem from '../../components/GroupListItem'
-import { selectGroup } from '../../../redux/reducers/groups'
+import {
+  selectGroup,
+  createNewGroup,
+  fetchGroups,
+  addToUserGroups
+} from '../../../redux/reducers/groups'
 import { setGroupUsers } from '../../../redux/reducers/users'
 import { setGroupTasks } from '../../../redux/reducers/users'
 
@@ -15,14 +20,16 @@ import s from './styles'
 class HomeComponent extends React.Component {
   render() {
     const { navigate } = this.props.navigation
+    const { addGroup } = this.props
     return (
       <Container>
+
        <Image source={welcomeScreenBg} style={s.imageContainer}>
        <StatusBar hidden={true}/>
        <Content contentContainerStyle={s.content}>
        {
         (this.props.groups.length) ? <List>
-              {this.props.groups.map(group=>(
+              {this.props.groups.map( group => (
                 <GroupListItem
                   key={group.id}
                   group={group}
@@ -48,7 +55,7 @@ class HomeComponent extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = (state) => {
+const mapState = state => {
   return {
     viewerUser: state.users.viewerUser,
     groups: state.groups.viewerGroups,
@@ -56,10 +63,13 @@ const mapState = (state) => {
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
-    selectGroup: (id) => {
+    selectGroup: id => {
       dispatch(selectGroup(id))
+    },
+    addGroup: (name, description, userId) => {
+      dispatch(createNewGroup(name, description, userId))
     }
   }
 }
