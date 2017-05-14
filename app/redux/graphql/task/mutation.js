@@ -5,10 +5,16 @@ export const createNewTaskWithBounty = (description, groupId, creatorId, amount)
         id
         description
         status
+        creator_id
+        assignee_id
       }
       bountiesCreate(bounties: $bounty) {
         id
         amount
+        user {
+          id
+          name
+        }
       }
     }&operationName=CreateTaskForGroup&variables={
       "task": {
@@ -53,6 +59,23 @@ export const createNewBounty = (amount, userId) => {
       "bounty": {
         "amount": ${amount},
         "user_id": ${userId}
+      }
+    }`
+  )
+}
+
+export const completeTask = taskId => {
+  return (
+    `query=mutation CompleteTask($task: tasksInput!) {
+      tasksUpdate(tasks: $task) {
+        id
+        description
+        status
+      }
+    }&operationName=CompleteTask&variables={
+      "task": {
+        "id": ${taskId},
+        "status": "Completed"
       }
     }`
   )
