@@ -5,7 +5,7 @@ import { Image, StatusBar } from 'react-native'
 import { Container, Content, Form, Input, InputGroup, Item, Label } from 'native-base'
 
 // additional components
-import SignInFab from '../../components/SignInFab'
+import SubmitFAB from '../../components/SubmitFAB'
 
 // styles and background image
 import s from './styles'
@@ -67,9 +67,11 @@ class Login extends React.Component {
                   />
                 </InputGroup>
               </Item>
-              <SignInFab
-                signInAction={this.props.fetchViewer}
+              <SubmitFAB
+                submitAction={this.props.fetchViewer}
                 state={this.state}
+                location={'Home'}
+                locationParams={{}}
                 navigate={this.props.navigation.navigate}
               />
             </Form>

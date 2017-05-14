@@ -17,7 +17,7 @@ export default {
 
     // Badge
   badgeBg: '#ED1727',
-  badgeColor: '#fff',
+  badgeColor: '#ecf0f1',
     // New Variable
   badgePadding: (platform === 'ios') ? 3 : 0,
 
@@ -37,14 +37,14 @@ export default {
   DefaultFontSize: 17,
   checkboxBgColor: '#039BE5',
   checkboxSize: 20,
-  checkboxTickColor: '#fff',
+  checkboxTickColor: '#ecf0f1',
 
   // Segment
   segmentBackgroundColor: '#3F51B5',
-  segmentActiveBackgroundColor: '#fff',
-  segmentTextColor: '#fff',
+  segmentActiveBackgroundColor: '#ecf0f1',
+  segmentTextColor: '#ecf0f1',
   segmentActiveTextColor: '#3F51B5',
-  segmentBorderColor: '#fff',
+  segmentBorderColor: '#ecf0f1',
   segmentBorderColorMain: '#3F51B5',
 
     // New Variable
@@ -108,7 +108,7 @@ export default {
 
 
     // Card
-  cardDefaultBg: '#fff',
+  cardDefaultBg: '#ecf0f1',
 
 
       // Color
@@ -143,30 +143,30 @@ export default {
     // FooterTab
   tabBarTextColor: '#b3c7f9',
   tabBarTextSize: (platform === 'ios') ? 14 : 11,
-  activeTab: '#fff',
+  activeTab: '#ecf0f1',
   sTabBarActiveTextColor: '#007aff',
-  tabBarActiveTextColor: '#fff',
+  tabBarActiveTextColor: '#ecf0f1',
   tabActiveBgColor: undefined,
 
     // Tab
   tabDefaultBg: '#3F51B5',
   topTabBarTextColor: '#b3c7f9',
-  topTabBarActiveTextColor: '#fff',
+  topTabBarActiveTextColor: '#ecf0f1',
   topTabActiveBgColor: undefined,
-  topTabBarBorderColor: '#fff',
-  topTabBarActiveBorderColor: '#fff',
+  topTabBarBorderColor: '#ecf0f1',
+  topTabBarActiveBorderColor: '#ecf0f1',
 
 
     // Header
-  toolbarBtnColor: '#fff',
+  toolbarBtnColor: '#ecf0f1',
   toolbarDefaultBg: '#3F51B5',
   toolbarHeight: (platform === 'ios') ? 76 : 56,
   toolbarIconSize: (platform === 'ios') ? 20 : 22,
   toolbarSearchIconSize: (platform === 'ios') ? 20 : 23,
-  toolbarInputColor: '#fff',
+  toolbarInputColor: '#ecf0f1',
   searchBarHeight: (platform === 'ios') ? 30 : 40,
   toolbarInverseBg: '#222',
-  toolbarTextColor: '#fff',
+  toolbarTextColor: '#ecf0f1',
   toolbarDefaultBorder: '#3F51B5',
   iosStatusbar: 'light-content',
   get statusBarColor() {
@@ -260,7 +260,7 @@ export default {
 
     // Text
   textColor: '#000',
-  inverseTextColor: '#fff',
+  inverseTextColor: '#ecf0f1',
   noteFontSize: 14,
 
 
@@ -268,10 +268,10 @@ export default {
   titleFontfamily: (platform === 'ios') ? 'System' : 'System',
   titleFontSize: 19,
   subTitleFontSize: 14,
-  subtitleColor: '#FFF',
+  subtitleColor: '#ECF0F1',
 
     // New Variable
-  titleFontColor: '#FFF',
+  titleFontColor: '#ECF0F1',
 
 
     // Other

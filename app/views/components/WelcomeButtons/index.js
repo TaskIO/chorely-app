@@ -1,6 +1,9 @@
 'use strict'
+// R/RN components
 import React from 'react'
 import { Content, Text, Button } from 'native-base'
+
+// styles
 import s from './styles'
 
 export default ({ navigate }) => (
@@ -9,11 +12,13 @@ export default ({ navigate }) => (
       onPress={
         () => navigate('Login')
       }
+      style={s.login}
+
     >
     <Text style={s.text}>{'LOGIN'}</Text>
     </Button>
     <Button
-      block outline bordered
+      block
       onPress={
         () => navigate('CreateAccount')
       }

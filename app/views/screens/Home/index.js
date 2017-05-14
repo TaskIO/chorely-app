@@ -1,104 +1,57 @@
 'use strict'
+//  R/RN/NB components
 import React from 'react'
-import { connect } from 'react-redux'
-import { Container, Content, Text, Button, Form, Item, Icon, Input, List, Body, Label, Title, Header } from 'native-base'
+import { Image, StatusBar } from 'react-native'
+import { Container, Content, Text, Grid,  Col, List } from 'native-base'
+
+// additional components
+import AddFAB from '../../components/AddFAB'
 import GroupListItem from '../../components/GroupListItem'
-import {
-  selectGroup,
-  createNewGroup,
-  fetchGroups,
-  addToUserGroups
-} from '../../../redux/reducers/groups'
-import { setGroupUsers } from '../../../redux/reducers/users'
-import { setGroupTasks } from '../../../redux/reducers/users'
 
-class HomeComponent extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      showForm: false,
-      groupName: '',
-      groupDescription: ''
-    }
-    this.toggleForm = this.toggleForm.bind(this)
-    this.handleGroupNameChange = this.handleGroupNameChange.bind(this)
-    this.handleGroupDescriptionChange = this.handleGroupDescriptionChange.bind(
-      this
-    )
-  }
+// styles and background image
+import s from './styles'
+import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
 
-  toggleForm() {
-    const formState = this.state.showForm
-    this.setState({
-      showForm: !formState
-    })
-  }
+// redux and dispatchers
+import { connect } from 'react-redux'
+import { selectGroup } from '../../../redux/reducers/groups'
 
-  handleGroupNameChange(groupName) {
-    this.setState({ groupName })
-  }
-
-  handleGroupDescriptionChange(groupDescription) {
-    this.setState({ groupDescription })
-  }
-
+class HomeComponent extends React.Component{
   render() {
-    const formState = this.state.showForm
     const { navigate } = this.props.navigation
-    const { addGroup } = this.props
     return (
       <Container>
-        <Content>
-          <Header>
-            <Body>
-              <Title>My Groups</Title>
-            </Body>
-          </Header>
-          <List>
-            {this.props.groups.map(group => (
-              <GroupListItem
-                key={group.id}
-                group={group}
-                navigate={navigate}
-                selectGroup={this.props.selectGroup}
-              />
-            ))}
-          </List>
-          <Button transparent onPress={this.toggleForm}>
-            <Icon name="add-circle" />
-            <Text>New Group</Text>
-          </Button>
-          <Button
-            onPress={() => {
-              navigate('Profile')
-            }}
-          >
-            <Text>Temp Button to Profile</Text>
-          </Button>
-          {formState &&
-            <Form>
-              <Item stackedLabel>
-                <Label>Group Name</Label>
-                <Input onChangeText={this.handleGroupNameChange} />
-              </Item>
-              <Item stackedLabel>
-                <Label>Group Description</Label>
-                <Input onChangeText={this.handleGroupDescriptionChange} />
-              </Item>
-              <Button
-                onPress={() => {
-                  addGroup(
-                    this.state.groupName,
-                    this.state.groupDescription,
-                    this.props.viewerUser.id
-                  )
-                }}
-              >
-                <Text> Create Group </Text>
-              </Button>
-            </Form>}
+        <Image source={welcomeScreenBg} style={s.imageContainer}>
+        <StatusBar hidden={true} />
+        <Content contentContainerStyle={s.content}>
+        {
+          (this.props.groups.length) ?
+            <List style={s.list}>
+              {this.props.groups.map( group => {
+                return (<GroupListItem
+                  key={group.id}
+                  group={group}
+                  navigate={navigate}
+                  selectGroup={this.props.selectGroup}
+                  />
+                )
+              })}
+            </List>
+          :
+            <Grid style={s.grid}>
+            <Col style={s.column}>
+              <Text style={s.mainText}>No groups yet</Text>
+              <Text style={s.parenthetical}>(Add one below)</Text>
+            </Col>
+            </Grid>
+        }
         </Content>
-      </Container>
+        <AddFAB
+          navigate={navigate}
+          location={'NewGroup'}
+        />
+        </Image>
+     </Container>
     )
   }
 }
@@ -117,9 +70,6 @@ const mapDispatch = dispatch => {
   return {
     selectGroup: id => {
       dispatch(selectGroup(id))
-    },
-    addGroup: (name, description, userId) => {
-      dispatch(createNewGroup(name, description, userId))
     }
   }
 }

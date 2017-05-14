@@ -18,7 +18,7 @@ export default function SetBounty (props) {
         ? <Button onPress={() => {
             setBountyToTask(bountyAmount, viewerUser.id, selectedTask.id)
               .then(() => {
-                navigate('Group', {groupId: viewerGroup.id})
+                navigate('GroupTasks', {groupId: viewerGroup.id})
               })
               .catch(console.error)
           }}>

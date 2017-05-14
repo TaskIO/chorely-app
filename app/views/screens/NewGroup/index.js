@@ -13,21 +13,19 @@ import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
 
 // redux and dispatchers
 import { connect } from 'react-redux'
-import { createAccount } from '../../../redux/reducers/users'
+import { createNewGroup } from '../../../redux/reducers/groups'
 
-class CreateAccount extends React.Component {
+class NewGroup extends React.Component {
     constructor(props) {
       super(props)
-
       this.state = {
+        viewerId: props.viewerUser.id,
         name: '',
-        email: '',
-        password: ''
+        description: '',
       }
 
       this.handleNameChange = this.handleNameChange.bind(this)
-      this.handleEmailChange = this.handleEmailChange.bind(this)
-      this.handlePasswordChange = this.handlePasswordChange.bind(this)
+      this.handleDescriptionChange = this.handleDescriptionChange.bind(this)
     }
 
     handleNameChange(name) {
@@ -35,16 +33,9 @@ class CreateAccount extends React.Component {
         name
       })
     }
-
-    handleEmailChange(email) {
+    handleDescriptionChange(description) {
       this.setState({
-        email
-      })
-    }
-
-    handlePasswordChange(password) {
-      this.setState({
-        password
+        description
       })
     }
 
@@ -56,7 +47,7 @@ class CreateAccount extends React.Component {
           <Content contentContainerStyle={s.content} >
             <Form style={s.form}>
               <Item stackedLabel style={s.item}>
-                <Label style={s.label}> Username </Label>
+                <Label style={s.label}> Group Name </Label>
                 <InputGroup >
                   <Input
                     style={s.input}
@@ -65,26 +56,16 @@ class CreateAccount extends React.Component {
                 </InputGroup>
               </Item>
               <Item stackedLabel style={s.item}>
-                <Label style={s.label}> Email </Label>
+                <Label style={s.label}>Group Description </Label>
                 <InputGroup >
                   <Input
                     style={s.input}
-                    onChangeText={this.handleEmailChange}
-                  />
-                </InputGroup>
-              </Item>
-              <Item stackedLabel style={s.item}>
-                <Label style={s.label}> Password </Label>
-                <InputGroup >
-                  <Input
-                    style={s.input}
-                    secureTextEntry={true}
-                    onChangeText={this.handlePasswordChange}
+                    onChangeText={this.handleDescriptionChange}
                   />
                 </InputGroup>
               </Item>
               <SubmitFAB
-                submitAction={this.props.createAccount}
+                submitAction={this.props.createNewGroup}
                 state={this.state}
                 location={'Home'}
                 locationParams={{}}
@@ -99,8 +80,12 @@ class CreateAccount extends React.Component {
   }
   /* -----------------    CONTAINER     ------------------ */
 
-const mapState = state => state
+const mapState = state => {
+  return {
+    viewerUser: state.users.viewerUser,
+  }
+}
 
-const mapDispatch = { createAccount }
+const mapDispatch = { createNewGroup }
 
-export default connect(mapState, mapDispatch)(CreateAccount)
+export default connect(mapState, mapDispatch)(NewGroup)
