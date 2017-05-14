@@ -4,20 +4,28 @@ const defaultState = {
 }
 
 /* -----------------    ACTION TYPES     ------------------ */
-const SET_VIEWER_GROUPS = 'SET_VIEWER_GROUPS'
 const SET_VIEWER_GROUP = 'SET_VIEWER_GROUP'
+const SET_VIEWER_GROUPS = 'SET_VIEWER_GROUPS'
+const ADD_VIEWER_GROUP = 'ADD_VIEWER_GROUP'
+
 
 /* ------------   ACTION CREATORS     ------------------ */
+
+export const setViewerGroup = (viewerGroup) => ({
+  type: SET_VIEWER_GROUP,
+  viewerGroup: viewerGroup
+})
 
 export const setViewerGroups = (viewerGroups) => ({
   type: SET_VIEWER_GROUPS,
   viewerGroups: viewerGroups
 })
 
-export const setViewerGroup = (viewerGroup) => ({
-  type: SET_VIEWER_GROUP,
+export const addViewerGroup = (viewerGroup) => ({
+  type: ADD_VIEWER_GROUP,
   viewerGroup: viewerGroup
 })
+
 
 /* ------------       REDUCERS     ------------------ */
 
@@ -30,6 +38,9 @@ export default function(state = defaultState, action) {
     case SET_VIEWER_GROUPS:
       newState.viewerGroups = action.viewerGroups
       break
+    case ADD_VIEWER_GROUP:
+      newState.viewerGroups = newState.viewerGroups.concat(action.viewerGroup)
+      break
     default:
       return state
   }
@@ -38,11 +49,14 @@ export default function(state = defaultState, action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
+// GraphQL queries and mutations
 import { createSingleGroup, associateUserAndGroup } from '../graphql/group/mutation'
 import { getAllViewerGroupsQuery, getViewerGroupQuery } from '../graphql/group/query'
-import { setGroupUsers } from './users'
-import { setGroupTasks } from './tasks'
 import { getGroup } from '../graphql/group/query'
+
+// action creators or dispatchers
+import { setGroupTasks } from './tasks'
+import { setGroupUsers } from './users'
 
 // dev constants
 import { ipAddress, port } from '../../../constants/dev'
@@ -61,11 +75,13 @@ export const selectGroup = groupId => dispatch => {
 
 export const createNewGroup = groupData => dispatch => {
   const { name, description, viewerId } = groupData
+
   return fetch(`http://${ipAddress}:${port}/?${createSingleGroup(name, description)}`, { method: 'POST' })
     .then(response => (response.json()))
     .then(createdNewGroup => {
-      const groupId = createdNewGroup.data.groupsCreate.id
-      return fetch(`http://${ipAddress}:${port}/?${associateUserAndGroup(viewerId, groupId)}`, { method: 'POST' })
+      const group = createdNewGroup.data.groupsCreate
+      dispatch(addViewerGroup(group))
+      return fetch(`http://${ipAddress}:${port}/?${associateUserAndGroup(viewerId, group.id)}`, { method: 'POST' })
     })
     .catch(console.error)
 }
