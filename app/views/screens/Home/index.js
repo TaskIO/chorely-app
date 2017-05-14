@@ -26,14 +26,15 @@ class HomeComponent extends React.Component{
         <Content contentContainerStyle={s.content}>
         {
           (this.props.groups.length) ?
-            <List>
-              {this.props.groups.map( group => (
-                <GroupListItem
+            <List style={s.list}>
+              {this.props.groups.map( group => {
+                return <GroupListItem
                   key={group.id}
                   group={group}
                   navigate={navigate}
                   selectGroup={this.props.selectGroup}
-                />))}
+                />
+              })}
             </List>
           :
             <Grid style={s.grid}>

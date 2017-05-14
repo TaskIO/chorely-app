@@ -17,6 +17,10 @@ export default {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  list: {
+    flex:1,
+    alignSelf:'stretch',
+  },
   grid: {
     flex: 1,
     marginBottom: deviceHeight / 4,
@@ -36,17 +40,9 @@ export default {
     color: silver,
     textAlign:'center',
   },
-
   item: {
     borderWidth: 34,
     marginRight: 15,
-  },
-  label: {
-    fontSize: 24,
-    color: cloudWhite,
-  },
-  input: {
-    color: cloudWhite,
   },
   fab: {
     backgroundColor: cloudWhite,

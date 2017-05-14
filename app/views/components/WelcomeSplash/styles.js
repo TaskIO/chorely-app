@@ -1,4 +1,5 @@
 import { Platform } from 'react-native'
+import { cloudWhite, midnight } from '../../../../constants/colors'
 
 export default {
   splash: {
@@ -17,14 +18,14 @@ export default {
 
   },
   icon: {
-    color: '#f39c12',
+    color: midnight,
     fontSize: 100,
   },
   text: {
-    color: '#ecf0f1',
+    color: cloudWhite,
     fontSize: 35,
-    justifyContent:'center',
-    alignItems:'center',
-    textAlign:'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
   }
 }

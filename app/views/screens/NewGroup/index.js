@@ -19,7 +19,7 @@ class NewGroup extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-        viewerId: 1,
+        viewerId: props.viewerUser.id,
         name: '',
         description: '',
       }
