@@ -9,8 +9,8 @@ export default ({ navigate, location, locationParams, state, submitAction }) => 
     style = {(s.fab)}
     onPress={() => {
       submitAction(state)
-      .then(navigate(location, locationParams))
-      .catch(console.error)
+        .then(() => navigate(location, locationParams))
+        .catch(console.error)
     }
   }>
   <Icon style={s.icon} name="arrow-forward" />
