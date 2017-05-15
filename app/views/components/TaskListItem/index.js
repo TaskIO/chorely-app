@@ -29,7 +29,7 @@ export default ({ setSelectedTask, task, navigate }) => {
     <Body >
       <Text style={s.mainText}>{task.description}</Text>
       <Text note style={s.parenthetical} > Status: {task.status} </Text>
-      <Text note style={s.parenthetical} > Assigned To: {(task.assignee_id)?task.assignee_id: 'n/a'} </Text>
+      <Text note style={s.parenthetical} > Assigned To: {(task.assignee) ? task.assignee.name : 'TBD'} </Text>
     </Body>
     </ListItem>
   )
