@@ -3,12 +3,13 @@ import React from 'react'
 import { Fab, Icon } from 'native-base'
 import s from './styles'
 
-export default ({navigate, location}) => (
+export default ({goBack}) => (
   <Fab style={s.fab}
+    position="bottomLeft"
     onPress={() => {
-      navigate(location)
+      goBack()
     }
   }>
-  <Icon style={s.icon} name="add"/>
+  <Icon style={s.icon} name="arrow-back"/>
   </Fab>
 )

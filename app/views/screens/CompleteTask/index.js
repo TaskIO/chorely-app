@@ -5,7 +5,7 @@ import { Image, StatusBar } from 'react-native'
 import { Container, Content, Grid, Col, Text } from 'native-base'
 
 // additional components
-
+import ReturnFAB from '../../components/ReturnFAB'
 // styles and background image
 import s from './styles'
 import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
@@ -42,6 +42,9 @@ class CompleteTask extends React.Component {
           <Text style={s.mainText}>{`${task.description} is complete! ${assigneeName} received ${amount} points.`}</Text>
         </Col>
       </Grid>
+      <ReturnFAB
+        goBack={this.props.navigation.goBack}
+      />
       </Content>
       </Image>
       </Container>

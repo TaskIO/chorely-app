@@ -5,6 +5,7 @@ import s from './styles'
 
 export default ({navigate, location}) => (
   <Fab style={s.fab}
+    position="bottomRight"
     onPress={() => {
       navigate(location)
     }

@@ -67,14 +67,14 @@ class Login extends React.Component {
                   />
                 </InputGroup>
               </Item>
-              <SubmitFAB
-                submitAction={this.props.fetchViewer}
-                state={this.state}
-                location={'Home'}
-                locationParams={{}}
-                navigate={this.props.navigation.navigate}
-              />
             </Form>
+            <SubmitFAB
+              submitAction={this.props.fetchViewer}
+              state={this.state}
+              location={'Home'}
+              locationParams={{}}
+              navigate={this.props.navigation.navigate}
+            />
           </Content>
         </Image>
         </Container>
