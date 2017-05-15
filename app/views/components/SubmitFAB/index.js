@@ -8,6 +8,7 @@ export default ({ navigate, location, locationParams, state, submitAction }) => 
     position="bottomRight"
     style = {(s.fab)}
     onPress={() => {
+      console.log("state", state);
       submitAction(state)
       .then(navigate(location, locationParams))
       .catch(console.error)

@@ -19,8 +19,8 @@ import { setSelectedTask } from '../../../redux/reducers/tasks'
 
 class SingleGroup extends React.Component {
   componentDidMount() {
-    const groupId = this.props.navigation.state.params.groupId
-    this.props.selectGroup(groupId)
+    // const groupId = this.props.navigation.state.params.groupId
+    this.props.selectGroup(1)
   }
   render() {
     const { navigate } = this.props.navigation

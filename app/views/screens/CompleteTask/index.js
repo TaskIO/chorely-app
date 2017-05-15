@@ -29,7 +29,7 @@ class CompleteTask extends React.Component {
 
   render() {
     const task = this.props.task
-    const assigneeName = (task.assignee.id === this.props.viewerUser.id) ? 'you' : task.assignee.name
+    const assigneeName = (task.assignee.id === this.props.viewerUser.id) ? 'You' : task.assignee.name
     const amount = this.maxBounty(task.bounties)
 
     return (
