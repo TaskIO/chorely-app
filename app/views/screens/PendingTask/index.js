@@ -45,18 +45,19 @@ class PendingTask extends React.Component {
     const bountySubmitted = this.submittedBounty(task.bounties)
     return (
       <Container>
-      <Image source={welcomeScreenBg} style={s.imageContainer}>
-      <StatusBar hidden={true} />
-      <Content contentContainerStyle={s.content} >
+        <Image source={welcomeScreenBg} style={s.imageContainer}>
+          <StatusBar hidden={true} />
+          <Content contentContainerStyle={s.content} >
 
-        {
-        (!bountySubmitted)
-        ?
-        <Form style={s.form}>
-          <Item stackedLabel style={s.item}>
-            <Label style={s.label}> {`What do you believe is a fair wage for ${task.description}?`} </Label>
-            <InputGroup >
-              <Input
+            {
+              (!bountySubmitted)
+              ?
+                <Form style={s.form}>
+                  <Item stackedLabel style={s.item}>
+                    <Label style={s.label}> {`What do you believe is a fair wage for ${task.description}?`} </Label>
+                    <InputGroup >
+                      <Input
+                        keyboardType={'numeric'}
                 placeholder={'0-100'}
                 style={s.input}
                 onChangeText={this.handleAmountChange}
