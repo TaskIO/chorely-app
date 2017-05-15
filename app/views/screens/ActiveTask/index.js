@@ -24,9 +24,8 @@ class ActiveTask extends React.Component {
 
   maxBounty(bountiesArr) {
     return bountiesArr.reduce((oldMax, newMax) => {
-      oldMax = (typeof oldMax === 'object') ? oldMax.amount : oldMax
       return (Math.max(oldMax, newMax.amount))
-    })
+    },0)
   }
 
   render() {
