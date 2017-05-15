@@ -2,12 +2,11 @@
 //  R/RN/NB components
 import React from 'react'
 import { Image, StatusBar } from 'react-native'
-import { Container, Content, Body, Header, Title } from 'native-base'
+import { Container, Content, Grid, Col, Text, Input, Item, Label, InputGroup, Form } from 'native-base'
 
 // additional components
-import SetBounty from '../../components/SetBounty'
-import ViewBounty from '../../components/ViewBounty'
-import CompleteBounty from '../../components/CompleteBounty'
+import ReturnFAB from '../../components/ReturnFAB'
+import SubmitFAB from '../../components/SubmitFAB'
 
 // styles and background image
 import s from './styles'
@@ -15,21 +14,77 @@ import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
 
 // redux and dispatchers
 import { connect } from 'react-redux'
-import { addBountyToTask, taskStatusComplete } from '../../../redux/reducers/tasks'
+import { addBountyToTask } from '../../../redux/reducers/tasks'
 
-class CompleteTask extends React.Component {
+class PendingTask extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      userId: props.viewerUser.id,
+      taskId: props.task.id,
+      amount: '',
+    }
+
+    this.handleAmountChange = this.handleAmountChange.bind(this)
+    this.submittedBounty = this.submittedBounty.bind(this)
+  }
+
+  handleAmountChange(amount) {
+      this.setState({
+        amount:amount
+      })
+    }
+
+  submittedBounty(bountiesArr){
+    return bountiesArr.some(bounty => bounty.user.id === this.props.viewerUser.id)
+  }
+
   render() {
+    const task = this.props.task
+    const bountySubmitted = this.submittedBounty(task.bounties)
     return (
       <Container>
       <Image source={welcomeScreenBg} style={s.imageContainer}>
       <StatusBar hidden={true} />
       <Content contentContainerStyle={s.content} >
-      <Grid style={s.grid}>
+
+        {
+        (!bountySubmitted)
+        ?
+        <Form style={s.form}>
+          <Item stackedLabel style={s.item}>
+            <Label style={s.label}> {`What do you believe is a fair wage for ${task.description}?`} </Label>
+            <InputGroup >
+              <Input
+                placeholder={'0-100'}
+                style={s.input}
+                onChangeText={this.handleAmountChange}
+              />
+            </InputGroup>
+          </Item>
+          <Text style={s.parenthetical}>(Submit below)</Text>
+        </Form>
+        :
+        <Grid style={s.grid}>
         <Col style={s.column}>
-          <Text style={s.mainText}>No tasks yet</Text>
-          <Text style={s.parenthetical}>(Add one below)</Text>
+          <Text style={s.mainText}>{`${task.description} will be assigned when additional bounties are submitted.`}</Text>
         </Col>
-      </Grid>
+        </Grid>
+        }
+      <ReturnFAB
+        goBack={this.props.navigation.goBack}
+      />
+      {
+        (!bountySubmitted) &&
+        <SubmitFAB
+          submitAction={this.props.addBountyToTask}
+          state={this.state}
+          location={'GroupTasks'}
+          locationParams={{groupId: this.props.viewerGroup.id}}
+          navigate={this.props.navigation.navigate}
+        />
+      }
       </Content>
       </Image>
       </Container>
@@ -37,83 +92,14 @@ class CompleteTask extends React.Component {
   }
 }
 
-export default connect(
-  state => {
-    return {
-      selectedTask: state.tasks.selectedTask,
-      viewerUser: state.users.viewerUser,
-      viewerGroup: state.groups.viewerGroup
-    }
-  },
-  dispatch => {
-    return {
-      setBountyToTask: (amount, userId, taskId, groupId) => {
-        return dispatch(addBountyToTask(amount, userId, taskId, groupId))
-      },
-      completeTask: taskId => {
-        return dispatch(taskStatusComplete(taskId))
-      }
-    }
+const mapState = state => {
+  return {
+    viewerUser: state.users.viewerUser,
+    viewerGroup: state.groups.viewerGroup,
+    task: state.tasks.selectedTask
   }
-)(
-  CompleteTask
-)
+}
 
-// export default connect(
-//   state => {
-//     return {
-//       selectedTask: state.tasks.selectedTask,
-//       viewerUser: state.users.viewerUser,
-//       viewerGroup: state.groups.viewerGroup
-//     }
-//   },
-//   dispatch => {
-//     return {
-//       setBountyToTask: (amount, userId, taskId, groupId) => {
-//         return dispatch(addBountyToTask(amount, userId, taskId, groupId))
-//       },
-//       completeTask: taskId => {
-//         return dispatch(taskStatusComplete(taskId))
-//       }
-//     }
-//   }
-// )(
-//   CompleteTask
-// )
-// // {selectedTask.status === 'Pending'
-//           ?
-//           <Content>
-//             {bountyStatus
-//             ? <ViewBounty amount={amount} />
-//             : <SetBounty
-//                 amount={amount}
-//                 handleBountyChange={this.handleBountyChange}
-//                 setBountyToTask={setBountyToTask}
-//                 viewerGroup={viewerGroup}
-//                 selectedTask={selectedTask}
-//                 navigate={navigate}
-//                 viewerUser={viewerUser}
-//                 />
-//             }
-//           </Content>
-//           :
-//           <CompleteBounty
-//             amount={previousAmount}
-//             selectedTask={selectedTask}
-//             viewerUser={viewerUser}
-//             navigate={navigate}
-//             viewerGroup={viewerGroup}
-//             completeTask={completeTask}
-//             />
-//           }
-    // const { navigate } = this.props.navigation
-    // const { selectedTask, setBountyToTask, viewerGroup, viewerUser, completeTask } = this.props
-    // let { amount } = this.state
-    // let previousAmount = 0
-    // const bountyStatus = selectedTask.bounties && selectedTask.bounties.some(bounty => {
-    //   return bounty.user.id === viewerUser.id
-    // })
-    // selectedTask.bounties && selectedTask.bounties.forEach(bounty => {
-    //   if (bounty.amount > previousAmount) previousAmount = bounty.amount
-    //   if (bounty.user.id === viewerUser.id) amount = bounty.amount
-    // })
+const mapDispatch = { addBountyToTask }
+
+export default connect(mapState, mapDispatch)(PendingTask)

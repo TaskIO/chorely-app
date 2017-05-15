@@ -1,6 +1,6 @@
 'use strict'
 import { Dimensions } from 'react-native'
-import { cloudWhite, belizeBlue, midnight, silver } from '../../../../constants/colors'
+import { cloudWhite, belizeBlue, midnight, silver, rose } from '../../../../constants/colors'
 
 const deviceHeight = Dimensions.get('window').height
 
@@ -30,15 +30,35 @@ export default {
     flex: 1,
     alignItems: 'center',
   },
+  form: {
+    flex: 1,
+    marginTop: deviceHeight / 6,
+    alignItems: 'center',
+  },
+  item: {
+    borderWidth: 34,
+    marginRight: 15,
+  },
+  label: {
+    fontSize: 25,
+    color: cloudWhite,
+  },
+  task: {
+    fontSize: 24,
+    color: rose,
+  },
+  input: {
+    color: cloudWhite,
+  },
   filter: {
     alignSelf: 'center',
     justifyContent: 'center',
     alignContent: 'center',
   },
   mainText: {
-    fontSize: 34,
+    fontSize: 25,
     color: cloudWhite,
-    textAlign: 'center',
+    textAlign:'center'
   },
   midnight: {
     fontSize: 16,
@@ -51,10 +71,6 @@ export default {
     fontSize: 20,
     color: silver,
     textAlign: 'center',
-  },
-  item: {
-    borderWidth: 34,
-    marginRight: 15,
   },
   fab: {
     backgroundColor: cloudWhite,

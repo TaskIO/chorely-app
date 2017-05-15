@@ -6,6 +6,7 @@ import { Form, Item, Label, Input, InputGroup, Container, Content} from 'native-
 
 // additional components
 import SubmitFAB from '../../components/SubmitFAB'
+import ReturnFAB from '../../components/ReturnFAB'
 
 // styles and background image
 import s from './styles'
@@ -69,6 +70,7 @@ class NewTask extends React.Component {
                   />
                 </InputGroup>
               </Item>
+            </Form>
               <SubmitFAB
                 submitAction={this.props.createNewTask}
                 state={this.state}
@@ -76,7 +78,9 @@ class NewTask extends React.Component {
                 locationParams={{groupId: this.state.groupId}}
                 navigate={this.props.navigation.navigate}
               />
-            </Form>
+        <ReturnFAB
+          goBack={this.props.navigation.goBack}
+        />
         </Content>
         </Image>
       </Container>

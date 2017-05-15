@@ -57,19 +57,18 @@ export const createNewTask = taskData => dispatch => {
     .catch(console.error)
 }
 
-export const addBountyToTask = (amount, userId, taskId) => dispatch => {
+export const addBountyToTask = bountyData => dispatch => {
+  const { amount, userId, taskId } = bountyData
   return fetch(`http://${ipAddress}:${port}/?${createNewBounty(amount, userId)}`, { method: 'POST' })
     .then(response => response.json())
     .then(createdBounty => {
       const bountyId = createdBounty.data.bountiesCreate.id
-      fetch(`http://${ipAddress}:${port}/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST' })
-      return createdBounty
+      return fetch(`http://${ipAddress}:${port}/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST' })
     })
     .catch(console.error)
 }
 
 export const taskStatusComplete = taskData => dispatch => {
-  console.log("taskData", taskData);
   const taskId = taskData.id
   return fetch(`http://${ipAddress}:${port}/?${completeTask(taskId)}`, { method: 'POST' })
     .then(completedTask => {})

@@ -36,7 +36,7 @@ export default {
     alignContent: 'center',
   },
   mainText: {
-    fontSize: 34,
+    fontSize: 25,
     color: cloudWhite,
     textAlign: 'center',
   },

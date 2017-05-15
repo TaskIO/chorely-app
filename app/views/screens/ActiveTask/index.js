@@ -42,7 +42,10 @@ class ActiveTask extends React.Component {
       <Grid style={s.grid}>
         <Col style={s.column}>
           <Text style={s.mainText}>{`${task.description} is awaiting completion! ${assigneeName} will receive ${amount} points when the task is complete.`}</Text>
+        {
+          (task.assignee.id === this.props.viewerUser.id) &&
           <Text style={s.parenthetical}>(Complete below)</Text>
+        }
         </Col>
       </Grid>
       <ReturnFAB
