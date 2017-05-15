@@ -23,7 +23,7 @@ class PendingTask extends React.Component {
     this.state = {
       userId: props.viewerUser.id,
       taskId: props.task.id,
-      amount: '',
+      amount: ''
     }
 
     this.handleAmountChange = this.handleAmountChange.bind(this)
@@ -31,13 +31,15 @@ class PendingTask extends React.Component {
   }
 
   handleAmountChange(amount) {
-      this.setState({
-        amount:amount
-      })
-    }
+    this.setState({
+      amount: amount
+    })
+  }
 
-  submittedBounty(bountiesArr){
-    return bountiesArr.some(bounty => bounty.user.id === this.props.viewerUser.id)
+  submittedBounty(bountiesArr) {
+    return bountiesArr.some(
+      bounty => bounty.user.id === this.props.viewerUser.id
+    )
   }
 
   render() {
@@ -45,48 +47,47 @@ class PendingTask extends React.Component {
     const bountySubmitted = this.submittedBounty(task.bounties)
     return (
       <Container>
-      <Image source={welcomeScreenBg} style={s.imageContainer}>
-      <StatusBar hidden={true} />
-      <Content contentContainerStyle={s.content} >
+        <Image source={welcomeScreenBg} style={s.imageContainer}>
+          <StatusBar hidden={true} />
+          <Content contentContainerStyle={s.content}>
 
-        {
-        (!bountySubmitted)
-        ?
-        <Form style={s.form}>
-          <Item stackedLabel style={s.item}>
-            <Label style={s.label}> {`What do you believe is a fair wage for ${task.description}?`} </Label>
-            <InputGroup >
-              <Input
-                placeholder={'0-100'}
-                style={s.input}
-                onChangeText={this.handleAmountChange}
-              />
-            </InputGroup>
-          </Item>
-          <Text style={s.parenthetical}>(Submit below)</Text>
-        </Form>
-        :
-        <Grid style={s.grid}>
-        <Col style={s.column}>
-          <Text style={s.mainText}>{`${task.description} will be assigned when additional bounties are submitted.`}</Text>
-        </Col>
-        </Grid>
-        }
-      <ReturnFAB
-        goBack={this.props.navigation.goBack}
-      />
-      {
-        (!bountySubmitted) &&
-        <SubmitFAB
-          submitAction={this.props.addBountyToTask}
-          state={this.state}
-          location={'GroupTasks'}
-          locationParams={{groupId: this.props.viewerGroup.id}}
-          navigate={this.props.navigation.navigate}
-        />
-      }
-      </Content>
-      </Image>
+            {!bountySubmitted
+              ? <Form style={s.form}>
+                  <Item stackedLabel style={s.item}>
+                    <Label style={s.label}>
+                      {' '}
+                      {`What do you believe is a fair wage for ${task.description}?`}
+                      {' '}
+                    </Label>
+                    <InputGroup>
+                      <Input
+                        keyboardType={'numeric'}
+                        placeholder={'0-100'}
+                        style={s.input}
+                        onChangeText={this.handleAmountChange}
+                      />
+                    </InputGroup>
+                  </Item>
+                  <Text style={s.parenthetical}>(Submit below)</Text>
+                </Form>
+              : <Grid style={s.grid}>
+                  <Col style={s.column}>
+                    <Text
+                      style={s.mainText}
+                    >{`${task.description} will be assigned when additional bounties are submitted.`}</Text>
+                  </Col>
+                </Grid>}
+            <ReturnFAB goBack={this.props.navigation.goBack} />
+            {!bountySubmitted &&
+              <SubmitFAB
+                submitAction={this.props.addBountyToTask}
+                state={this.state}
+                location={'GroupTasks'}
+                locationParams={{ groupId: this.props.viewerGroup.id }}
+                navigate={this.props.navigation.navigate}
+              />}
+          </Content>
+        </Image>
       </Container>
     )
   }
