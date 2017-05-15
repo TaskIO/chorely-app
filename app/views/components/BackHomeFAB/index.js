@@ -5,10 +5,11 @@ import s from './styles'
 
 export default ({navigate, location}) => (
   <Fab style={s.fab}
+    position="bottomLeft"
     onPress={() => {
       navigate(location)
     }
     }>
-    <Icon style={s.icon} name="add"/>
+    <Icon style={s.icon} name="arrow-back"/>
   </Fab>
 )
