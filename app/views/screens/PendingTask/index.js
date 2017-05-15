@@ -100,6 +100,12 @@ const mapState = state => {
   }
 }
 
-const mapDispatch = { addBountyToTask }
+const mapDispatch = dispatch => {
+  return {
+    addBountyToTask: bountyData => {
+      return dispatch(addBountyToTask(bountyData))
+    }
+  }
+}
 
 export default connect(mapState, mapDispatch)(PendingTask)
