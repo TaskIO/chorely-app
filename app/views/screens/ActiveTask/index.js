@@ -2,23 +2,36 @@
 //  R/RN/NB components
 import React from 'react'
 import { Image, StatusBar } from 'react-native'
-import { Container, Content, Body, Header, Title } from 'native-base'
+import { Container, Content, Grid, Col, Text } from 'native-base'
 
 // additional components
-import SetBounty from '../../components/SetBounty'
-import ViewBounty from '../../components/ViewBounty'
-import CompleteBounty from '../../components/CompleteBounty'
-
+import ReturnFAB from '../../components/ReturnFAB'
 // styles and background image
 import s from './styles'
 import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
 
 // redux and dispatchers
 import { connect } from 'react-redux'
-import { addBountyToTask, taskStatusComplete } from '../../../redux/reducers/tasks'
 
-class CompleteTask extends React.Component {
+
+class ActiveTask extends React.Component {
+  constructor(props){
+    super(props)
+    this.maxBounty = this.maxBounty.bind(this)
+  }
+
+  maxBounty(bountiesArr) {
+    return bountiesArr.reduce((oldMax, newMax) => {
+      oldMax = (typeof oldMax === 'object') ? oldMax.amount : oldMax
+      return (Math.max(oldMax, newMax.amount))
+    })
+  }
+
   render() {
+    const task = this.props.task
+    const assigneeName = (task.assignee.id === this.props.viewerUser.id) ? 'you' : task.assignee.name
+    const amount = this.maxBounty(task.bounties)
+
     return (
       <Container>
       <Image source={welcomeScreenBg} style={s.imageContainer}>
@@ -26,10 +39,12 @@ class CompleteTask extends React.Component {
       <Content contentContainerStyle={s.content} >
       <Grid style={s.grid}>
         <Col style={s.column}>
-          <Text style={s.mainText}>No tasks yet</Text>
-          <Text style={s.parenthetical}>(Add one below)</Text>
+          <Text style={s.mainText}>{`${task.description} is complete! ${assigneeName} received ${amount} points.`}</Text>
         </Col>
       </Grid>
+      <ReturnFAB
+        goBack={this.props.navigation.goBack}
+      />
       </Content>
       </Image>
       </Container>
@@ -56,7 +71,7 @@ export default connect(
     }
   }
 )(
-  CompleteTask
+  ActiveTask
 )
 
 // export default connect(

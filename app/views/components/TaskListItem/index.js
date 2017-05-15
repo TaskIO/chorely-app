@@ -5,12 +5,24 @@ import { setSelectedTask } from '../../../redux/reducers/tasks'
 import s from './styles'
 
 export default ({ setSelectedTask, task, navigate }) => {
+  let destination
+
+  switch(task.status) {
+      case 'Completed':
+          destination = 'CompleteTask'
+          break;
+      case 'Active':
+          destination = 'ActiveTask'
+          break;
+      default:
+          destination = 'PendingTask'
+  }
   return (
     <ListItem
       onPress = {
         () => {
           setSelectedTask(task)
-          navigate('CompleteTask')
+          navigate(destination)
         }
       }
     >
