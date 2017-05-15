@@ -1,14 +1,19 @@
 'use strict'
+//  R/RN/NB components
 import React from 'react'
 import { Image, StatusBar } from 'react-native'
-import { Form, Item, Label, Input, InputGroup, Container, Content, Header, Body, Title } from 'native-base'
-import { connect } from 'react-redux'
+import { Form, Item, Label, Input, InputGroup, Container, Content} from 'native-base'
+
+// additional components
+import SubmitFAB from '../../components/SubmitFAB'
+import ReturnFAB from '../../components/ReturnFAB'
 
 // styles and background image
 import s from './styles'
-import SubmitFAB from '../../components/SubmitFAB'
 import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
 
+// redux and dispatchers
+import { connect } from 'react-redux'
 import { createNewTask } from '../../../redux/reducers/tasks'
 import { fetchViewer } from '../../../redux/reducers/users'
 
@@ -65,6 +70,7 @@ class NewTask extends React.Component {
                   />
                 </InputGroup>
               </Item>
+            </Form>
               <SubmitFAB
                 submitAction={this.props.createNewTask}
                 state={this.state}
@@ -72,7 +78,9 @@ class NewTask extends React.Component {
                 locationParams={{groupId: this.state.groupId}}
                 navigate={this.props.navigation.navigate}
               />
-            </Form>
+        <ReturnFAB
+          goBack={this.props.navigation.goBack}
+        />
         </Content>
         </Image>
       </Container>

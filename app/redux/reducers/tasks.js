@@ -38,39 +38,40 @@ export default function(state = defaultState, action) {
 }
 /* ------------       DISPATCHERS     ------------------ */
 
-import {createNewTaskWithBounty, associateTaskAndBounty, createNewBounty, completeTask} from '../graphql/task/mutation.js'
+import { createNewTaskWithBounty, associateTaskAndBounty, createNewBounty, completeTask } from '../graphql/task/mutation.js'
 
 // dev constants
-import { ipAddress, port} from '../../../constants/dev'
+import { ipAddress, port } from '../../../constants/dev'
 
 export const createNewTask = taskData => dispatch => {
-  let {description, groupId, creatorId, amount} = taskData
-  return fetch(`http://${ipAddress}:${port}/?${createNewTaskWithBounty(description, groupId, creatorId, amount)}`, { method: 'POST'})
+  let { description, groupId, creatorId, amount } = taskData
+  return fetch(`http://${ipAddress}:${port}/?${createNewTaskWithBounty(description, groupId, creatorId, amount)}`, { method: 'POST' })
     .then(response => response.json())
     .then(createdTaskAndBounty => {
       const taskId = createdTaskAndBounty.data.tasksCreate.id
       const bountyId = createdTaskAndBounty.data.bountiesCreate.id
       dispatch(setSelectedTask(createdTaskAndBounty.data.tasksCreate))
-      fetch(`http://${ipAddress}:${port}/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST'})
+      fetch(`http://${ipAddress}:${port}/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST' })
       return createdTaskAndBounty
     })
     .catch(console.error)
 }
 
-export const addBountyToTask = (amount, userId, taskId) => dispatch => {
+export const addBountyToTask = bountyData => dispatch => {
+  const { amount, userId, taskId } = bountyData
   return fetch(`http://${ipAddress}:${port}/?${createNewBounty(amount, userId)}`, { method: 'POST' })
     .then(response => response.json())
     .then(createdBounty => {
       const bountyId = createdBounty.data.bountiesCreate.id
-      fetch(`http://${ipAddress}:${port}/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST' })
-      return createdBounty
+      return fetch(`http://${ipAddress}:${port}/?${associateTaskAndBounty(taskId, bountyId)}`, { method: 'POST' })
     })
     .catch(console.error)
 }
 
-export const taskStatusComplete = taskId => dispatch => {
+export const taskStatusComplete = taskData => dispatch => {
+  const taskId = taskData.id
   return fetch(`http://${ipAddress}:${port}/?${completeTask(taskId)}`, { method: 'POST' })
-    .then(completedTask => {
-    })
+    .then(completedTask => {})
     .catch(console.error)
 }
+

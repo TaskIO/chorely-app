@@ -6,6 +6,7 @@ import { Container, Content, Form, Input, InputGroup, Item, Label } from 'native
 
 // additional components
 import SubmitFAB from '../../components/SubmitFAB'
+import ReturnFAB from '../../components/ReturnFAB'
 
 // styles and background image
 import s from './styles'
@@ -64,14 +65,17 @@ class NewGroup extends React.Component {
                   />
                 </InputGroup>
               </Item>
-              <SubmitFAB
-                submitAction={this.props.createNewGroup}
-                state={this.state}
-                location={'Home'}
-                locationParams={{}}
-                navigate={this.props.navigation.navigate}
-              />
             </Form>
+            <SubmitFAB
+              submitAction={this.props.createNewGroup}
+              state={this.state}
+              location={'Home'}
+              locationParams={{}}
+              navigate={this.props.navigation.navigate}
+            />
+            <ReturnFAB
+              goBack={this.props.navigation.goBack}
+            />
           </Content>
         </Image>
         </Container>

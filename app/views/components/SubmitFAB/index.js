@@ -5,6 +5,7 @@ import s from './styles'
 
 export default ({ navigate, location, locationParams, state, submitAction }) => (
   <Fab
+    position="bottomRight"
     style = {(s.fab)}
     onPress={() => {
       submitAction(state)

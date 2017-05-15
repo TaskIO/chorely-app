@@ -3,13 +3,13 @@ import React from 'react'
 import { Fab, Icon } from 'native-base'
 import s from './styles'
 
-export default ({navigate, location}) => (
+export default ({ icon, navigate, location, locationParams }) => (
   <Fab style={s.fab}
-    position="bottomRight"
+    position="topRight"
     onPress={() => {
-      navigate(location)
+      navigate(location, locationParams)
     }
   }>
-  <Icon style={s.icon} name="add"/>
+  <Icon style={s.icon} name={icon}/>
   </Fab>
 )
