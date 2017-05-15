@@ -32,7 +32,7 @@ class PendingTask extends React.Component {
 
   handleAmountChange(amount) {
       this.setState({
-        amount:amount
+        amount: amount
       })
     }
 
@@ -43,6 +43,10 @@ class PendingTask extends React.Component {
   render() {
     const task = this.props.task
     const bountySubmitted = this.submittedBounty(task.bounties)
+    const userGroupInfo = this.props.viewerGroup.userGroups.filter(userGroup => {
+      return userGroup.user.id === this.props.viewerUser.id
+    })
+    const availablePoints = userGroupInfo[0].points
     return (
       <Container>
       <Image source={welcomeScreenBg} style={s.imageContainer}>
@@ -57,7 +61,7 @@ class PendingTask extends React.Component {
             <Label style={s.label}> {`What do you believe is a fair wage for ${task.description}?`} </Label>
             <InputGroup >
               <Input
-                placeholder={'0-100'}
+                placeholder={`0-${availablePoints}`}
                 style={s.input}
                 onChangeText={this.handleAmountChange}
               />
@@ -77,6 +81,8 @@ class PendingTask extends React.Component {
       />
       {
         (!bountySubmitted) &&
+        +this.state.amount <= availablePoints && this.state.amount.length
+        ?
         <SubmitFAB
           submitAction={this.props.addBountyToTask}
           state={this.state}
@@ -84,6 +90,8 @@ class PendingTask extends React.Component {
           locationParams={{groupId: this.props.viewerGroup.id}}
           navigate={this.props.navigation.navigate}
         />
+        :
+        null
       }
       </Content>
       </Image>
