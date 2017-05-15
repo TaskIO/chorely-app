@@ -23,7 +23,7 @@ class PendingTask extends React.Component {
     this.state = {
       userId: props.viewerUser.id,
       taskId: props.task.id,
-      amount: '',
+      amount: ''
     }
 
     this.handleAmountChange = this.handleAmountChange.bind(this)
@@ -31,13 +31,15 @@ class PendingTask extends React.Component {
   }
 
   handleAmountChange(amount) {
-      this.setState({
-        amount: amount
-      })
-    }
+    this.setState({
+      amount: amount
+    })
+  }
 
-  submittedBounty(bountiesArr){
-    return bountiesArr.some(bounty => bounty.user.id === this.props.viewerUser.id)
+  submittedBounty(bountiesArr) {
+    return bountiesArr.some(
+      bounty => bounty.user.id === this.props.viewerUser.id
+    )
   }
 
   render() {
@@ -62,10 +64,9 @@ class PendingTask extends React.Component {
     if (availablePoints > 100) availablePoints = 100
     return (
       <Container>
-      <Image source={welcomeScreenBg} style={s.imageContainer}>
-      <StatusBar hidden={true} />
-      <Content contentContainerStyle={s.content} >
-
+        <Image source={welcomeScreenBg} style={s.imageContainer}>
+          <StatusBar hidden={true} />
+          <Content contentContainerStyle={s.content}>
         {
         (!bountySubmitted)
         ?
