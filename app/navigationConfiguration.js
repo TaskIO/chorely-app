@@ -7,6 +7,7 @@ import CreateAccount from './views/screens/CreateAccount'
 import Login from './views/screens/Login'
 import Home from './views/screens/Home'
 import GroupTasks from './views/screens/GroupTasks'
+import GroupMembers from './views/screens/GroupMembers'
 import CompleteTask from './views/screens/CompleteTask'
 import ActiveTask from './views/screens/ActiveTask'
 import PendingTask from './views/screens/PendingTask'
@@ -20,6 +21,7 @@ const routeConfiguration = {
   CreateAccount: { screen: CreateAccount },
   Home: { screen: Home },
   GroupTasks: { screen: GroupTasks },
+  GroupMembers: { screen: GroupMembers },
   NewGroup: { screen: NewGroup },
   NewTask: { screen: NewTask },
   CompleteTask: { screen: CompleteTask },
