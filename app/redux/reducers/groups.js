@@ -62,10 +62,11 @@ import { setGroupUsers } from './users'
 import { ipAddress, port } from '../../../constants/dev'
 
 export const selectGroup = groupId => dispatch => {
-  fetch(`http://${ipAddress}:${port}/?${getGroup(+groupId)}`)
+  return fetch(`http://${ipAddress}:${port}/?${getGroup(+groupId)}`)
     .then(response => response.json())
     .then(selectedGroup => {
       const group = selectedGroup.data.groups[0]
+      group.userGroups = selectedGroup.data.userGroups
       dispatch(setViewerGroup(group))
       dispatch(setGroupUsers(group.users))
       dispatch(setGroupTasks(group.tasks))

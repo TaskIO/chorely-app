@@ -36,6 +36,7 @@ class GroupMembers extends React.Component {
               key={member.id}
               member={member}
               navigate={navigate}
+              userGroups={this.props.group.userGroups}
             />)
           })}
         <Button iconLeft transparent style={s.filter}>
