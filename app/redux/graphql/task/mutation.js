@@ -75,7 +75,7 @@ export const completeTask = taskId => {
     }&operationName=CompleteTask&variables={
       "task": {
         "id": ${taskId},
-        "status": "Completed"
+        "status": "Complete"
       }
     }`
   )
