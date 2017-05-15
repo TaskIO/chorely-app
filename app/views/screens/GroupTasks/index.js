@@ -18,11 +18,16 @@ import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
 import { connect } from 'react-redux'
 import { selectGroup } from '../../../redux/reducers/groups'
 import { setSelectedTask } from '../../../redux/reducers/tasks'
+import { setGroupInterval } from '../../../redux/reducers/polls'
 
 class GroupTasks extends React.Component {
+
   componentDidMount() {
     const groupId = this.props.navigation.state.params.groupId
     this.props.selectGroup(groupId)
+    this.props.setGroupInterval(setInterval(() => {
+      this.props.selectGroup(groupId)
+    }, 10000))
   }
   render() {
     const { navigate } = this.props.navigation
@@ -75,14 +80,15 @@ class GroupTasks extends React.Component {
   }
 }
 
-  /* -----------------    CONTAINER     ------------------ */
+/* -----------------    CONTAINER     ------------------ */
 const mapState = state => {
   return {
+    pollId: state.polls.groupInterval,
     group: state.groups.viewerGroup,
     tasks: state.tasks.groupTasks
   }
 }
 
-const mapDispatch = {selectGroup, setSelectedTask}
+const mapDispatch = { selectGroup, setSelectedTask, setGroupInterval }
 
 export default connect(mapState, mapDispatch)(GroupTasks)
