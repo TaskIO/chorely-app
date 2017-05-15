@@ -48,24 +48,25 @@ class NewTask extends React.Component {
       })
       return (
         <Container>
-        <Image source={welcomeScreenBg} style={s.imageContainer}>
-        <StatusBar hidden={true} />
-          <Content contentContainerStyle={s.content} >
-          <Form style={s.form}>
-              <Item stackedLabel style={s.item}>
-                <Label style={s.label}> Task Description </Label>
-                <InputGroup >
-                  <Input
-                    style={s.input}
-                    onChangeText={this.handleTaskChange}
-                  />
-                </InputGroup>
-              </Item>
-              <Item stackedLabel style={s.item}>
-                <Label style={s.label}> Proposed Wage </Label>
-                <InputGroup >
-                  <Input
-                    style={s.input}
+          <Image source={welcomeScreenBg} style={s.imageContainer}>
+            <StatusBar hidden={true} />
+            <Content contentContainerStyle={s.content} >
+              <Form style={s.form}>
+                <Item stackedLabel style={s.item}>
+                  <Label style={s.label}> Task Description </Label>
+                  <InputGroup >
+                    <Input
+                      style={s.input}
+                      onChangeText={this.handleTaskChange}
+                    />
+                  </InputGroup>
+                </Item>
+                <Item stackedLabel style={s.item}>
+                  <Label style={s.label}> Proposed Wage </Label>
+                  <InputGroup >
+                    <Input
+                      keyboardType={'numeric'}
+                      style={s.input}
                     onChangeText={this.handleBountyChange}
                   />
                 </InputGroup>
@@ -99,4 +100,3 @@ const mapState = state => {
 const mapDispatch = { createNewTask, fetchViewer }
 
 export default connect(mapState, mapDispatch)(NewTask)
-
