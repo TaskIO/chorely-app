@@ -4,7 +4,7 @@ export const createSingleGroup = (name, description) => {
       id
       name
       description
-      image
+      icon
       users {
         id
         name
