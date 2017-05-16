@@ -45,6 +45,7 @@ class GroupTasks extends React.Component {
                 key={task.id}
                 task={task}
                 navigate={navigate}
+                viewerUser={this.props.viewerUser}
                 setSelectedTask = {this.props.setSelectedTask}
               />
             })}
@@ -86,7 +87,8 @@ const mapState = state => {
   return {
     pollId: state.polls.groupInterval,
     group: state.groups.viewerGroup,
-    tasks: state.tasks.groupTasks
+    tasks: state.tasks.groupTasks,
+    viewerUser: state.users.viewerUser
   }
 }
 

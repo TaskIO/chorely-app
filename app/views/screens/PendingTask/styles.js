@@ -78,4 +78,9 @@ export default {
   icon: {
     color: belizeBlue
   },
+  member: {
+    fontSize: 16,
+    color: midnight,
+    marginLeft: 5
+  }
 }
