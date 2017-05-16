@@ -9,8 +9,8 @@ export default ({ member, navigate, userGroups }) => {
   })
   return (
     <ListItem>
+      <Thumbnail source={member.image === 'default.png' ? require('../../../theme/img/default.png') : member.image} />
       <Body >
-        <Thumbnail source={member.image === 'default.png' ? require('../../../theme/img/default.png') : member.image} />
         <Text style={s.mainText}>{member.name}</Text>
         <Text note style={s.parenthetical} > Points: {userGroupInfo[0].points} </Text>
       </Body>
