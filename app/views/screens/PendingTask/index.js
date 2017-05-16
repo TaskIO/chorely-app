@@ -2,7 +2,7 @@
 //  R/RN/NB components
 import React from 'react'
 import { Image, StatusBar } from 'react-native'
-import { Container, Content, Grid, Col, Text, Input, Item, Label, InputGroup, Form } from 'native-base'
+import { Container, Content, Grid, Col, Text, Input, Item, Label, InputGroup, Form, List, ListItem, Icon, Right, Body } from 'native-base'
 
 // additional components
 import ReturnFAB from '../../components/ReturnFAB'
@@ -45,6 +45,7 @@ class PendingTask extends React.Component {
   render() {
     const task = this.props.task
     const bountySubmitted = this.submittedBounty(task.bounties)
+    const viewerGroup = this.props.viewerGroup
     return (
       <Container>
         <Image source={welcomeScreenBg} style={s.imageContainer}>
@@ -75,6 +76,19 @@ class PendingTask extends React.Component {
                     <Text
                       style={s.mainText}
                     >{`${task.description} will be assigned when additional bounties are submitted.`}</Text>
+                    <List>
+                      {viewerGroup.users.map(user => {
+                        const bountyStatus = task.bounties.some(bounty => {
+                          return bounty.user.id === user.id
+                        })
+                        return (
+                          <ListItem key={user.id}>
+                            <Icon name={bountyStatus ? 'checkmark' : 'close'} />
+                            <Text style={s.member}>{user.name}</Text>
+                          </ListItem>
+                        )
+                      })}
+                    </List>
                   </Col>
                 </Grid>}
             <ReturnFAB goBack={this.props.navigation.goBack} />
