@@ -4,7 +4,7 @@ import { Text, Button, Container, Content, List, ListItem, Body, Title, Icon } f
 import { setSelectedTask } from '../../../redux/reducers/tasks'
 import s from './styles'
 
-export default ({ setSelectedTask, task, navigate }) => {
+export default ({ setSelectedTask, task, navigate, viewerUser }) => {
   let destination
 
   switch(task.status) {
@@ -17,6 +17,9 @@ export default ({ setSelectedTask, task, navigate }) => {
       default:
           destination = 'PendingTask'
   }
+  const bountyStatus = task.bounties.some(bounty => {
+    return bounty.user.id === viewerUser.id
+  })
   return (
     <ListItem
       onPress = {
@@ -31,7 +34,7 @@ export default ({ setSelectedTask, task, navigate }) => {
       <Text note style={s.parenthetical} > Status: {task.status} </Text>
       <Text note style={s.parenthetical} > Assigned To: {(task.assignee) ? task.assignee.name : 'TBD'} </Text>
     </Body>
-    <Icon name="checkmark-circle" />
+    <Icon name={bountyStatus ? 'checkmark-circle' : 'create'} />
     </ListItem>
   )
 }
