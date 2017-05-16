@@ -8,7 +8,7 @@ export default ({ setSelectedTask, task, navigate, viewerUser }) => {
   let destination
 
   switch(task.status) {
-      case 'Completed':
+      case 'Complete':
           destination = 'CompleteTask'
           break;
       case 'Active':

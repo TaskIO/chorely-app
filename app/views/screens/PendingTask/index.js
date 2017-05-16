@@ -46,12 +46,28 @@ class PendingTask extends React.Component {
     const task = this.props.task
     const bountySubmitted = this.submittedBounty(task.bounties)
     const viewerGroup = this.props.viewerGroup
+    const userGroupInfo = this.props.viewerGroup.userGroups.filter(userGroup => {
+      return userGroup.user.id === this.props.viewerUser.id
+    })
+    let availablePoints = this.props.viewerGroup.userGroups.filter(userGroup => {
+      return userGroup.user.id === this.props.viewerUser.id
+    })[0].points
+    const pendingTasks = this.props.viewerGroup.tasks.filter(pendingTask => {
+      return pendingTask.status === 'Pending'
+    })
+    pendingTasks.forEach(pendingTask => {
+      pendingTask.bounties.forEach(bounty => {
+        if (bounty.user.id === this.props.viewerUser.id) {
+          availablePoints -= bounty.amount
+        }
+      })
+    })
+    if (availablePoints > 100) availablePoints = 100
     return (
       <Container>
         <Image source={welcomeScreenBg} style={s.imageContainer}>
           <StatusBar hidden={true} />
           <Content contentContainerStyle={s.content}>
-
             {!bountySubmitted
               ? <Form style={s.form}>
                   <Item stackedLabel style={s.item}>
