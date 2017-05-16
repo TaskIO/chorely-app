@@ -5,7 +5,7 @@ import { Text, ListItem, Body, Icon } from 'native-base'
 import s from './styles'
 
 export default ({ group, navigate }) => {
-  let { name, description } = group
+  let { name, description, icon } = group
   description = (description.length > 25) ? `${description.slice(0,15)}...` : description
 
   return (
@@ -14,7 +14,7 @@ export default ({ group, navigate }) => {
         () => {navigate('GroupTasks', { groupId: group.id })}
       }
     >
-    <Icon style={s.icon} name='home' />
+    <Icon style={s.icon} name={icon} />
     <Body >
       <Text style={s.mainText}>{name}</Text>
       <Text note style={s.parenthetical} > {description} </Text>
