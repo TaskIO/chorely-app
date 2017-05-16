@@ -38,5 +38,12 @@ export const getGroup = groupId => (
         }
       }
     }
+    userGroups(where: {group_id: ${groupId}}) {
+      points
+      user {
+        id
+        name
+      }
+    }
   }`
 )

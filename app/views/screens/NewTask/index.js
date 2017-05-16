@@ -40,14 +40,27 @@ class NewTask extends React.Component {
       amount
     })
   }
-
-  render() {
-    const parentProps = Object.assign({}, this.state, this.props, {
-      handleTaskChange: this.handleTaskChange,
-      handleBountyChange: this.handleBountyChange
-    })
-    return (
-      <Container>
+    render() {
+      const parentProps = Object.assign({}, this.state, this.props, {
+        handleTaskChange: this.handleTaskChange,
+        handleBountyChange: this.handleBountyChange
+      })
+      let availablePoints = this.props.viewerGroup.userGroups.filter(userGroup => {
+        return userGroup.user.id === this.props.viewerUser.id
+      })[0].points
+      const pendingTasks = this.props.viewerGroup.tasks.filter(task => {
+        return task.status === 'Pending'
+      })
+      pendingTasks.forEach(task => {
+        task.bounties.forEach(bounty => {
+          if (bounty.user.id === this.props.viewerUser.id) {
+            availablePoints -= bounty.amount
+          }
+        })
+      })
+      if (availablePoints > 100) availablePoints = 100
+      return (
+        <Container>
         <Image source={welcomeScreenBg} style={s.imageContainer}>
           <StatusBar hidden={true} />
           <Content contentContainerStyle={s.content}>
@@ -65,19 +78,29 @@ class NewTask extends React.Component {
                     keyboardType={'numeric'}
                     style={s.input}
                     onChangeText={this.handleBountyChange}
+                    value={this.state.amount}
+                    placeholder={`0-${availablePoints}`}
                   />
                 </InputGroup>
               </Item>
             </Form>
-            <SubmitFAB
-              submitAction={this.props.createNewTask}
-              state={this.state}
-              location={'GroupTasks'}
-              locationParams={{ groupId: this.state.groupId }}
-              navigate={this.props.navigation.navigate}
-            />
-            <ReturnFAB goBack={this.props.navigation.goBack} />
-          </Content>
+            {
+              +this.state.amount <= availablePoints && this.state.amount.length && this.state.description.length
+              ?
+              <SubmitFAB
+                submitAction={this.props.createNewTask}
+                state={this.state}
+                location={'GroupTasks'}
+                locationParams={{groupId: this.state.groupId}}
+                navigate={this.props.navigation.navigate}
+              />
+              :
+              null
+            }
+        <ReturnFAB
+          goBack={this.props.navigation.goBack}
+        />
+        </Content>
         </Image>
       </Container>
     )
