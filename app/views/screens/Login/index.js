@@ -6,6 +6,7 @@ import { Container, Content, Form, Input, InputGroup, Item, Label } from 'native
 
 // additional components
 import SubmitFAB from '../../components/SubmitFAB'
+import ReturnFAB from '../../components/ReturnFAB'
 
 // styles and background image
 import s from './styles'
@@ -74,6 +75,9 @@ class Login extends React.Component {
               location={'Home'}
               locationParams={{}}
               navigate={this.props.navigation.navigate}
+            />
+            <ReturnFAB
+              goBack={this.props.navigation.goBack}
             />
           </Content>
         </Image>
