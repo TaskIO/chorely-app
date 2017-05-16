@@ -4,7 +4,7 @@ export const getGroup = groupId => (
       id
       name
       description
-      image
+      icon
       users {
         id
         name
