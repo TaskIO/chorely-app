@@ -34,7 +34,7 @@ export default ({ setSelectedTask, task, navigate, viewerUser }) => {
       <Text note style={s.parenthetical} > Status: {task.status} </Text>
       <Text note style={s.parenthetical} > Assigned To: {(task.assignee) ? task.assignee.name : 'TBD'} </Text>
     </Body>
-    <Icon name={bountyStatus ? 'checkmark-circle' : 'create'} />
+    <Icon name={bountyStatus ? 'checkmark' : 'close'} />
     </ListItem>
   )
 }
