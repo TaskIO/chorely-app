@@ -74,9 +74,9 @@ export const selectGroup = groupId => dispatch => {
 }
 
 export const createNewGroup = groupData => dispatch => {
-  const { name, description, viewerId } = groupData
+  const { name, description, icon, viewerId } = groupData
 
-  return fetch(`http://${ipAddress}:${port}/?${createSingleGroup(name, description)}`, { method: 'POST' })
+  return fetch(`http://${ipAddress}:${port}/?${createSingleGroup(name, description, icon)}`, { method: 'POST' })
     .then(response => (response.json()))
     .then(createdNewGroup => {
       const group = createdNewGroup.data.groupsCreate

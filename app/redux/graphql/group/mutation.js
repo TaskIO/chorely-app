@@ -1,10 +1,10 @@
-export const createSingleGroup = (name, description) => {
+export const createSingleGroup = (name, description, icon) => {
   return `query=mutation CreateGroup($group: groupsInput!) {
   groupsCreate(groups: $group) {
       id
       name
       description
-      image
+      icon
       users {
         id
         name
@@ -41,7 +41,8 @@ export const createSingleGroup = (name, description) => {
 }&operationName=CreateGroup&variables={
       "group": {
         "name": "${name}",
-        "description": "${description}"
+        "description": "${description}",
+        "icon": "${icon}"
       }
     }`
 }

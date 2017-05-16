@@ -2,7 +2,7 @@
 //  R/RN/NB components
 import React from 'react'
 import { Image, StatusBar } from 'react-native'
-import { Container, Content, Form, Input, InputGroup, Item, Label } from 'native-base'
+import { Container, Content, Form, Input, InputGroup, Item, Label, Picker } from 'native-base'
 
 // additional components
 import SubmitFAB from '../../components/SubmitFAB'
@@ -23,10 +23,13 @@ class NewGroup extends React.Component {
         viewerId: props.viewerUser.id,
         name: '',
         description: '',
+        icon: 'home',
+        selectedItem: undefined,
       }
 
       this.handleNameChange = this.handleNameChange.bind(this)
       this.handleDescriptionChange = this.handleDescriptionChange.bind(this)
+      this.onValueChange = this.onValueChange.bind(this)
     }
 
     handleNameChange(name) {
@@ -38,6 +41,11 @@ class NewGroup extends React.Component {
       this.setState({
         description
       })
+    }
+    onValueChange (value) {
+        this.setState({
+            icon : value
+        })
     }
 
     render() {
@@ -64,6 +72,22 @@ class NewGroup extends React.Component {
                     onChangeText={this.handleDescriptionChange}
                   />
                 </InputGroup>
+              </Item>
+              <Item stackedLabel style={s.item}>
+                <Label style={s.label}>Group Icon </Label>
+                  <Picker
+                        style={{width:300, color:'white'}}
+                        supportedOrientations={['portrait','landscape']}
+                        iosHeader="Select one"
+                        mode="dropdown"
+                        selectedValue={this.state.icon}
+                        onValueChange={this.onValueChange}>
+                        <Item label="Home" value="home" />
+                        <Item label="Code" value="code" />
+                        <Item label="Team" value="baseball" />
+                        <Item label="Class" value="university" />
+                        <Item label="Work" value="folder" />
+                   </Picker>
               </Item>
             </Form>
             <SubmitFAB

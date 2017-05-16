@@ -10,7 +10,7 @@ export const getViewer = email => (
         id
         name
         description
-        image
+        icon
       }
     }
   }`
