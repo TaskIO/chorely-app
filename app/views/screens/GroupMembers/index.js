@@ -25,46 +25,60 @@ class GroupMembers extends React.Component {
   }
   render() {
     const { navigate } = this.props.navigation
+    console.log(this.props.members);
+    console.log(
+      this.props.group.userGroups.sort((a, b) => {
+        console.log(a);
+        var nameA = a.user.name.toUpperCase() // ignore upper and lowercase
+        var nameB = b.user.name.toUpperCase() // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1
+        }
+        if (nameA > nameB) {
+          return 1
+        }
+
+        // names must be equal
+        return 0
+      })
+    )
     return (
       <Container>
         <Image source={welcomeScreenBg} style={s.imageContainer}>
-        <StatusBar hidden={true} />
-        <Content contentContainerStyle={s.content}>
-        <List style={s.list}>
-          {this.props.members.map( member => {
-            return (<MemberListItem
-              key={member.id}
-              member={member}
+          <StatusBar hidden={true} />
+          <Content contentContainerStyle={s.content}>
+            <List style={s.list}>
+              {this.props.members.map(member => {
+                return (
+                  <MemberListItem
+                    key={member.id}
+                    member={member}
+                    navigate={navigate}
+                    userGroups={this.props.group.userGroups}
+                  />
+                )
+              })}
+              <Button iconLeft transparent style={s.filter}>
+                <Icon style={s.midnightIcon} name="funnel" />
+                <Text style={s.midnight}>Sort Members</Text>
+              </Button>
+            </List>
+            <AddFAB navigate={navigate} location={'NewTask'} />
+            <ReturnFAB goBack={() => navigate('Home')} />
+            <MemberTaskFAB
               navigate={navigate}
-              userGroups={this.props.group.userGroups}
-            />)
-          })}
-        <Button iconLeft transparent style={s.filter}>
-          <Icon style={s.midnightIcon} name="funnel"/>
-          <Text style={s.midnight}>Sort Members</Text>
-        </Button>
-        </List>
-        <AddFAB
-          navigate={navigate}
-          location={'NewTask'}
-        />
-        <ReturnFAB
-          goBack={()=>navigate('Home')}
-        />
-        <MemberTaskFAB
-          navigate={navigate}
-          icon={'list'}
-          location={'GroupTasks'}
-          locationParams={{groupId: this.props.group.id}}
-        />
-        </Content>
+              icon={'list'}
+              location={'GroupTasks'}
+              locationParams={{ groupId: this.props.group.id }}
+            />
+          </Content>
         </Image>
       </Container>
     )
   }
 }
 
-  /* -----------------    CONTAINER     ------------------ */
+/* -----------------    CONTAINER     ------------------ */
 const mapState = state => {
   return {
     group: state.groups.viewerGroup,
@@ -72,6 +86,6 @@ const mapState = state => {
   }
 }
 
-const mapDispatch = {selectGroup}
+const mapDispatch = { selectGroup }
 
 export default connect(mapState, mapDispatch)(GroupMembers)
