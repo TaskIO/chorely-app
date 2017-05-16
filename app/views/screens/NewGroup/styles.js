@@ -1,5 +1,5 @@
 'use strict'
-import { Dimensions } from 'react-native'
+import { Dimensions, Platform } from 'react-native'
 import { cloudWhite, belizeBlue } from '../../../../constants/colors'
 
 const deviceHeight = Dimensions.get('window').height
@@ -25,6 +25,14 @@ export default {
   item: {
     borderWidth: 34,
     marginRight: 15,
+  },
+  pickerItem: {
+    alignSelf:'stretch',
+    borderWidth: 34,
+    marginRight: 15,
+  },
+  picker:{
+    width: (Platform.OS=='ios') ? 100 : 175,
   },
   label: {
     fontSize: 24,

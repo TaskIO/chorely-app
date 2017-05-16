@@ -2,7 +2,7 @@
 //  R/RN/NB components
 import React from 'react'
 import { Image, StatusBar } from 'react-native'
-import { Container, Content, Form, Input, InputGroup, Item, Label, Picker } from 'native-base'
+import { Text, Container, Content, Form, Input, InputGroup, Item, Label, Picker } from 'native-base'
 
 // additional components
 import SubmitFAB from '../../components/SubmitFAB'
@@ -24,7 +24,6 @@ class NewGroup extends React.Component {
         name: '',
         description: '',
         icon: 'home',
-        selectedItem: undefined,
       }
 
       this.handleNameChange = this.handleNameChange.bind(this)
@@ -66,17 +65,17 @@ class NewGroup extends React.Component {
               </Item>
               <Item stackedLabel style={s.item}>
                 <Label style={s.label}>Group Description </Label>
-                <InputGroup >
+                <InputGroup>
                   <Input
                     style={s.input}
                     onChangeText={this.handleDescriptionChange}
                   />
                 </InputGroup>
               </Item>
-              <Item stackedLabel style={s.item}>
+              <Item stackedLabel style={s.pickerItem}>
                 <Label style={s.label}>Group Icon </Label>
                   <Picker
-                        style={{width:300, color:'white'}}
+                        style={s.picker}
                         supportedOrientations={['portrait','landscape']}
                         iosHeader="Select one"
                         mode="dropdown"
