@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import { Text, Button, Container, Content, List, ListItem, Body, Title } from 'native-base'
+import { Text, Button, Container, Content, List, ListItem, Body, Title, Icon } from 'native-base'
 import { setSelectedTask } from '../../../redux/reducers/tasks'
 import s from './styles'
 
@@ -31,6 +31,7 @@ export default ({ setSelectedTask, task, navigate }) => {
       <Text note style={s.parenthetical} > Status: {task.status} </Text>
       <Text note style={s.parenthetical} > Assigned To: {(task.assignee) ? task.assignee.name : 'TBD'} </Text>
     </Body>
+    <Icon name="checkmark-circle" />
     </ListItem>
   )
 }
