@@ -19,6 +19,12 @@ import { connect } from 'react-redux'
 import { selectGroup } from '../../../redux/reducers/groups'
 
 class GroupMembers extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      orderedMembers: props.members
+    }
+  }
   componentDidMount() {
     const groupId = this.props.navigation.state.params.groupId
     this.props.selectGroup(groupId)
