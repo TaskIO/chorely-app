@@ -136,7 +136,6 @@ class GroupMembers extends React.Component {
               <Button transparent onPress={this.orderMembersAZ}>
                 <Icon style={s.midnightIcon} name="funnel" />
                 <Picker
-                  style={{ width: 100, backgroundColor: 'pink' }}
                   supportedOrientations={['portrait', 'landscape']}
                   iosHeader="Select one"
                   mode="dropdown"
@@ -148,6 +147,7 @@ class GroupMembers extends React.Component {
                   <Item label="A - Z" value="az" />
                   <Item label="Z - A" value="za" />
                 </Picker>
+                <Text style={s.midnight}>Sort Group</Text>
               </Button>
             </List>
             <AddFAB navigate={navigate} location={'NewTask'} />
