@@ -26,6 +26,8 @@ class GroupMembers extends React.Component {
       orderedMembers: props.members
     }
     this.orderMembersAZ = this.orderMembersAZ.bind(this)
+    this.orderMembersAZ = this.orderMembersByMostPoints.bind(this)
+    this.orderMembersAZ = this.orderMembersByLeastPoints.bind(this)
   }
 
   orderMembersAZ() {
@@ -39,6 +41,26 @@ class GroupMembers extends React.Component {
     this.setState({
       orderedMembers: sortedMembers
     })
+  }
+
+  orderMembersByMostPoints(){
+    const sortedByPoints = this.props.group.userGroups.sort((a, b) => a.points - b.points)
+    const order = sortedByPoints.map(points => points.user.id)
+    const sortedMembers = this.props.members.sort((a,b) => (order.indexOf(b.id) - order.indexOf(a.id)))
+    this.setState({
+      orderedMembers:sortedMembers
+      }
+    )
+  }
+
+  orderMembersByLeastPoints(){
+    const sortedByPoints = this.props.group.userGroups.sort((a, b) => a.points - b.points)
+    const order = sortedByPoints.map(points => points.user.id)
+    const sortedMembers = this.props.members.sort((a,b) => (order.indexOf(a.id) - order.indexOf(b.id)))
+    this.setState({
+      orderedMembers:sortedMembers
+      }
+    )
   }
 
   componentDidMount() {
@@ -66,6 +88,14 @@ class GroupMembers extends React.Component {
               <Button transparent onPress={this.orderMembersAZ}>
                 <Icon style={s.midnightIcon} name="funnel" />
                 <Text>Sort A-Z</Text>
+              </Button>
+              <Button transparent onPress={this.orderMembersByLeastPoints}>
+                <Icon style={s.midnightIcon} name="funnel" />
+                <Text>Least</Text>
+              </Button>
+              <Button transparent onPress={this.orderMembersByMostPoints}>
+                <Icon style={s.midnightIcon} name="funnel" />
+                <Text>Most</Text>
               </Button>
             </List>
             <AddFAB navigate={navigate} location={'NewTask'} />
