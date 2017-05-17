@@ -2,14 +2,22 @@
 //  R/RN/NB components
 import React from 'react'
 import { StatusBar, Image } from 'react-native'
-import { Text, Button, Container, Content, List, Icon } from 'native-base'
+import {
+  Text,
+  Button,
+  Container,
+  Content,
+  List,
+  Icon,
+  Picker,
+  Item
+} from 'native-base'
 
 // additional components
 import AddFAB from '../../components/AddFAB'
 import ReturnFAB from '../../components/ReturnFAB'
 import MemberTaskFAB from '../../components/MemberTaskFAB'
 import MemberListItem from '../../components/MemberListItem'
-import FilterAZ from '../../components/FilterAZ'
 
 // styles and background image
 import s from './styles'
@@ -23,11 +31,14 @@ class GroupMembers extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      orderedMembers: props.members
+      orderedMembers: props.members,
+      selectedValue: 'Sort Members'
     }
+    this.onValueChange = this.onValueChange.bind(this)
+    this.orderMembersByMostPoints = this.orderMembersByMostPoints.bind(this)
+    this.orderMembersByLeastPoints = this.orderMembersByMostPoints.bind(this)
     this.orderMembersAZ = this.orderMembersAZ.bind(this)
-    this.orderMembersAZ = this.orderMembersByMostPoints.bind(this)
-    this.orderMembersAZ = this.orderMembersByLeastPoints.bind(this)
+    this.orderMembersZA = this.orderMembersZA.bind(this)
   }
 
   orderMembersAZ() {
@@ -38,29 +49,65 @@ class GroupMembers extends React.Component {
       if (nameA > nameB) return 1
       return 0
     })
+
+    return sortedMembers
+  }
+
+  orderMembersZA() {
+    const sortedMembers = this.props.members.sort((a, b) => {
+      var nameA = a.name.toUpperCase()
+      var nameB = b.name.toUpperCase()
+      if (nameA < nameB) return 1
+      if (nameA > nameB) return -1
+      return 0
+    })
+
+    return sortedMembers
+  }
+
+  orderMembersByMostPoints() {
+    const sortedByPoints = this.props.group.userGroups.sort(
+      (a, b) => a.points - b.points
+    )
+    const order = sortedByPoints.map(points => points.user.id)
+    const sortedMembers = this.props.members.sort(
+      (a, b) => order.indexOf(b.id) - order.indexOf(a.id)
+    )
+
+    return sortedMembers
+  }
+
+  orderMembersByLeastPoints() {
+    const sortedByPoints = this.props.group.userGroups.sort(
+      (a, b) => a.points - b.points
+    )
+    const order = sortedByPoints.map(points => points.user.id)
+    const sortedMembers = this.props.members.sort(
+      (a, b) => order.indexOf(a.id) - order.indexOf(b.id)
+    )
+
+    return sortedMembers
+  }
+
+  onValueChange(orderType) {
+    let sortedMembers
+    switch (orderType) {
+      case 'most':
+        sortedMembers = this.orderMembersByMostPoints()
+        break
+      case 'least':
+        sortedMembers = this.orderMembersByLeastPoints()
+        break
+      case 'az':
+      sortedMembers = this.orderMembersAZ()
+        break
+      case 'za':
+      sortedMembers = this.orderMembersZA()
+        break
+    }
     this.setState({
       orderedMembers: sortedMembers
     })
-  }
-
-  orderMembersByMostPoints(){
-    const sortedByPoints = this.props.group.userGroups.sort((a, b) => a.points - b.points)
-    const order = sortedByPoints.map(points => points.user.id)
-    const sortedMembers = this.props.members.sort((a,b) => (order.indexOf(b.id) - order.indexOf(a.id)))
-    this.setState({
-      orderedMembers:sortedMembers
-      }
-    )
-  }
-
-  orderMembersByLeastPoints(){
-    const sortedByPoints = this.props.group.userGroups.sort((a, b) => a.points - b.points)
-    const order = sortedByPoints.map(points => points.user.id)
-    const sortedMembers = this.props.members.sort((a,b) => (order.indexOf(a.id) - order.indexOf(b.id)))
-    this.setState({
-      orderedMembers:sortedMembers
-      }
-    )
   }
 
   componentDidMount() {
@@ -85,17 +132,22 @@ class GroupMembers extends React.Component {
                   />
                 )
               })}
+
               <Button transparent onPress={this.orderMembersAZ}>
                 <Icon style={s.midnightIcon} name="funnel" />
-                <Text>Sort A-Z</Text>
-              </Button>
-              <Button transparent onPress={this.orderMembersByLeastPoints}>
-                <Icon style={s.midnightIcon} name="funnel" />
-                <Text>Least</Text>
-              </Button>
-              <Button transparent onPress={this.orderMembersByMostPoints}>
-                <Icon style={s.midnightIcon} name="funnel" />
-                <Text>Most</Text>
+                <Picker
+                  style={{ width: 100, backgroundColor: 'pink' }}
+                  supportedOrientations={['portrait', 'landscape']}
+                  iosHeader="Select one"
+                  mode="dropdown"
+                  selectedValue={this.state.selectedValue}
+                  onValueChange={this.onValueChange}
+                >
+                  <Item label="Most Points" value="most" />
+                  <Item label="Least Points" value="least" />
+                  <Item label="A - Z" value="az" />
+                  <Item label="Z - A" value="za" />
+                </Picker>
               </Button>
             </List>
             <AddFAB navigate={navigate} location={'NewTask'} />
