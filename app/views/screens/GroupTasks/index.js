@@ -21,6 +21,12 @@ import { setSelectedTask } from '../../../redux/reducers/tasks'
 import { setGroupInterval } from '../../../redux/reducers/polls'
 
 class GroupTasks extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      
+    }
+  }
 
   componentDidMount() {
     clearInterval(this.props.pollId)
