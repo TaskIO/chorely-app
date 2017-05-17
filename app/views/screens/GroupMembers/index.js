@@ -9,7 +9,6 @@ import AddFAB from '../../components/AddFAB'
 import ReturnFAB from '../../components/ReturnFAB'
 import MemberTaskFAB from '../../components/MemberTaskFAB'
 import MemberListItem from '../../components/MemberListItem'
-import FilterAZ from  '../../components/FilterAZ'
 
 // styles and background image
 import s from './styles'
@@ -23,7 +22,6 @@ class GroupMembers extends React.Component {
   componentDidMount() {
     const groupId = this.props.navigation.state.params.groupId
     this.props.selectGroup(groupId)
-    console.log(this.props.group);
   }
   render() {
     const { navigate } = this.props.navigation
@@ -39,15 +37,13 @@ class GroupMembers extends React.Component {
                     key={member.id}
                     member={member}
                     navigate={navigate}
-                    userGroups={this.props.group.userGroups}
                   />
                 )
               })}
-              <FilterAZ
-                members={this.props.members}
-                userGroups={this.props.group.userGroups}
-                selectGroup={this.props.selectGroup}
-              />
+              <Button iconLeft transparent style={s.filter}>
+                <Icon style={s.midnightIcon} name="funnel" />
+                <Text style={s.midnight}>Sort Members</Text>
+              </Button>
             </List>
             <AddFAB navigate={navigate} location={'NewTask'} />
             <ReturnFAB goBack={() => navigate('Home')} />

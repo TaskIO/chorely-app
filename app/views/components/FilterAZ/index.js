@@ -28,13 +28,15 @@ export default ({ userGroups, selectGroup, members }) => {
     // names must be equal
     return 0
   })
+
+  
   console.log(members)
   return (
     //sort userGroups(has points)
     //need to map userGroups to members
     //trigger state change to include members
     (
-      <Button iconLeft transparent style={s.filter} onPress={sortedGroups}>
+      <Button iconLeft transparent style={s.filter} onPress={selectGroup()}>
         <Icon style={s.midnightIcon} name="funnel" />
         <Text style={s.midnight}>Sort Members</Text>
       </Button>
