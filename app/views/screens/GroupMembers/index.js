@@ -27,48 +27,26 @@ class GroupMembers extends React.Component {
     }
     this.orderMembersAZ = this.orderMembersAZ.bind(this)
   }
+
   orderMembersAZ() {
     const sortedMembers = this.props.members.sort((a, b) => {
-      console.log(a)
-      var nameA = a.name.toUpperCase() // ignore upper and lowercase
-      var nameB = b.name.toUpperCase() // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1
-      }
-      if (nameA > nameB) {
-        return 1
-      }
-
-      // names must be equal
+      var nameA = a.name.toUpperCase()
+      var nameB = b.name.toUpperCase()
+      if (nameA < nameB) return -1
+      if (nameA > nameB) return 1
       return 0
     })
     this.setState({
       orderedMembers: sortedMembers
     })
   }
+
   componentDidMount() {
     const groupId = this.props.navigation.state.params.groupId
     this.props.selectGroup(groupId)
   }
   render() {
     const { navigate } = this.props.navigation
-    console.log(this.props.members);
-    console.log(
-      this.props.group.userGroups.sort((a, b) => {
-        console.log(a);
-        var nameA = a.user.name.toUpperCase() // ignore upper and lowercase
-        var nameB = b.user.name.toUpperCase() // ignore upper and lowercase
-        if (nameA < nameB) {
-          return -1
-        }
-        if (nameA > nameB) {
-          return 1
-        }
-
-        // names must be equal
-        return 0
-      })
-    )
     return (
       <Container>
         <Image source={welcomeScreenBg} style={s.imageContainer}>
@@ -85,7 +63,8 @@ class GroupMembers extends React.Component {
                   />
                 )
               })}
-              <Button onPress={this.orderMembersAZ}>
+              <Button transparent onPress={this.orderMembersAZ}>
+                <Icon style={s.midnightIcon} name="funnel" />
                 <Text>Sort A-Z</Text>
               </Button>
             </List>
