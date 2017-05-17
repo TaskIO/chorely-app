@@ -9,6 +9,7 @@ import AddFAB from '../../components/AddFAB'
 import ReturnFAB from '../../components/ReturnFAB'
 import MemberTaskFAB from '../../components/MemberTaskFAB'
 import MemberListItem from '../../components/MemberListItem'
+import FilterAZ from '../../components/FilterAZ'
 
 // styles and background image
 import s from './styles'
@@ -24,6 +25,26 @@ class GroupMembers extends React.Component {
     this.state = {
       orderedMembers: props.members
     }
+    this.orderMembersAZ = this.orderMembersAZ.bind(this)
+  }
+  orderMembersAZ() {
+    const sortedMembers = this.props.members.sort((a, b) => {
+      console.log(a)
+      var nameA = a.name.toUpperCase() // ignore upper and lowercase
+      var nameB = b.name.toUpperCase() // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1
+      }
+      if (nameA > nameB) {
+        return 1
+      }
+
+      // names must be equal
+      return 0
+    })
+    this.setState({
+      orderedMembers: sortedMembers
+    })
   }
   componentDidMount() {
     const groupId = this.props.navigation.state.params.groupId
@@ -54,7 +75,7 @@ class GroupMembers extends React.Component {
           <StatusBar hidden={true} />
           <Content contentContainerStyle={s.content}>
             <List style={s.list}>
-              {this.props.members.map(member => {
+              {this.state.orderedMembers.map(member => {
                 return (
                   <MemberListItem
                     key={member.id}
@@ -64,9 +85,8 @@ class GroupMembers extends React.Component {
                   />
                 )
               })}
-              <Button iconLeft transparent style={s.filter}>
-                <Icon style={s.midnightIcon} name="funnel" />
-                <Text style={s.midnight}>Sort Members</Text>
+              <Button onPress={this.orderMembersAZ}>
+                <Text>Sort A-Z</Text>
               </Button>
             </List>
             <AddFAB navigate={navigate} location={'NewTask'} />
