@@ -7,6 +7,7 @@ export default ({ member, navigate, userGroups }) => {
   const userGroupInfo = userGroups.filter(userGroup => {
     return userGroup.user.id === member.id
   })
+
   return (
     <ListItem>
       <Thumbnail source={member.image === 'default.png' ? require('../../../theme/img/default.png') : {uri: member.image}} />
@@ -17,4 +18,3 @@ export default ({ member, navigate, userGroups }) => {
     </ListItem>
   )
 }
-
