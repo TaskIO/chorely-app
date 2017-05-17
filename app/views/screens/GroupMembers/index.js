@@ -32,7 +32,7 @@ class GroupMembers extends React.Component {
     super(props)
     this.state = {
       orderedMembers: props.members,
-      selectedValue: 'Sort Members'
+      sortType: `az`
     }
     this.onValueChange = this.onValueChange.bind(this)
     this.orderMembersByMostPoints = this.orderMembersByMostPoints.bind(this)
@@ -106,7 +106,8 @@ class GroupMembers extends React.Component {
         break
     }
     this.setState({
-      orderedMembers: sortedMembers
+      sortType: orderType,
+      orderedMembers: sortedMembers,
     })
   }
 
@@ -134,13 +135,13 @@ class GroupMembers extends React.Component {
               })}
 
               <Button transparent style={s.filter} onPress={this.orderMembersAZ}>
-                <Icon style={s.midnightIcon} name="funnel" />
+                <Icon  style={s.icon} name='funnel'/>
                 <Picker
                   style={s.picker}
                   supportedOrientations={['portrait', 'landscape']}
                   iosHeader="Select one"
                   mode="dropdown"
-                  selectedValue={this.state.selectedValue}
+                  selectedValue={this.state.sortType}
                   onValueChange={this.onValueChange}
                 >
                   <Item label="Most Points" value="most" />
@@ -148,10 +149,8 @@ class GroupMembers extends React.Component {
                   <Item label="A - Z" value="az" />
                   <Item label="Z - A" value="za" />
                 </Picker>
-                <Text style={s.midnight}>Sort Group</Text>
               </Button>
             </List>
-            <AddFAB navigate={navigate} location={'NewTask'} />
             <ReturnFAB goBack={() => navigate('Home')} />
             <MemberTaskFAB
               navigate={navigate}

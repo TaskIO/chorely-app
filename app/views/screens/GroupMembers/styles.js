@@ -27,8 +27,8 @@ export default {
     alignItems: 'center',
   },
   picker:{
-    flex:1,
-    backgroundColor:'pink',
+    width:125,
+    justifyContent:'center',
   },
   column: {
     flex: 1,
