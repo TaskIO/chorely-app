@@ -36,7 +36,7 @@ class GroupMembers extends React.Component {
     }
     this.onValueChange = this.onValueChange.bind(this)
     this.orderMembersByMostPoints = this.orderMembersByMostPoints.bind(this)
-    this.orderMembersByLeastPoints = this.orderMembersByMostPoints.bind(this)
+    this.orderMembersByLeastPoints = this.orderMembersByLeastPoints.bind(this)
     this.orderMembersAZ = this.orderMembersAZ.bind(this)
     this.orderMembersZA = this.orderMembersZA.bind(this)
   }
@@ -133,9 +133,10 @@ class GroupMembers extends React.Component {
                 )
               })}
 
-              <Button transparent onPress={this.orderMembersAZ}>
+              <Button transparent style={s.filter} onPress={this.orderMembersAZ}>
                 <Icon style={s.midnightIcon} name="funnel" />
                 <Picker
+                  style={s.picker}
                   supportedOrientations={['portrait', 'landscape']}
                   iosHeader="Select one"
                   mode="dropdown"
