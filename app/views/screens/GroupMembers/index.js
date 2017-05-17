@@ -9,6 +9,7 @@ import AddFAB from '../../components/AddFAB'
 import ReturnFAB from '../../components/ReturnFAB'
 import MemberTaskFAB from '../../components/MemberTaskFAB'
 import MemberListItem from '../../components/MemberListItem'
+import FilterAZ from  '../../components/FilterAZ'
 
 // styles and background image
 import s from './styles'
@@ -22,26 +23,10 @@ class GroupMembers extends React.Component {
   componentDidMount() {
     const groupId = this.props.navigation.state.params.groupId
     this.props.selectGroup(groupId)
+    console.log(this.props.group);
   }
   render() {
     const { navigate } = this.props.navigation
-    console.log(this.props.members);
-    console.log(
-      this.props.group.userGroups.sort((a, b) => {
-        console.log(a);
-        var nameA = a.user.name.toUpperCase() // ignore upper and lowercase
-        var nameB = b.user.name.toUpperCase() // ignore upper and lowercase
-        if (nameA < nameB) {
-          return -1
-        }
-        if (nameA > nameB) {
-          return 1
-        }
-
-        // names must be equal
-        return 0
-      })
-    )
     return (
       <Container>
         <Image source={welcomeScreenBg} style={s.imageContainer}>
@@ -58,10 +43,11 @@ class GroupMembers extends React.Component {
                   />
                 )
               })}
-              <Button iconLeft transparent style={s.filter}>
-                <Icon style={s.midnightIcon} name="funnel" />
-                <Text style={s.midnight}>Sort Members</Text>
-              </Button>
+              <FilterAZ
+                members={this.props.members}
+                userGroups={this.props.group.userGroups}
+                selectGroup={this.props.selectGroup}
+              />
             </List>
             <AddFAB navigate={navigate} location={'NewTask'} />
             <ReturnFAB goBack={() => navigate('Home')} />
