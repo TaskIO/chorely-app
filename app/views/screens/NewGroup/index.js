@@ -84,7 +84,7 @@ class NewGroup extends React.Component {
                         <Item label="Home" value="home" />
                         <Item label="Code" value="code" />
                         <Item label="Team" value="baseball" />
-                        <Item label="Class" value="university" />
+                        <Item label="Class" value="school" />
                         <Item label="Work" value="folder" />
                    </Picker>
               </Item>
