@@ -1,5 +1,5 @@
 'use strict'
-import { Dimensions } from 'react-native'
+import { Dimensions, Platform } from 'react-native'
 import { cloudWhite, belizeBlue, midnight, silver } from '../../../../constants/colors'
 
 const deviceHeight = Dimensions.get('window').height
@@ -25,6 +25,10 @@ export default {
     flex: 1,
     marginBottom: deviceHeight / 4,
     alignItems: 'center',
+  },
+  picker:{
+    width:125,
+    justifyContent:'center',
   },
   column: {
     flex: 1,
