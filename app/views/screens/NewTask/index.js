@@ -84,7 +84,7 @@ class NewTask extends React.Component {
               </Item>
             </Form>
             {
-              +this.state.amount <= availablePoints && this.state.amount.length && this.state.description.length
+              +this.state.amount <= availablePoints && this.state.amount.length && this.state.description.length && this.state.amount >= 0
               ?
               <SubmitFAB
                 submitAction={this.props.createNewTask}

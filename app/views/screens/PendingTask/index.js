@@ -94,7 +94,7 @@ class PendingTask extends React.Component {
       />
       {
         (!bountySubmitted) &&
-        +this.state.amount <= availablePoints && this.state.amount.length
+        +this.state.amount <= availablePoints && this.state.amount.length && this.state.amount >= 0
         ?
         <SubmitFAB
           submitAction={this.props.addBountyToTask}
