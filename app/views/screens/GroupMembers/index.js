@@ -158,6 +158,10 @@ class GroupMembers extends React.Component {
               location={'GroupTasks'}
               locationParams={{ groupId: this.props.group.id }}
             />
+            <AddFAB
+              navigate={navigate}
+              location={'NewUser'}
+            />
           </Content>
         </Image>
       </Container>
