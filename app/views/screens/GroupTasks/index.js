@@ -61,6 +61,7 @@ class GroupTasks extends React.Component {
           </Col>
           </Grid>
         }
+        </Content>
         <AddFAB
           navigate={navigate}
           location={'NewTask'}
@@ -74,7 +75,6 @@ class GroupTasks extends React.Component {
           location={'GroupMembers'}
           locationParams={{groupId: this.props.group.id}}
         />
-        </Content>
         </Image>
       </Container>
     )
