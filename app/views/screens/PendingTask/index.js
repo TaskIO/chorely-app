@@ -61,7 +61,6 @@ class PendingTask extends React.Component {
         }
       })
     })
-    if (availablePoints > 100) availablePoints = 100
     return (
       <Container>
         <Image source={welcomeScreenBg} style={s.imageContainer}>
@@ -95,7 +94,7 @@ class PendingTask extends React.Component {
       />
       {
         (!bountySubmitted) &&
-        +this.state.amount <= availablePoints && this.state.amount.length
+        +this.state.amount <= availablePoints && this.state.amount.length && this.state.amount >= 0
         ?
         <SubmitFAB
           submitAction={this.props.addBountyToTask}
