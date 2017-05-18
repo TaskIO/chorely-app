@@ -14,6 +14,8 @@ import PendingTask from './views/screens/PendingTask'
 import Profile from './views/screens/Profile'
 import NewTask from './views/screens/NewTask'
 import NewGroup from './views/screens/NewGroup'
+import AddUser from './views/screens/AddUser'
+
 
 const routeConfiguration = {
   Welcome: { screen: Welcome },
@@ -24,6 +26,7 @@ const routeConfiguration = {
   GroupMembers: { screen: GroupMembers },
   NewGroup: { screen: NewGroup },
   NewTask: { screen: NewTask },
+  AddUser: { screen: AddUser },
   CompleteTask: { screen: CompleteTask },
   ActiveTask: { screen: ActiveTask },
   PendingTask: { screen: PendingTask },
