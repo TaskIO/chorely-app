@@ -61,7 +61,6 @@ class PendingTask extends React.Component {
         }
       })
     })
-    if (availablePoints > 100) availablePoints = 100
     return (
       <Container>
         <Image source={welcomeScreenBg} style={s.imageContainer}>
