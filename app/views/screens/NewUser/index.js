@@ -2,7 +2,7 @@
 //  R/RN/NB components
 import React from 'react'
 import { Image, StatusBar } from 'react-native'
-import { Form, Item, Label, Input, InputGroup, Container, Content } from 'native-base'
+import { Text, Grid, Col, Form, Item, Label, Input, InputGroup, Container, Content } from 'native-base'
 
 // additional components
 import SubmitFAB from '../../components/SubmitFAB'
@@ -15,10 +15,9 @@ import welcomeScreenBg from '../../../theme/img/blue-fabric.jpeg'
 
 // redux and dispatchers
 import { connect } from 'react-redux'
-import { AddUserToGroup } from '../../../redux/reducers/tasks'
-import { fetchViewer } from '../../../redux/reducers/users'
+import { addUserToGroup } from '../../../redux/reducers/groups'
 
-class AddUser extends React.Component {
+class NewUser extends React.Component {
   constructor(props) {
     super(props)
 
@@ -28,7 +27,7 @@ class AddUser extends React.Component {
       newUserEmail: '',
     }
 
-    this.handleTaskChange = this.handleTaskChange.bind(this)
+    this.handleEmailChange = this.handleEmailChange.bind(this)
   }
   handleEmailChange(newUserEmail) {
     this.setState({
@@ -43,15 +42,16 @@ class AddUser extends React.Component {
           <StatusBar hidden={true} />
           <Content contentContainerStyle={s.content}>
             <Form style={s.form}>
+              <Label style={s.label}> New Member Email </Label>
               <Item stackedLabel style={s.item}>
-                <Label style={s.label}> Task Description </Label>
                 <InputGroup>
                   <Input style={s.input} onChangeText={this.handleEmailChange} />
                 </InputGroup>
               </Item>
+              <Text style={s.parenthetical}>(Must match another Chorely user)</Text>
             </Form>
         <SubmitFAB
-          submitAction={this.props.AddUserToGroup}
+          submitAction={this.props.addUserToGroup}
           state={this.state}
           location={'GroupMembers'}
           locationParams={{groupId: this.state.groupId}}
@@ -75,6 +75,6 @@ const mapState = state => {
   }
 }
 
-const mapDispatch = { AddUserToGroup, fetchViewer }
+const mapDispatch = { addUserToGroup }
 
-export default connect(mapState, mapDispatch)(AddUser)
+export default connect(mapState, mapDispatch)(NewUser)

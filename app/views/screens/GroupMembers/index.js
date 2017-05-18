@@ -160,7 +160,7 @@ class GroupMembers extends React.Component {
             />
             <AddFAB
               navigate={navigate}
-              location={'AddUser'}
+              location={'NewUser'}
             />
           </Content>
         </Image>

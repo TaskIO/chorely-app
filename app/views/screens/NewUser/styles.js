@@ -1,6 +1,6 @@
 'use strict'
 import { Dimensions } from 'react-native'
-import { cloudWhite, belizeBlue } from '../../../../constants/colors'
+import { cloudWhite, belizeBlue, silver } from '../../../../constants/colors'
 
 const deviceHeight = Dimensions.get('window').height
 
@@ -29,6 +29,16 @@ export default {
   label: {
     fontSize: 24,
     color: cloudWhite,
+  },
+  mainText: {
+    fontSize: 34,
+    color: cloudWhite,
+    textAlign: 'center',
+  },
+  parenthetical: {
+    fontSize: 20,
+    color: silver,
+    textAlign: 'center',
   },
   input: {
     color: cloudWhite,

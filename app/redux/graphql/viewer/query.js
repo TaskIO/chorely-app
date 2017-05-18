@@ -15,3 +15,12 @@ export const getViewer = email => (
     }
   }`
 )
+
+
+export const getUserId = email => (
+  `query={
+    users(where: {email: "${email}"}) {
+      id
+    }
+  }`
+)
