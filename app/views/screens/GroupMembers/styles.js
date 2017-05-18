@@ -11,7 +11,6 @@ export default {
     height: null,
   },
   content: {
-    flex: 1,
     padding: 10,
     flexDirection: 'column',
     justifyContent: 'center',

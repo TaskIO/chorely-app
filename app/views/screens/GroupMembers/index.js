@@ -151,18 +151,18 @@ class GroupMembers extends React.Component {
                 </Picker>
               </Button>
             </List>
-            <ReturnFAB goBack={() => navigate('Home')} />
-            <MemberTaskFAB
-              navigate={navigate}
-              icon={'list'}
-              location={'GroupTasks'}
-              locationParams={{ groupId: this.props.group.id }}
-            />
-            <AddFAB
-              navigate={navigate}
-              location={'NewUser'}
-            />
           </Content>
+          <ReturnFAB goBack={() => navigate('Home')} />
+          <MemberTaskFAB
+            navigate={navigate}
+            icon={'list'}
+            location={'GroupTasks'}
+            locationParams={{ groupId: this.props.group.id }}
+          />
+          <AddFAB
+            navigate={navigate}
+            location={'NewUser'}
+          />
         </Image>
       </Container>
     )
